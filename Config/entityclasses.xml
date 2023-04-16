@@ -1,0 +1,2380 @@
+<Sorcery>
+ <!--_____________________________________________________________________________________________________________________
+	TERMS OF USE: YOU AGREE TO THESE TERMS BY USING SORCERY MOD.
+	_____________________________________________________________________________________________________________________
+	2023 "DEVRIX", SORCERY MOD
+	All Rights Reserved.
+	_____________________________________________________________________________________________________________________
+	HOME: http://sorcerymod.com
+	AUTHOR: http://author.sorcerymod.com
+	FORUM: http://forum.sorcerymod.com
+	DISCORD: http://discord.sorcerymod.com
+	YOUTUBE: http://youtube.sorcerymod.com
+	DOWNLOAD: http://download.sorcerymod.com
+	TFP POLICY: http://tfpmodforumpolicy.sorcerymod.com
+	_____________________________________________________________________________________________________________________
+	NOTICE: All digital assets and ideas contained herein, and made possible by the "Sorcery Mod", is 
+	the sole digital proprietary property of mod Author Devrix. Ownership and equal rights are hereby, 
+	irrefutably and solely, extended and granted to The Fun Pimps legal entity in good faith.
+
+	USAGE: The Sorcery Mod may be downloaded and used by players of the 7 Days to Die community, 
+	with no required royalties. Other than the XML Code itself, digital assets and works of the Sorcery Mod 
+	may not be used outside of the Sorcery Mod. By downloading and using the Sorcery Mod, users of the 
+	mod understand and accept full and sole responsibility and liability of using the mod. Author, nor The 
+	Fun Pimps, shall be held responsible or liable for any possible conflict(s) as a direct or indirect result 
+	of using this mod.
+
+	REDISTRIBUTION: The XML code of the Sorcery Mod may solely be redistributed within the 7 Days 
+	to Die community. Conditions of redistribution require this notice to remain in full, unmodified, and a 
+	direct link, with credit stated, to the original Mod and Author. You may not redistribute the digital 
+	Assets or works, aside from XML Code, of the Sorcery Mod. The Sorcery Mod itself should not be 
+	redistributed outside of its original distribution channels.
+
+	PROHIBITED USE: Users are not permitted to modify, or bypass, Supporter Exclusive perks or items in any way.
+	The free in-game "Supporter Key Item" can be obtained through normal game means (loot, trader) and will unlock all 
+	supporter exclusive perks and items. Modifying or bypassing Supporter Exclusive perks or items is a violation of the 
+	Sorcery Terms of Use.
+
+	CREDIT: This mod is made possible through the framework provided by The Fun Pimps. It is their 
+	hard work and ongoing dedication to building and improving an awesome game that fuels the passion 
+	and drives the creation of this mod. Supporters of the Sorcery Mod make ongoing development 
+	possible. Without their support, it is not possible to put in the enormous amount of time required to 
+	create the plethora of unique assets that make Sorcery.
+
+	MODIFICATION: The Terms of Use and Disclaimer herein are subject to changes and modifications.
+	_____________________________________________________________________________________________________________________
+
+	DISCLAIMER
+	_____________________________________________________________________________________________________________________
+	Sorcery is and will always be 100% FREE. When you choose to Support Development, you are supporting the
+	unique individual work I personally do outside of the game: The creation of unique VFX, SFX, Art, Time creating
+	content and the services/interaction I provide here on Discord. You are not supporting "derivative work of 
+	7 Days to Die" (AKA modding code/changing skins/etc). That is against TFP policy.
+
+	Support Not Required: Those unwilling, or unable, to support development can obtain in-game items 100% FREE.
+	You are not required to support in order to obtain in-game items. Non-supporters are able to obtain any
+	"In-Game Supporter Exclusives" 100% FREE, without supporting development. However, I cannot continue development
+	of Sorcery at this level without Ongoing Support. If support drops below a threshold, development halts. The large
+	amount of time allotted to development is made possible through the generous support given by our Supporters.
+	Disclaimer subject to ongoing changes.
+	_____________________________________________________________________________________________________________________-->
+	
+	<!-- PLAYER -->
+	<append xpath="/entity_classes/entity_class[@name='playerMale']/effect_group">
+		<passive_effect name="HarvestCount" operation="base_set" value="0" tags="essenceHarvestHidden"/>
+	</append>
+	<set xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='ItemsOnEnterGame.GameModeSurvival']/@value">sorceryFamiliarArcane0,potion_Health,potion_Spirit,potion_HolyWater,potion_Devour,sorceryAlchemyMortar,incantation_Recall,supporterKey,keystoneBlock,bedrollBlockVariantHelper</set>
+	<set xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='ItemsOnEnterGame.GameModeSurvivalSP']/@value">sorceryFamiliarArcane0,potion_Health,potion_Spirit,potion_HolyWater,potion_Devour,sorceryAlchemyMortar,incantation_Recall,supporterKey,keystoneBlock,bedrollBlockVariantHelper</set>
+	<set xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='ItemsOnEnterGame.GameModeSurvivalMP']/@value">sorceryFamiliarArcane0,potion_Health,potion_Spirit,potion_HolyWater,potion_Devour,sorceryAlchemyMortar,incantation_Recall,supporterKey,keystoneBlock,bedrollBlockVariantHelper</set>
+	<!-- <set xpath="/entity_classes/entity_class[@name='playerMale']/property[starts-with(@name,'ItemsOnEnterGame')]/@value">sorceryFamiliarArcane0,potion_Health,potion_Spirit,potion_HolyWater,potion_Devour,sorceryAlchemyMortar,incantation_Recall,supporterKey,keystoneBlock,bedrollBlockVariantHelper</set> -->
+	<!-- VEHICLES -->
+	<append xpath="/entity_classes/entity_class[contains(@name, 'vehicle')]">
+		<property name="Buffs" value="buffEntity_SorceryManage"/>
+	</append>
+	<!-- ZOMBIES, ANIMALS, TRADERS -->
+	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale' or @name='animalTemplateTimid' or @name='animalTemplateHostile' or @name='npcTraderTemplate']">
+		<effect_group name="Sorcery">
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage"/>
+		</effect_group>
+	</append>
+	<!-- NPCS, FOLLOWERS -->
+	<append xpath="/entity_classes/entity_class[@name='junkTurretSledge' or @name='junkTurretGun' or @name='entityJunkDrone']">
+		<property name="Buffs" value="buffEntity_SorceryManage"/>
+	</append>
+	<!-- AI INCLUDE: EntityAnimalStag (Summons)-->
+	<!-- ApproachAndAttackTarget -->
+	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale' or @name='animalTemplateHostile']/property[@value='ApproachAndAttackTarget']/@data">,EntityAnimalStag,8</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSpider' or @name='zombieDemolition' or @name='animalCoyote' or @name='animalZombieDog' or @name='animalSnake' or @name='animalBossGrace']/property[@value='ApproachAndAttackTarget']/@data">,EntityAnimalStag,8</append>
+	<!-- SetNearestEntityAsTarget -->
+	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale' or @name='animalTemplateHostile']/property[@value='SetNearestEntityAsTarget']/@data">,EntityAnimalStag,15,15</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSpider' or @name='zombieDemolition' or @name='animalCoyote' or @name='animalZombieDog' or @name='animalSnake' or @name='animalBossGrace']/property[@value='SetNearestEntityAsTarget']/@data">,EntityAnimalStag,15,15</append>
+
+<!-- ENTITIES ______________________________________-->
+	<append xpath="/entity_classes">
+		<!-- INVISIBLE -->
+		<entity_class name="sorceryEntityInvisible"> <!-- gamestages.xml: sleeper -->
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryEntityInvisible"/>
+			<property name="Mesh" value=""/>
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<!-- <property name="IgnoreTrigger" value="true"/> -->
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityEnemyAnimal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+			<!-- <property name="ExperienceGain" value="0"/> -->
+			<!-- <property name="LootDropProb" value="0"/> -->
+			<property name="NavObject" value="clear_sleeper" />
+			<property name="TimeStayAfterDeath" value="0"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+			<property name="Buffs" value="buffSorceryEntitySuicide"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="9000"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="buffSorceryEntitySuicide"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="sorceryIntroEntity">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryIntroEntity"/>
+			<property name="Mesh" value=""/>
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityEnemyAnimal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<property name="TimeStayAfterDeath" value="1"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<property name="Buffs" value="spellIntro_StormAOE,buffSorceryEntitySuicideIntro"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellIntro_StormAOE,buffSorceryEntitySuicideIntro"/>
+				<passive_effect name="HealthMax" operation="base_set" value="9000"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellIntro_StormAOE,buffSorceryEntitySuicideIntro"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="sorceryIntroSpawnArcaneTrader">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryIntroSpawnArcaneTrader"/>
+			<property name="Mesh" value=""/>
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityEnemyAnimal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<property name="TimeStayAfterDeath" value="1"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<property name="Buffs" value="spellIntro_SpawnArcaneTraderAOE,buffSorceryEntitySuicideIntro"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellIntro_SpawnArcaneTraderAOE,buffSorceryEntitySuicideIntro"/>
+				<passive_effect name="HealthMax" operation="base_set" value="9000"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellIntro_SpawnArcaneTraderAOE,buffSorceryEntitySuicideIntro"/>
+			</effect_group>
+		</entity_class>
+		
+		<!-- PORTAL ENTITIES -->
+		<entity_class name="sorceryPortalArcaneTraderNearest"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryPortalToArcaneTrader"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityPortal.unity3d?entityPortal"/>
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityEnemyAnimal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<property name="TimeStayAfterDeath" value="1"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<property name="NavObject" value="sorceryIntroPortal"/>
+			<property name="Buffs" value="spell_PortalToArcaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spell_PortalToArcaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+				<passive_effect name="HealthMax" operation="base_set" value="9000"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spell_PortalToArcaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="sorceryIntroPortalToArcaneTrader"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryIntroPortalToArcaneTrader"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityPortal.unity3d?entityPortal"/>
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityEnemyAnimal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<property name="TimeStayAfterDeath" value="1"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<property name="NavObject" value="sorceryIntroPortal"/>
+			<property name="Buffs" value="spellIntro_PortalToArcaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+			<effect_group name="Base Effects">
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellIntro_SpawnArcaneTraderAOE,buffSorceryEntitySuicideIntro"/> -->
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellIntro_PortalToArcaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+				<passive_effect name="HealthMax" operation="base_set" value="9000"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellIntro_PortalToArcaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+			</effect_group>
+		</entity_class>
+		<!-- MUNDANE TRADER -->
+		<entity_class name="sorceryIntroPortalToMundaneTrader"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryIntroPortalToMundaneTrader"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityPortalMundane.unity3d?entityPortalMundane"/>
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityEnemyAnimal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<property name="TimeStayAfterDeath" value="1"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<property name="NavObject" value="sorceryIntroPortal"/>
+			<property name="Buffs" value="spellIntro_PortalToMundaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellIntro_PortalToMundaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+				<passive_effect name="HealthMax" operation="base_set" value="9000"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellIntro_PortalToMundaneTraderAOE,buffSorceryEntitySuicidePortal"/>
+			</effect_group>
+		</entity_class>
+
+<!-- NOTE: PRELOAD ENTITIES THROUGH ITEMS (PRELOADER ITEMS) -->
+		<!-- FALLEN ______________________________________-->
+		<!-- Intro: Fallen Master ______________________________________-->
+		<entity_class name="sorceryFallenIntroMaster">
+			<property name="EntityType" value="Zombie"/>
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<!-- <property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_fallenFire.unity3d?mat_fallenFire"/> -->
+			<!-- <property name="ReplaceMaterial1" value="#@modfolder:Resources/mat_awakenedEyeFire.unity3d?mat_awakenedEyeFire"/> -->
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenArcane"/>
+			<property name="AvatarController" value="AvatarZombie01Controller"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="HasRagdoll" value="true"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityZombie"/>
+			<property name="Parent" value="Enemies"/>
+			<property name="PhysicsBody" value="sorceryStandardBody"/>
+			<property name="Mass" value="180"/>
+			<property name="Weight" value="70"/>
+			<!-- <property name="LookAtAngle" value="0"/> -->
+			<property name="Faction" value="undead"/>
+			<property name="IsEnemyEntity" value="true"/>
+			<property name="CompassIcon" value="ui_game_symbol_enemy_dot" />
+			<property name="CompassUpIcon" value="ui_game_symbol_enemy_dot_up" />
+			<property name="CompassDownIcon" value="ui_game_symbol_enemy_dot_down" />
+			<property name="TrackerIcon" value="ui_game_symbol_run"/>
+			<!-- AI -->
+			<property name="AINoiseSeekDist" value="8"/>
+			<property name="AIPathCostScale" value=".15, .4"/>
+			<property name="AITask-1" value="BreakBlock"/>
+			<property name="AITask-2" value="DestroyArea"/>
+			<property name="AITask-3" value="Territorial"/>
+			<property name="AITask-4" value="ApproachDistraction"/>
+			<property name="AITask-5" value="ApproachAndAttackTarget" data="class=EntityPlayer,0"/> <!-- class,maxChaseTime (return home) -->
+			<property name="AITask-6" value="ApproachSpot"/>
+			<property name="AITask-7" value="Look"/>
+			<property name="AITask-8" value="Wander"/>
+			<property name="AITarget-1" value="SetAsTargetIfHurt" data="class=EntityPlayer"/>
+			<property name="AITarget-2" value="BlockingTargetTask"/>
+			<property name="AITarget-3" value="SetNearestCorpseAsTarget" data="class=EntityPlayer"/>
+			<property name="AITarget-4" value="SetNearestEntityAsTarget" data="class=EntityPlayer,0,0"/> <!-- class, hear distance, see dist (checked left to right, 0 dist uses entity default) -->
+			<property name="WalkType" value="7"/>
+			<property name="DanceType" value="2"/>
+			<property name="SoundRandomTime" value="60.0"/> <!-- It will play the roam every 60/30 seconds -->
+			<property name="SoundAlertTime" value="25.0"/> <!-- It will play the roam every 25/12.5 seconds-->
+			<property name="SoundRandom" value="sorceryFallen_alert"/>
+			<property name="SoundAlert" value="sorceryFallen_alert"/>
+			<property name="SoundAttack" value="sorceryFallen_attack"/>
+			<property name="SoundHurt" value="sorceryFallen_hurt"/>
+			<property name="SoundDeath" value="sorceryFallen_death"/>
+			<property name="SoundSense" value="sorceryFallen_sense"/>
+			<property name="SoundSleeperSense" value="sleepersense"/>
+			<property name="SoundSleeperBackToSleep" value="sleeperbacktosleep"/>
+			<!-- <property name="SoundFootstepModifier" value="Enemies/Burnt_Zombie/zombieburntfootstep"/> -->
+			<property name="RootMotion" value="true"/>
+			<property name="PushFactor" value="0"/>
+			<property name="HasDeathAnim" value="true"/>
+			<property name="ParticleOnDeath" value="blood_death"/>
+			<property name="SurfaceCategory" value="organic"/>
+			<property name="DismemberMultiplierHead" value="1"/>
+			<property name="DismemberMultiplierArms" value="1"/>
+			<property name="DismemberMultiplierLegs" value="1"/>
+			<property name="LegCrawlerThreshold" value="0"/> <!-- at like .175 nearly every zombie knocked down from a leg hit turns into a crawler -->
+			<property name="LegCrippleThreshold" value="0.01"/>
+			<property name="KnockdownProneDamageThreshold" value="0.5"/>
+			<property name="KnockdownProneStunDuration" value="0.5,1.8"/>
+			<property name="KnockdownProneRefillRate" value="0.045,0.045"/>
+			<property name="KnockdownKneelDamageThreshold" value="0.4"/>
+			<property name="KnockdownKneelStunDuration" value="0.5,1.8"/>
+			<property name="KnockdownKneelRefillRate" value="0.045,0.045"/>
+			<property name="LegsExplosionDamageMultiplier" value="1"/>
+			<property name="ArmsExplosionDamageMultiplier" value="1"/>
+			<property name="HeadExplosionDamageMultiplier" value="1"/>
+			<property name="ChestExplosionDamageMultiplier" value="1"/>
+			<property name="PainResistPerHit" value=".45"/>
+			<!-- Stealth -->
+			<property name="MaxViewAngle" value="360"/>
+			<property name="SightRange" value="60"/> <!-- distance in m -->
+			<property name="SightLightThreshold" value="-2,150"/> <!-- how well lit you have to be for the zombie to see you at min,max range -->
+			<property name="SleeperWakeupSightDetectionMin" value="-40,5"/> <!-- Indiv.Random. sight capability - "I see you" light value at point blank -->
+			<property name="SleeperWakeupSightDetectionMax" value="340,480"/> <!-- Indiv.Random. "I see you" light value at "SightRange" -->
+			<property name="SleeperSenseSightDetectionMin" value="-10,0"/> <!-- same for groaning, not waking -->
+			<property name="SleeperSenseSightDetectionMax" value="200,300"/>
+			<property name="SleeperNoiseSenseThreshold" value="3,8"/> <!-- Indiv.Random. hearing capability - "I hear something" noise value -->
+			<property name="SleeperNoiseWakeThreshold" value="9,12"/>
+			<property name="SleeperSmellSenseThreshold" value="20,50"/> <!-- Indiv.Random. smell capability - "I smell something" player smell value -->
+			<property name="SoundSleeperSenseChance" value=".5"/> <!-- the chance to play "SoundSleeperSense" when "SleeperSmellSenseThreshold" is triggered -->
+			<property name="SleeperSmellWakeThreshold" value="40,100"/>
+			<property name="NoiseAlertThreshold" value="30"/> <!-- DEPRECATED; an awake zombie triggers instantly if touched by the sound range/volume -->
+			<property name="SmellAlertThreshold" value="40"/> <!-- for awake zombies -->
+			<!-- Gameplay -->
+			<property name="MaxTurnSpeed" value="360"/>
+			<property name="MoveSpeed" value="2.0"/> <!-- just shambling around -->
+			<property name="MoveSpeedAggro" value="2.0, 2.0"/> <!-- chasing a target min/max (like day or night)-->
+			<property name="MoveSpeedPanic" value="0.55"/>
+			<property name="CanClimbLadders" value="true"/>
+			<property name="JumpMaxDistance" value="2.8, 3.9"/>
+			<property name="HandItem" value="meleeHandSorceryNone"/>
+			<property name="HandItemCrawler" value="meleeHandSorceryNone"/>
+			<property name="AttackTimeoutDay" value="60"/> <!-- in s -->
+			<property name="AttackTimeoutNight" value="60"/>
+			<!-- <property name="Buffs" value="spellImpactTrigger_IntroQuestFireMeteor"/> -->
+			<property name="Immunity" value="sickness;disease;wellness"/> <!-- bleeding; -->
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<!-- <property name="LootListOnDeath" value="254"/> -->
+			<property name="TimeStayAfterDeath" value="90"/>
+			<property name="DeadBodyHitPoints" value="666"/>
+			<effect_group name="Base Effects"> <!-- sorcery_zombieTemplateMale --> 
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage"/>
+				<passive_effect name="DistractionResistance" operation="base_set" value="0,0"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>	
+		
+		<!-- Fallen: Master ______________________________________-->
+		<entity_class name="sorceryFallenMaster">
+			<property name="EntityType" value="Zombie"/> <!-- This one decides for scoring -->
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenFire"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<!-- Mesh and class properties -->
+			<!-- <property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_fallenFire.unity3d?mat_fallenFire"/> -->
+			<!-- <property name="ReplaceMaterial1" value="#@modfolder:Resources/mat_awakenedEyeFire.unity3d?mat_awakenedEyeFire"/> -->
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenFire"/>
+			<property name="AvatarController" value="AvatarZombie01Controller"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="HasRagdoll" value="true"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityZombie"/>
+			<property name="Parent" value="Enemies"/>
+			<property name="PhysicsBody" value="sorceryStandardBody"/>
+			<!-- <property name="HasDeathAnim" value="false"/> -->
+			<property name="Mass" value="180"/>
+			<property name="Weight" value="70"/>
+			<property name="PushFactor" value="30"/>
+			
+			<!-- <property name="LookAtAngle" value="0"/> --> <!-- NOTE: seeking solution -->
+			
+			<property name="Faction" value="undead"/>
+			<property name="IsEnemyEntity" value="true"/>
+			<property name="CompassIcon" value="ui_game_symbol_enemy_dot" />
+			<property name="CompassUpIcon" value="ui_game_symbol_enemy_dot_up" />
+			<property name="CompassDownIcon" value="ui_game_symbol_enemy_dot_down" />
+			<!-- AI -->
+			<property name="AINoiseSeekDist" value="8"/>
+			<property name="RightHandJointName" value="RightHand"/>
+			<property name="AIPathCostScale" value=".15, .4"/>
+			<property name="AITask-1" value="BreakBlock"/>
+			<!-- <property name="AITask-2" value="RangedAttackTarget" data="itemType=1;cooldown=1;duration=5"/> -->
+				<!-- <property name="AITask-2" value="RangedAttackTarget" data="itemType=1;cooldown=2;duration=3;minRange=1;maxRange=30"/> -->
+				<property name="AITask-2" value="RangedAttackTarget" data="itemType=1;cooldown=5;duration=3;minRange=5;maxRange=30"/> <!-- minRange=4 -->
+			<property name="AITask-3" value="ApproachAndAttackTarget" data="class=EntityPlayer,0,EntityEnemyAnimal,10,EntityAnimalStag,10"/> <!-- class,maxChaseTime (return home) -->
+			<property name="AITask-4" value="ApproachSpot"/>
+			<property name="AITask-5" value="Look"/>
+			<property name="AITask-6" value="Wander"/>
+			<property name="AITask-7" value=""/>
+			<property name="AITarget-1" value="SetAsTargetIfHurt" data="class=EntityPlayer,EntityEnemyAnimal,EntityAnimalStag"/>
+			<property name="AITarget-2" value="BlockingTargetTask"/>
+			<property name="AITarget-3" value="SetNearestCorpseAsTarget" data="class=EntityPlayer"/>
+			<property name="AITarget-4" value="SetNearestEntityAsTarget" data="class=EntityPlayer,0,0,EntityAnimalStag,0,0"/> <!-- class, hear distance, see dist (checked left to right, 0 dist uses entity default) -->
+			<!-- <property name="AITarget-4" value="SetNearestEntityAsTarget" data="class=EntityPlayer,0,0,EntityEnemyAnimal,15,15,EntityAnimalStag,15,15"/> -->
+			<property class="FallLandBehavior">
+				<property name="1None" data="anim=None;height=0,1;weight=0.4"/>
+				<property name="1Land" data="anim=Land;height=0,1;weight=0.4"/>
+				<property name="1LandLow" data="anim=LandLow;height=0,1;weight=0.15"/>
+				<property name="1Stumble" data="anim=Stumble;height=0,1;weight=0.05"/>
+
+				<property name="LowLand" data="anim=LandLow;height=1,3;weight=0.7"/>
+				<property name="LowStumble" data="anim=Stumble;height=1,3;weight=0.3"/>
+
+				<property name="MidStumble" data="anim=Stumble;height=3,5;weight=0.3"/>
+				<property name="MidStumbleAndRage" data="anim=Stumble;height=3,5;weight=0.3;ragePer=0.5,1.5;rageTime=1.0,2.0"/>
+				<property name="MidLandHard" data="anim=LandHard;height=3,5;weight=0.3"/>
+				<property name="MidLandHardAndRage" data="anim=LandHard;height=3,5;weight=0.3;ragePer=0.5,1.5;rageTime=1.0,2.0"/>
+
+				<property name="HighStumbleAndRage" data="anim=Stumble;height=5,13;weight=0.13;ragePer=0.5,1.5;rageTime=2,8"/>
+				<property name="Ragdoll" data="anim=Ragdoll;height=3;weight=0.4"/>
+			</property>
+			<property class="DestroyBlockBehavior">
+				<property name="None" data="weight=0.0"/>
+				<property name="Stumble" data="weight=0.2"/>
+				<property name="Ragdoll" data="weight=0.2"/>
+			</property>
+			<property name="WalkType" value="7"/>
+			<property name="DanceType" value="2"/>
+			<property name="SoundRandomTime" value="60.0"/> <!-- It will play the roam every 60/30 seconds -->
+			<property name="SoundAlertTime" value="25.0"/> <!-- It will play the roam every 25/12.5 seconds-->
+			<property name="SoundRandom" value="sorceryFallen_alert"/>
+			<property name="SoundAlert" value="sorceryFallen_alert"/>
+			<property name="SoundAttack" value="sorceryFallen_attack"/>
+			<property name="SoundHurt" value="sorceryFallen_hurt"/>
+			<property name="SoundDeath" value="sorceryFallen_death"/>
+			<property name="SoundSense" value="sorceryFallen_sense"/>
+			<property name="SoundSleeperSense" value="sleepersense"/>
+			<property name="SoundSleeperBackToSleep" value="sleeperbacktosleep"/>
+			<!-- <property name="SoundFootstepModifier" value="Enemies/Burnt_Zombie/zombieburntfootstep"/> -->
+			<property name="RootMotion" value="true"/>
+			<property name="HasDeathAnim" value="true"/>
+			<property name="ParticleOnDeath" value="blood_death"/>
+			<property name="SurfaceCategory" value="organic"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/> <!-- at like .175 nearly every zombie knocked down from a leg hit turns into a crawler -->
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="KnockdownProneDamageThreshold" value="0.7"/>
+			<property name="KnockdownProneStunDuration" value="0.1,0.3"/>
+			<property name="KnockdownProneRefillRate" value="0.1,0.1"/>
+			<property name="KnockdownKneelDamageThreshold" value="0.1"/>
+			<property name="KnockdownKneelStunDuration" value="0.1,0.3"/>
+			<property name="KnockdownKneelRefillRate" value="0.1,0.1"/>
+			<property name="LegsExplosionDamageMultiplier" value="0"/>
+			<property name="ArmsExplosionDamageMultiplier" value="0"/>
+			<property name="HeadExplosionDamageMultiplier" value="0"/>
+			<property name="ChestExplosionDamageMultiplier" value="0"/>
+			<property name="PainResistPerHit" value=".9"/> <!-- old .6 --> <!-- Added when hit. Caps at 3. Decay .2 per second. At 1 movement is not slowed by pain -->
+			<!-- Stealth -->
+			<property name="MaxViewAngle" value="280"/>
+			<!-- <property name="SightRange" value="60"/> --> <!-- distance in m -->
+			<property name="SightRange" value="35"/> <!-- distance in m -->
+			<property name="SightLightThreshold" value="-2,150"/> <!-- how well lit you have to be for the zombie to see you at min,max range -->
+			<property name="SleeperWakeupSightDetectionMin" value="-40,5"/> <!-- Indiv.Random. sight capability - "I see you" light value at point blank -->
+			<property name="SleeperWakeupSightDetectionMax" value="340,480"/> <!-- Indiv.Random. "I see you" light value at "SightRange" -->
+			<property name="SleeperSenseSightDetectionMin" value="-10,0"/> <!-- same for groaning, not waking -->
+			<property name="SleeperSenseSightDetectionMax" value="200,300"/>
+			<property name="SleeperNoiseSenseThreshold" value="3,8"/> <!-- Indiv.Random. hearing capability - "I hear something" noise value -->
+			<property name="SleeperNoiseWakeThreshold" value="9,12"/>
+			<property name="SleeperSmellSenseThreshold" value="20,50"/> <!-- Indiv.Random. smell capability - "I smell something" player smell value -->
+			<property name="SoundSleeperSenseChance" value=".5"/> <!-- the chance to play "SoundSleeperSense" when "SleeperSmellSenseThreshold" is triggered -->
+			<property name="SleeperSmellWakeThreshold" value="40,100"/>
+			<property name="NoiseAlertThreshold" value="30"/> <!-- DEPRECATED; an awake zombie triggers instantly if touched by the sound range/volume -->
+			<property name="SmellAlertThreshold" value="40"/> <!-- for awake zombies -->
+			<!-- Gameplay -->
+			<property name="MaxTurnSpeed" value="280"/> <!-- 360 -->
+			<property name="MoveSpeed" value="0.1"/> <!-- just shambling around -->
+			<property name="MoveSpeedAggro" value="0.3, 0.75"/> <!-- chasing a target min/max (like day or night)-->
+			<property name="MoveSpeedRand" value="-.05, .05"/> <!-- Rand added to min aggro speed -->
+			<property name="MoveSpeedPanic" value="0"/>
+			<property name="SwimSpeed" value="1.5"/> <!-- 1 -->
+			<property name="SwimStrokeRate" value="1,1.5"/>
+			<property name="CanClimbLadders" value="true"/>
+			<!-- <property name="JumpMaxDistance" value="4.6, 5"/> -->
+			<property name="CanClimbVertical" value="true"/>
+			<property name="JumpMaxDistance" value="7, 9"/>
+	
+			<property name="HandItem" value="meleeHandSorceryFallenFire"/>
+			<property name="HandItemCrawler" value="meleeHandZombie02"/>
+			<property name="AttackTimeoutDay" value="1.5"/> <!-- in s -->
+			<property name="AttackTimeoutNight" value="1.1"/>
+			<property name="Immunity" value="sickness;disease;wellness"/>
+			<property name="ExperienceGain" value="1250"/>
+			<property name="LootDropProb" value="0"/>
+			<!-- <property name="LootListOnDeath" value="254"/> -->
+			<property name="TimeStayAfterDeath" value="4"/>
+			<property name="DeadBodyHitPoints" value="1000"/>
+			<effect_group name="Base Effects"> <!-- zombieTemplateMale -->
+				<passive_effect name="JumpStrength" operation="base_set" value="0.7"/>
+				<passive_effect name="DistractionResistance" operation="base_set" value="0,0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+
+				<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="noTeethNoInfection" operation="set" value="0">
+					<requirement name="NotHasBuff" buff="buffBrawlerNoTeeth"/></triggered_effect>
+				<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="noTeethNoInfection" operation="set" value="1">
+					<requirement name="HasBuff" buff="buffBrawlerNoTeeth"/></triggered_effect>
+			</effect_group>
+		</entity_class>
+		
+		<!-- INTRO FALLEN: FIRE ______________________________________-->
+		<entity_class name="sorceryFallenIntroFire" extends="sorceryFallenIntroMaster"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenFire,sorceryFallenIntro"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenFire"/>
+			<property name="SoundSpawn" value="sorceryFallenFire_spawn"/>
+			<!-- <property name="LootListOnDeath" value="699"/> -->
+			<property name="LootListOnDeath" value="fallenFireCorpse_sorcery"/>
+			<property name="Buffs" value="spellImpactTrigger_IntroQuestFireMeteor"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/awakenedHandFire.unity3d?awakenedHandFire" local_offset=".14,0.035,0"/> -->
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/awakenedHandFire.unity3d?awakenedHandFire" local_offset="-.14,-0.05,0"/>	 -->
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Fire"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellImpactTrigger_IntroQuestFireMeteor,buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+			</effect_group>
+			<drop event="Harvest" name="resourceEssenceFire" count="1" prob="1" tag="allHarvest"/>
+			<drop event="Harvest" name="resourceEssenceFire" count="1,2" prob="1" tag="essenceFireHarvest" />
+			<drop event="Harvest" name="resourceEssenceFire2" count="1,2" prob=".7" tag="essenceFire2Harvest"/>
+			<drop event="Harvest" name="resourceEssenceFire3" count="1,2" prob=".4" tag="essenceFire3Harvest"/>
+			<drop event="Harvest" name="resourceEssenceFire4" count="1,2" prob=".1" tag="essenceFire4Harvest"/>
+			<drop event="Harvest" name="resourceEssenceFire5" count="1,2" prob=".01" tag="essenceFire5Harvest"/>
+			<drop event="Destroy" name="resourceEssenceFire" count="3,6"/>
+		</entity_class>
+		<!-- Intro Fallen Items: Fire -->
+		<entity_class name="sorceryFallenIntroItemsFire" extends="sorceryFallenIntroMaster">
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenFire,sorceryFallenIntro"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenFire"/>
+			<property name="SoundSpawn" value="sorceryFallenFire_spawn"/>
+			<property name="TimeStayAfterDeath" value="300"/>
+			<!-- <property name="LootListOnDeath" value="689"/> -->
+			<property name="LootListOnDeath" value="fallenFireCorpseIntro_sorcery"/>
+			<property name="Buffs" value="buffSpellImpactTrigger_Special_IceFreeze"/> <!-- sorcAnim_WingsRemove -->
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,buffFallenIntro,spellFX_UnholyConjure"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/awakenedHandFire.unity3d?awakenedHandFire" local_offset=".14,0.035,0"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/awakenedHandFire.unity3d?awakenedHandFire" local_offset="-.14,-0.05,0"/>	
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="$sorcWeaponTypeOverride" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Fire"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellTriggerImpact_IceComet,spellIce_Freeze,buffSpellImpactTrigger_Special_IceFreeze,spellImpactTrigger_IntroQuestFireMeteor"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="buffEntity_SorceryManage,buffFallenIntro,spellFX_UnholyConjure"/>
+			</effect_group>
+			<!-- <property name="NavObject" value="sorceryFallenIntroCorpse"/> -->
+		</entity_class>
+		<entity_class name="sorceryFallenQuestFire" extends="sorceryFallenIntroMaster">
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenFire,sorceryFallenIntro"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenFire"/>
+			<property name="SoundSpawn" value="sorceryFallenFire_spawn"/>
+			<property name="LootListOnDeath" value="fallenFireCorpseQuest_sorcery"/>
+			<property name="TimeStayAfterDeath" value="10"/>
+			<property name="Buffs" value="spellImpactTrigger_QuestFireMeteor"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Fire"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellImpactTrigger_QuestFireMeteor,buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+			</effect_group>
+		</entity_class>
+		
+		<!-- INTRO FALLEN: ICE ______________________________________-->
+		<entity_class name="sorceryFallenIntroIce" extends="sorceryFallenIntroMaster">
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenIce,sorceryFallenIntro"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenIce"/>
+			<property name="SoundSpawn" value="sorceryFallenIce_spawn"/>
+			<!-- <property name="LootListOnDeath" value="698"/> -->
+			<property name="LootListOnDeath" value="fallenIceCorpse_sorcery"/>
+			<property name="Buffs" value="spellImpactTrigger_IntroQuestFireMeteor"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/awakenedHandIce.unity3d?awakenedHandIce" local_offset=".14,0.035,0"/> -->
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/awakenedHandIce.unity3d?awakenedHandIce" local_offset="-.14,-0.05,0"/>	 -->
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Ice"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellImpactTrigger_IntroQuestFireMeteor,buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+			</effect_group>
+			<drop event="Harvest" name="resourceEssenceIce" count="1" prob="1" tag="allHarvest"/>
+			<drop event="Harvest" name="resourceEssenceIce" count="1,2" prob="1" tag="essenceIceHarvest" />
+			<drop event="Harvest" name="resourceEssenceIce2" count="1,2" prob=".7" tag="essenceIce2Harvest"/>
+			<drop event="Harvest" name="resourceEssenceIce3" count="1,2" prob=".4" tag="essenceIce3Harvest"/>
+			<drop event="Harvest" name="resourceEssenceIce4" count="1,2" prob=".1" tag="essenceIce4Harvest"/>
+			<drop event="Harvest" name="resourceEssenceIce5" count="1,2" prob=".01" tag="essenceIce5Harvest"/>
+			<drop event="Destroy" name="resourceEssenceIce" count="3,6"/>
+		</entity_class>
+		<!-- Intro Fallen Items: Ice -->
+		<entity_class name="sorceryFallenIntroItemsIce" extends="sorceryFallenIntroMaster">
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenIce,sorceryFallenIntro"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenIce"/>
+			<property name="SoundSpawn" value="sorceryFallenIce_spawn"/>
+			<property name="TimeStayAfterDeath" value="300"/>
+			<!-- <property name="LootListOnDeath" value="688"/> -->
+			<property name="LootListOnDeath" value="fallenIceCorpseIntro_sorcery"/>
+			<property name="Buffs" value="buffSpellImpactTrigger_Special_IceFreeze"/> <!-- sorcAnim_WingsRemove -->
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,buffFallenIntro,spellFX_UnholyConjure"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/awakenedHandIce.unity3d?awakenedHandIce" local_offset=".14,0.035,0"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/awakenedHandIce.unity3d?awakenedHandIce" local_offset="-.14,-0.05,0"/>	
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="$sorcWeaponTypeOverride" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Ice"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellTriggerImpact_IceComet,spellIce_Freeze,buffSpellImpactTrigger_Special_IceFreeze,spellImpactTrigger_IntroQuestFireMeteor"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="buffEntity_SorceryManage,buffFallenIntro,spellFX_UnholyConjure"/>
+			</effect_group>
+			<!-- <property name="NavObject" value="sorceryFallenIntroCorpse"/> -->
+		</entity_class>
+		<entity_class name="sorceryFallenQuestIce" extends="sorceryFallenIntroMaster">
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenIce,sorceryFallenIntro"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenIce"/>
+			<property name="SoundSpawn" value="sorceryFallenIce_spawn"/>
+			<property name="LootListOnDeath" value="fallenIceCorpseQuest_sorcery"/>
+			<property name="TimeStayAfterDeath" value="10"/>
+			<property name="Buffs" value="spellImpactTrigger_QuestFireMeteor"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Ice"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellImpactTrigger_QuestFireMeteor"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellImpactTrigger_QuestFireMeteor,buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+			</effect_group>
+		</entity_class>
+		
+		<!-- INTRO FALLEN: LIGHTNING ______________________________________-->
+		<entity_class name="sorceryFallenIntroLightning" extends="sorceryFallenIntroMaster">
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenLightning,sorceryFallenIntro"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenLightning"/>
+			<property name="SoundSpawn" value="sorceryFallenLightning_spawn"/>
+			<!-- <property name="LootListOnDeath" value="697"/> -->
+			<property name="LootListOnDeath" value="fallenLightningCorpse_sorcery"/>
+			<property name="Buffs" value="spellImpactTrigger_IntroQuestFireMeteor"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/awakenedHandLightning.unity3d?awakenedHandLightning" local_offset=".14,0.035,0"/> -->
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/awakenedHandLightning.unity3d?awakenedHandLightning" local_offset="-.14,-0.05,0"/>	 -->
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Lightning"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellImpactTrigger_IntroQuestFireMeteor,buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+			</effect_group>
+			<drop event="Harvest" name="resourceEssenceLightning" count="1" prob="1" tag="allHarvest"/>
+			<drop event="Harvest" name="resourceEssenceLightning" count="1,2" prob="1" tag="essenceLightningHarvest" />
+			<drop event="Harvest" name="resourceEssenceLightning2" count="1,2" prob=".7" tag="essenceLightning2Harvest"/>
+			<drop event="Harvest" name="resourceEssenceLightning3" count="1,2" prob=".4" tag="essenceLightning3Harvest"/>
+			<drop event="Harvest" name="resourceEssenceLightning4" count="1,2" prob=".1" tag="essenceLightning4Harvest"/>
+			<drop event="Harvest" name="resourceEssenceLightning5" count="1,2" prob=".01" tag="essenceLightning5Harvest"/>
+			<drop event="Destroy" name="resourceEssenceLightning" count="3,6"/>
+		</entity_class>
+		<!-- Intro Fallen Items: Lightning -->
+		<entity_class name="sorceryFallenIntroItemsLightning" extends="sorceryFallenIntroMaster">
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenLightning,sorceryFallenIntro"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenLightning"/>
+			<property name="SoundSpawn" value="sorceryFallenLightning_spawn"/>
+			<property name="TimeStayAfterDeath" value="300"/>
+			<!-- <property name="LootListOnDeath" value="687"/> -->
+			<property name="LootListOnDeath" value="fallenLightningCorpseIntro_sorcery"/>
+			<property name="Buffs" value="buffSpellImpactTrigger_Special_IceFreeze"/> <!-- sorcAnim_WingsRemove -->
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,buffFallenIntro,spellFX_UnholyConjure"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/awakenedHandLightning.unity3d?awakenedHandLightning" local_offset=".14,0.035,0"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/awakenedHandLightning.unity3d?awakenedHandLightning" local_offset="-.14,-0.05,0"/>	
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="$sorcWeaponTypeOverride" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Lightning"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellTriggerImpact_IceComet,spellIce_Freeze,buffSpellImpactTrigger_Special_IceFreeze,spellImpactTrigger_IntroQuestFireMeteor"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="buffEntity_SorceryManage,buffFallenIntro,spellFX_UnholyConjure"/>
+			</effect_group>
+			<!-- <property name="NavObject" value="sorceryFallenIntroCorpse"/> -->
+		</entity_class>
+		<entity_class name="sorceryFallenQuestLightning" extends="sorceryFallenIntroMaster">
+			<property name="Tags" value="entity,zombie,walker,sorceryFallen,sorceryFallenLightning,sorceryFallenIntro"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenLightning"/>
+			<property name="SoundSpawn" value="sorceryFallenLightning_spawn"/>
+			<property name="LootListOnDeath" value="fallenLightningCorpseQuest_sorcery"/>
+			<property name="TimeStayAfterDeath" value="10"/>
+			<property name="Buffs" value="spellImpactTrigger_QuestFireMeteor"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddBuff" buff="spellFallenTriggerImpact_Lightning"/>
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="spellImpactTrigger_QuestFireMeteor,buffEntity_SorceryManage,sorcAnim_WingsRemove,spellFX_UnholyConjure"/>
+			</effect_group>
+		</entity_class>
+		
+		<!-- FALLEN: FIRE -->
+		<entity_class name="sorceryFallenFire" extends="sorceryFallenMaster">
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,sorceryFallen,sorceryFallenFire"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenFire"/>
+			<property name="SoundSpawn" value="sorceryFallenFire_spawn"/>
+			<property name="HandItem" value="meleeHandSorceryFallenFire"/>	
+			<property name="Buffs" value="buffFallenFire"/>
+			<property name="Immunity" value="sickness;disease;wellness"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,spellFX_UnholyConjure"/>
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/handFire.unity3d?handFire" local_offset=".14,0.035,0"/> -->
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/handFire.unity3d?handFire" local_offset="-.14,-0.05,0"/>	 -->
+				<passive_effect name="BuffProcChance" operation="base_set" value="-5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="2" tags="buffFallenFire"/>
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/><!-- NOTE: Difficulty Modes -->
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/> <!-- Zombie HP scale -->
+				<passive_effect name="EntityDamage" operation="perc_add" value="0"/> <!-- Feral damage -->
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/><!-- NOTE: Difficulty Modes -->
+				<!-- Journal -->
+				<triggered_effect trigger="onSelfAttackedOther" target="other" action="AddJournalEntry" journal="tip_sorcery_Fallen" target_tags="player"/>
+				<triggered_effect trigger="onOtherAttackedSelf" target="other" action="AddJournalEntry" journal="tip_sorcery_Fallen" target_tags="player"/>
+			</effect_group>
+			<!-- CVAR: SCALING -->
+			<effect_group name="PLAYER TIER: Level"> <!-- NOTE: onCombatEntered -->
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="sorceryPlayerTier" operation="set" value="0.5"/>
+				<passive_effect name="LootDropProb" operation="base_set" value="0">
+					<requirement name="CVarCompare" cvar="sorceryPlayerTier" operation="LTE" value="0.5"/>
+				</passive_effect>
+			</effect_group>
+			<property name="NavObject" value="sorceryFallenFire"/>
+			<!-- <property name="LootListAlive" value="696"/> -->
+			<property name="LootListAlive" value="fallenFire_sorcery"/>
+			<property name="LootDropProb" value="1"/>
+			<property name="LootDropEntityClass" value="FallenLootContainerFire"/>
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+			<!-- <property name="SizeScale" value="1.2"/> -->
+		</entity_class>
+		
+		<!-- FALLEN: ICE -->
+		<entity_class name="sorceryFallenIce" extends="sorceryFallenMaster">
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,sorceryFallen,sorceryFallenIce"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenIce"/>
+			<property name="SoundSpawn" value="sorceryFallenIce_spawn"/>
+			<property name="HandItem" value="meleeHandSorceryFallenIce"/>	
+			<property name="Buffs" value="buffFallenIce"/>
+			<property name="Immunity" value="sickness;disease;wellness"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,spellFX_UnholyConjure"/>
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/handIce.unity3d?handIce" local_offset=".14,0.035,0"/> -->
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/handIce.unity3d?handIce" local_offset="-.14,-0.05,0"/>	 -->
+				<passive_effect name="BuffProcChance" operation="base_set" value="-5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="2" tags="buffFallenIce"/>
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/><!-- NOTE: Difficulty Modes -->
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/> <!-- Zombie HP scale -->
+				<passive_effect name="EntityDamage" operation="perc_add" value="0"/> <!-- Feral damage -->
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/><!-- NOTE: Difficulty Modes -->
+			</effect_group>
+			<!-- CVAR: SCALING -->
+			<effect_group name="PLAYER TIER: Level">
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="sorceryPlayerTier" operation="set" value="0.5"/>
+			</effect_group>			
+			<property name="NavObject" value="sorceryFallenIce"/>
+			<!-- <property name="LootListAlive" value="695"/> -->
+			<property name="LootListAlive" value="fallenIce_sorcery"/>
+			<property name="LootDropProb" value="1"/>
+			<property name="LootDropEntityClass" value="FallenLootContainerIce"/>
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+			<!-- <property name="SizeScale" value="1.2"/> -->
+		</entity_class>
+		
+		<!-- FALLEN: LIGHTNING -->
+		<entity_class name="sorceryFallenLightning" extends="sorceryFallenMaster">
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,sorceryFallen,sorceryFallenLightning"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenLightning"/>
+			<property name="SoundSpawn" value="sorceryFallenLightning_spawn"/>
+			<property name="HandItem" value="meleeHandSorceryFallenLightning"/>	
+			<property name="Buffs" value="buffFallenLightning"/>
+			<property name="Immunity" value="sickness;disease;wellness"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,spellFX_UnholyConjure"/>
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/handLightning.unity3d?handLightning" local_offset=".14,0.035,0"/> -->
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/handLightning.unity3d?handLightning" local_offset="-.14,-0.05,0"/>	 -->
+				<passive_effect name="BuffProcChance" operation="base_set" value="-5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="2" tags="buffFallenLightning"/>
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/><!-- NOTE: Difficulty Modes -->
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/> <!-- Zombie HP scale -->
+				<passive_effect name="EntityDamage" operation="perc_add" value="0"/> <!-- Feral damage -->
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/><!-- NOTE: Difficulty Modes -->
+			</effect_group>
+			<!-- CVAR: SCALING -->
+			<effect_group name="PLAYER TIER: Level">
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="sorceryPlayerTier" operation="set" value="0.5"/>
+			</effect_group>			
+			<property name="NavObject" value="sorceryFallenLightning"/>
+			<!-- <property name="LootListAlive" value="694"/> -->
+			<property name="LootListAlive" value="fallenLightning_sorcery"/>
+			<property name="LootDropProb" value="1"/>
+			<property name="LootDropEntityClass" value="FallenLootContainerLightning"/>
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+			<!-- <property name="SizeScale" value="1.2"/> -->
+		</entity_class>
+		
+		<!-- FALLEN: OMNI -->
+		<entity_class name="sorceryFallenOmni" extends="sorceryFallenMaster"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,sorceryFallen,sorceryFallenOmni"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenOmni"/>
+			<!-- <property name="SoundSpawn" value="sorceryFallenLightning_spawn"/> -->
+			<property name="HandItem" value="meleeHandSorceryFallenOmni"/>	
+			<property name="Buffs" value="buffFallenOmni"/>
+			<property name="Immunity" value="sickness;disease;wellness"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,spellFX_UnholyConjure"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="2" tags="buffFallenOmni"/>
+				<passive_effect name="HealthMax" operation="base_set" value="2000"/><!-- NOTE: Difficulty Modes -->
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/> <!-- Zombie HP scale -->
+				<passive_effect name="EntityDamage" operation="perc_add" value="0"/> <!-- Feral damage -->
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/><!-- NOTE: Difficulty Modes -->
+			</effect_group>
+			<!-- CVAR: SCALING -->
+			<effect_group name="PLAYER TIER: Level"> <!-- NOTE: onCombatEntered -->
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="sorceryPlayerTier" operation="set" value="0.5"/>
+				<passive_effect name="LootDropProb" operation="base_set" value="0">
+					<requirement name="CVarCompare" cvar="sorceryPlayerTier" operation="LTE" value="0.5"/>
+				</passive_effect>
+			</effect_group>		
+			<property name="NavObject" value="sorceryFallenOmni"/>
+			<property name="LootListAlive" value="sorceryLootFallen_Omni"/>
+			<property name="LootDropProb" value="1"/>
+			<property name="LootDropEntityClass" value="FallenLootContainerOmni"/> 
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+			<property name="SizeScale" value="1.1"/>
+		</entity_class>
+
+		<!-- FALLEN: CHAMPION -->
+		<!-- NOTE: Do not use in POIs or Twitch. Reserved for Special Events -->
+		<entity_class name="sorceryFallenChampion" extends="sorceryFallenMaster"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,sorceryBoss,sorceryFallen,sorceryFallenChampion,hasSoul"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenOmni"/>
+			<property name="HandItem" value="meleeHandSorceryFallenOmni"/>	
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="PainResistPerHit" value="-1"/> <!-- no pain -->
+			<property name="Buffs" value="buffFallenOmni"/>
+			<property name="Immunity" value="sickness;disease;wellness"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,spellFX_UnholyConjure,entity_FallenBoss"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" cvar="$sorcWeaponRandomOverride" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" cvar="$sorcBlindOverride" operation="set" value="1"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="buffFallenOmni,entity_FallenBoss"/>
+				<passive_effect name="HealthMax" operation="base_set" value="2000"/><!-- NOTE: Difficulty Modes -->
+				<!-- <passive_effect name="HealthMax" operation="perc_set" value="1"/> -->
+				<passive_effect name="EntityDamage" operation="perc_add" value="0"/> <!-- Feral damage -->
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/><!-- NOTE: Difficulty Modes -->
+			</effect_group>
+			<!-- CVAR: SCALING -->
+			<effect_group name="PLAYER TIER: Level">
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="sorceryPlayerTier" operation="set" value="0.5"/>
+			</effect_group>			
+			<property name="NavObject" value="sorceryBoss"/>
+			<!-- <property name="NavObjectHeadOffset" value="0,0,0" /> -->
+			<property name="LootListAlive" value="sorceryLootFallen_Omni"/>
+			<property name="PassThroughDamage" value="true"/>
+			<property name="LootDropProb" value="1"/>
+			<property name="LootDropEntityClass" value="FallenDeathSoulArcane"/>
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="SizeScale" value="1.25"/>
+		</entity_class>
+		
+		<!-- FALLEN: UNHOLY -->
+		<entity_class name="sorceryFallenUnholy" extends="sorceryFallenMaster"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,sorceryFallen,sorceryFallenUnholy"/>
+			<!-- <property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_fallenUnholy.unity3d?mat_fallenUnholy"/> -->
+			<!-- <property name="ReplaceMaterial1" value="#@modfolder:Resources/mat_awakenedEyeUnholy.unity3d?mat_awakenedEyeUnholy"/> -->
+			<property name="SoundSpawn" value="sorceryFallenLightning_spawn"/>
+			<property name="HandItem" value="meleeHandSorceryFallenLightning"/>	
+			<property name="Buffs" value="buffFallenLightning"/>
+			<property name="Immunity" value="sickness;disease;wellness"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage,spellFX_UnholyConjure"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/handLightning.unity3d?handLightning" local_offset=".14,0.035,0"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/handLightning.unity3d?handLightning" local_offset="-.14,-0.05,0"/>	
+				<passive_effect name="BuffProcChance" operation="base_set" value="-5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="2" tags="buffFallenLightning"/>
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/><!-- NOTE: Difficulty Modes -->
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/> <!-- Zombie HP scale -->
+				<passive_effect name="EntityDamage" operation="perc_add" value="0"/> <!-- Feral damage -->
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/><!-- NOTE: Difficulty Modes -->
+			</effect_group>
+			<!-- CVAR: SCALING -->
+			<effect_group name="PLAYER TIER: Level">
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="sorceryPlayerTier" operation="set" value="0.5"/>
+			</effect_group>			
+			<property name="NavObject" value="sorceryFallenUnholy"/>
+			<property name="LootListAlive" value="fallenLightning_sorcery"/>
+			<property name="LootDropProb" value="1"/>
+			<property name="LootDropEntityClass" value="FallenLootContainerLightning"/>
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+			<property name="SizeScale" value="1.1"/>
+		</entity_class>
+		
+		<!-- FALLEN: HOLY -->
+		<entity_class name="sorceryFallenHoly" extends="sorceryFallenMaster"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,sorceryFallen,sorceryFallenHoly"/>
+			<!-- <property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_fallenHoly.unity3d?mat_fallenHoly"/> -->
+			<!-- <property name="ReplaceMaterial1" value="#@modfolder:Resources/mat_awakenedEyeHoly.unity3d?mat_awakenedEyeHoly"/> -->
+			<property name="SoundSpawn" value="sorceryFallenLightning_spawn"/>
+			<property name="HandItem" value="meleeHandSorceryFallenHoly"/>	
+			<property name="Buffs" value="buffFallenLightning"/>
+			<property name="Immunity" value="sickness;disease;wellness"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffEntity_SorceryManage"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="RightHand" prefab="#@modfolder:Resources/handLightning.unity3d?handLightning" local_offset=".14,0.035,0"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AttachPrefabToEntity" target="self" parent_transform="LeftHand" prefab="#@modfolder:Resources/handLightning.unity3d?handLightning" local_offset="-.14,-0.05,0"/>	
+				<passive_effect name="BuffProcChance" operation="base_set" value="-5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="2" tags="buffFallenLightning"/>
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/><!-- NOTE: Difficulty Modes -->
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/> <!-- Zombie HP scale -->
+				<passive_effect name="EntityDamage" operation="perc_add" value="0"/> <!-- Feral damage -->
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/><!-- NOTE: Difficulty Modes -->
+			</effect_group>
+			<!-- CVAR: SCALING -->
+			<effect_group name="PLAYER TIER: Level">
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="sorceryPlayerTier" operation="set" value="0.5"/>
+			</effect_group>			
+			<property name="NavObject" value="sorceryFallenHoly"/>
+			<property name="LootListAlive" value="fallenLightning_sorcery"/>
+			<property name="LootDropProb" value="1"/>
+			<property name="LootDropEntityClass" value="FallenLootContainerLightning"/>
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+			<property name="SizeScale" value="1.1"/>
+		</entity_class>
+		
+	<!-- FAMILIARS ______________________________________-->
+		<entity_class name="sorceryFamiliarMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,familiar,summon,sorceryimmune"/>
+			<property name="Class" value="EntityAnimalStag"/>
+			<property name="NavObject" value="sorceryFamiliar" />
+			<property name="Parent" value="Animals"/>
+			<property name="EntityType" value="Animal"/>
+			<property name="AvatarController" value="AvatarAnimalController"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="Prefab" value="/Entities/Animals/Wolf/animalStandardWolfRagdoll"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_familiarArcane.unity3d?mat_familiarArcane"/>
+			<property name="SurfaceCategory" value="organic"/>
+			<property name="ParticleOnDeath" value="blood_death"/>
+			<!-- <property name="HasDeathAnim" value="true"/> -->
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="true"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="PhysicsBody" value="wolfFamiliar"/>
+			<property name="Mass" value="40"/>
+			<property name="Weight" value="50"/>
+			<property name="PushFactor" value="0"/>
+			<property name="SizeScale" value=".85"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+			<property name="LookAtAngle" value="90"/>
+			<property name="AIGroupCircle" value="1"/>
+			<property name="AINoiseSeekDist" value="100"/>
+			<property name="AIPathCostScale" value="100, 100"/>
+			<property name="AIFeralSense" value="5"/>
+			<property name="AITask-1" value="ApproachAndAttackTarget" data="class=EntityZombie,20,EntityEnemyAnimal,20,EntityAnimalSnake,20"/> <!-- class,maxChaseTime (return home) -->
+			<property name="AITask-2" value="ApproachSpot" data="class=EntityPlayer,100"/>
+			<property name="AITask-3" value=""/>
+			<!-- <property name="AITask-3" value="Territorial"/> -->
+			<!-- <property name="AITask-3" value="Look"/> -->
+			<!-- <property name="AITask-4" value="Wander"/> -->
+			
+			<property name="AITarget-1" value="SetNearestEntityAsTarget" data="class=EntityZombie,30,30,EntityEnemyAnimal,30,30"/> <!-- class, hear dist, see dist (checked left to right, 0 dist uses entity default) -->
+			<property name="AITarget-2" value="SetAsTargetIfHurt" data="class=EntityZombie,EntityEnemyAnimal,EntityAnimalSnake"/>
+				<!-- <property name="AITarget-3" value="BlockingTargetTask"/> -->
+				<!-- <property name="AITarget-4" value="SetNearestCorpseAsTarget" data="class=EntityPlayer"/> -->
+				<!-- <property name="AITarget-5" value="SetNearestEntityAsTarget" data="class=EntityPlayer,0,0"/> -->
+			
+			<!-- <property name="AITask-3" value="Leap" data="legs=4"/> -->
+			<!-- <property name="AITask-2" value="ApproachAndAttackTarget" data="class=EntityEnemyAnimal,10,EntityZombie,10"/> -->
+			<!-- <property name="AITarget-4" value="SetNearestEntityAsTarget" data="class=EntityPlayer,0,0,EntityNPC,0,0"/> --> <!-- class, hear dist, see dist (checked left to right, 0 dist uses entity default) -->
+
+			
+			<!-- Stealth settings -->
+			<property name="MaxViewAngle" value="360"/>
+			<property name="SightRange" value="60"/> 
+			<property name="SightLightThreshold" value="-100,-100"/> <!-- how well lit you have to be for entity to see you at min,max range -->
+
+			<property name="SoundRandom" value="wolfroam"/>
+			<property name="SoundAlert" value="wolfalert"/>
+			<property name="SoundHurt" value="wolfpain"/>
+			<!-- <property name="SoundDeath" value="wolfdeath"/> -->
+			<property name="SoundAttack" value="wolfattack"/>
+			<property name="SoundSense" value="wolfsense"/>
+			<property name="SoundGiveUp" value="wolfgiveup"/>
+
+			<!-- Gameplay -->
+			<property name="PainResistPerHit" value=".9"/> <!-- no pain -1 -->
+			<property name="MaxTurnSpeed" value="420"/>
+			<property name="MoveSpeed" value="1"/>
+			<property name="MoveSpeedAggro" value="4, 4"/>
+			<property name="MoveSpeedPanic" value="5"/>
+			<property name="SwimSpeed" value="5"/>
+			<property name="SwimStrokeRate" value="1.1,1.5"/>
+			<property name="AttackTimeoutDay" value="2"/>
+			<property name="AttackTimeoutNight" value="2"/>
+			<property name="CanClimbLadders" value="true"/>
+
+			<property name="Immunity" value="sickness;disease;wellness"/> <!-- bleeding; -->
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+
+			<property name="TimeStayAfterDeath" value="1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+		
+			<property name="HandItem" value="meleeHandFamiliarArcane"/>	
+			<property name="ExperienceGain" value="0"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="summon_AutoDespawn,summonFamiliarArcane,summonFamiliarArcane_Spawn"/>
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_Conjure,buffSorceryImmunity_All,buffSorceryImmunity_Entities,summon_AutoDespawn"/> -->
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_Conjure,summon_AutoDespawn,buffSorceryImmunity_All,spell_SpawnHeal"/>
+				<passive_effect name="HealthMax" operation="base_set" value="100"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="10000"/>
+				<passive_effect name="StaminaChangeOT" operation="base_add" value="10"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+		<!-- Familiar: ARCANE -->
+		<entity_class name="sorceryFamiliarArcane" extends="sorceryFamiliarMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryimmune,entity,summon,familiar,familiarArcane"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_familiarArcane.unity3d?mat_familiarArcane"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="base_set" value="100"/>
+			</effect_group>
+		</entity_class>
+		<!-- Familiar: FIRE -->
+		<entity_class name="sorceryFamiliarFire" extends="sorceryFamiliarMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryimmune,entity,summon,familiar,familiarFire"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_familiarFire.unity3d?mat_familiarFire"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="base_set" value="100"/>
+			</effect_group>
+		</entity_class>
+		<!-- Familiar: ICE -->
+		<entity_class name="sorceryFamiliarIce" extends="sorceryFamiliarMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryimmune,entity,summon,familiar,familiarIce"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_familiarIce.unity3d?mat_familiarIce"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="base_set" value="100"/>
+			</effect_group>
+		</entity_class>
+		<!-- Familiar: LIGHTNING -->
+		<entity_class name="sorceryFamiliarLightning" extends="sorceryFamiliarMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryimmune,entity,summon,familiar,familiarLightning"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_familiarLightning.unity3d?mat_familiarLightning"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="base_set" value="100"/>
+			</effect_group>
+		</entity_class>
+		
+		
+	<!-- WISPS ______________________________________-->
+		<entity_class name="sorceryWispTemplate">
+			<property name="Tags" value="entity,animal,sorceryWisp"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value=""/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityEnemyAnimal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<!-- <property name="AvatarController" value="AvatarAnimalController"/> -->
+			<!-- <property name="AvatarController" value="GameObjectAnimalAnimation"/> -->
+			<property name="CompassIcon" value="ui_game_symbol_enemy_dot" />
+			<property name="CompassUpIcon" value="ui_game_symbol_enemy_dot_up" />
+			<property name="CompassDownIcon" value="ui_game_symbol_enemy_dot_down" />
+			<!-- <property name="TrackerIcon" value="ui_game_symbol_animal_tracker"/> -->
+			
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<!-- <property name="IgnoreTrigger" value="true"/> -->
+			
+			<property name="Mass" value="200"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+
+			<!-- <property name="SoundRandom" value="Animals/Boar/boarroam"/>
+			<property name="SoundAlert" value="Animals/Boar/boaralert"/>
+			<property name="SoundHurt" value="Animals/Boar/boarpain"/>
+			<property name="SoundDeath" value="Animals/Boar/boardeath"/>
+			<property name="SoundAttack" value="Animals/Boar/boarattack"/>
+			<property name="SoundSense" value="Animals/Boar/boarsense"/>
+			<property name="SoundGiveUp" value="Animals/Boar/boargiveup"/> -->
+			
+			<property name="SoundRandom" value=""/>
+			<property name="SoundAlert" value=""/>
+			<property name="SoundHurt" value=""/>
+			<property name="SoundDeath" value=""/>
+			<property name="SoundAttack" value=""/>
+			<property name="SoundSense" value=""/>
+			<property name="SoundGiveUp" value=""/>
+
+			<!-- Gameplay -->
+			<!-- <property name="PhysicsBody" value="bear"/> -->
+			<property name="Weight" value="300"/>
+			<property name="LookAtAngle" value="90"/>
+			<property name="RotateToGround" value="true"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+
+			<property name="AIGroupCircle" value="1"/>
+			<property name="AINoiseSeekDist" value="3"/>
+			<property name="AIPathCostScale" value="100, 100"/>
+			<property name="AITask-1" value="RunawayWhenHurt"/>
+			<property name="AITask-2" value="RunawayFromEntity" data="class=EntityPlayer"/>
+			<property name="AITask-3" value="Look"/>
+			<property name="AITask-4" value="Wander"/>
+			<!-- <property name="AITarget-1" value="SetNearestEntityAsTarget" data="class=EntityPlayer,10,10"/> -->
+			<!-- <property name="AITarget-2" value="SetAsTargetIfHurt" data="class=EntityPlayer"/> -->
+
+			<property name="SurfaceCategory" value="organic"/>
+			<property name="ParticleOnDeath" value="blood_death"/>
+
+			<!-- Stealth settings -->
+			<property name="MaxViewAngle" value="360"/> <!-- 210 -->
+			<property name="SightRange" value="37"/> <!-- distance in m -->
+			<property name="SightLightThreshold" value="-2,150"/>
+
+			<property name="SleeperWakeupSightDetectionMin" value="-40,5"/> <!-- Indiv.Random. sight capability - "I see you" light value at point blank -->
+			<property name="SleeperWakeupSightDetectionMax" value="340,480"/> <!-- Indiv.Random. "I see you" light value at "SightRange" -->
+			<property name="SleeperSenseSightDetectionMin" value="-10,0"/> <!-- same for groaning, not waking -->
+			<property name="SleeperSenseSightDetectionMax" value="200,300"/>
+
+			<property name="SleeperNoiseSenseThreshold" value="3,8"/> <!-- Indiv.Random. hearing capability - "I hear something" noise value -->
+			<property name="SleeperNoiseWakeThreshold" value="9,12"/>
+
+			<property name="SleeperSmellSenseThreshold" value="20,50"/> <!-- Indiv.Random. smell capability - "I smell something" player smell value -->
+			<property name="SoundSleeperSenseChance" value=".5"/> <!-- the chance to play "SoundSleeperSense" when "SleeperSmellSenseThreshold" is triggered -->
+
+			<!-- Gameplay -->
+			<property name="PainResistPerHit" value="1"/>
+			<property name="MaxTurnSpeed" value="420"/>
+			<property name="MoveSpeed" value="1.2"/>
+			<property name="MoveSpeedPanic" value="2.1"/>
+			<property name="MoveSpeedRand" value="-.2, .2"/>
+			<property name="JumpDelay" value=".1"/>
+			<property name="JumpMaxDistance" value="10, 20"/>
+			<!-- <property name="MoveSpeedPanic" value="1.5"/> -->
+			<!-- <property name="SwimSpeed" value="1.2"/> -->
+			<!-- <property name="SwimStrokeRate" value="1.1,1.5"/> -->
+			<!-- <property name="AttackTimeoutDay" value="1.5"/>
+			<property name="AttackTimeoutNight" value="1.4"/> -->
+			<property name="CanClimbLadders" value="false"/>
+
+			<!-- <property name="HandItem" value="meleeHandAnimalBear"/> -->
+
+			<property name="NavObject" value="sorceryWispIce"/>
+
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<!-- <property name="LootDropEntityClass" value="FallenLootContainerLightning"/> -->
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+
+			<effect_group name="Base Effects"> <!-- animalTemplateHostile -->
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+		<!-- WISP: FIRE -->
+		<entity_class name="sorceryWispFire" extends="sorceryWispTemplate">
+			<property name="Tags" value="entity,sorceryWisp"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityWispFire.unity3d?entityWispFire"/>
+			<!-- <property name="LootListAlive" value="686"/> -->
+			<property name="LootListAlive" value="wispFire_sorcery"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffWispFire"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<!-- <passive_effect name="HealthLoss" operation="base_set" value="0"/> -->
+				<!-- <passive_effect name="HealthLoss" operation="perc_set" value="0"/> -->
+				<!-- <passive_effect name="HealthLoss" operation="perc_add" value="-5"/> -->
+				<passive_effect name="HealthMax" operation="base_set" value="7777"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="2000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<!-- Journal -->
+				<triggered_effect trigger="onOtherAttackedSelf" target="other" action="AddJournalEntry" journal="tip_sorcery_Wisp" target_tags="player"/>
+			</effect_group>
+			<property name="NavObject" value="sorceryWispFire"/>
+		</entity_class>
+		<!-- WISP: ICE -->
+		<entity_class name="sorceryWispIce" extends="sorceryWispTemplate">
+			<property name="Tags" value="entity,sorceryWisp"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityWispIce.unity3d?entityWispIce"/>
+			<!-- <property name="LootListAlive" value="685"/> -->
+			<property name="LootListAlive" value="wispIce_sorcery"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffWispIce"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<!-- <passive_effect name="HealthLoss" operation="base_set" value="0"/> -->
+				<!-- <passive_effect name="HealthLoss" operation="perc_set" value="0"/> -->
+				<!-- <passive_effect name="HealthLoss" operation="perc_add" value="-5"/> -->
+				<passive_effect name="HealthMax" operation="base_set" value="7777"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="2000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<!-- Journal -->
+				<triggered_effect trigger="onOtherAttackedSelf" target="other" action="AddJournalEntry" journal="tip_sorcery_Wisp" target_tags="player"/>
+			</effect_group>
+			<property name="NavObject" value="sorceryWispIce"/>
+		</entity_class>
+		<!-- WISP: LIGHTNING -->
+		<entity_class name="sorceryWispLightning" extends="sorceryWispTemplate">
+			<property name="Tags" value="entity,sorceryWisp"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityWispLightning.unity3d?entityWispLightning"/>
+			<!-- <property name="LootListAlive" value="684"/> -->
+			<property name="LootListAlive" value="wispLightning_sorcery"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffWispLightning"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<!-- <passive_effect name="HealthLoss" operation="base_set" value="0"/> -->
+				<!-- <passive_effect name="HealthLoss" operation="perc_set" value="0"/> -->
+				<!-- <passive_effect name="HealthLoss" operation="perc_add" value="-5"/> -->
+				<passive_effect name="HealthMax" operation="base_set" value="7777"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="2000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<!-- Journal -->
+				<triggered_effect trigger="onOtherAttackedSelf" target="other" action="AddJournalEntry" journal="tip_sorcery_Wisp" target_tags="player"/>
+			</effect_group>
+			<property name="NavObject" value="sorceryWispLightning"/>
+		</entity_class>
+
+		
+	<!-- ELEMENTALS ______________________________________-->
+		<entity_class name="sorceryElementalTemplate">
+			<property name="Tags" value="entity,animal,sorceryElemental,elementalOmni,sorceryimmune"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value=""/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityAnimalStag"/>
+			<property name="EntityType" value="Animal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<property name="CompassIcon" value="ui_game_symbol_enemy_dot" />
+			<property name="CompassUpIcon" value="ui_game_symbol_enemy_dot_up" />
+			<property name="CompassDownIcon" value="ui_game_symbol_enemy_dot_down" />
+			
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			
+			<property name="Mass" value="200"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+			
+			<property name="SoundRandom" value=""/>
+			<property name="SoundAlert" value=""/>
+			<property name="SoundHurt" value=""/>
+			<property name="SoundDeath" value=""/>
+			<property name="SoundAttack" value=""/>
+			<property name="SoundSense" value=""/>
+			<property name="SoundGiveUp" value=""/>
+
+			<!-- Gameplay -->
+			<property name="RightHandJointName" value="Jaw"/>
+			<property name="HandItem" value="meleeHandSorceryElementalOmni"/>	
+			<property name="Weight" value="300"/>
+			<property name="PushFactor" value="0"/>
+			<!-- <property name="LookAtAngle" value=""/> -->
+			<property name="RotateToGround" value="true"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+
+			<property name="AIGroupCircle" value="1"/>
+			<property name="AINoiseSeekDist" value="100"/>
+			<!-- <property name="AIPathCostScale" value="100, 100"/> -->
+			<property name="AIPathCostScale" value=".4, .6"/>
+			<property name="AITask-1" value="RangedAttackTarget" data="itemType=1;cooldown=4;duration=3;minRange=1;maxRange=5"/>
+			<property name="AITask-2" value="ApproachAndAttackTarget" data="class=EntityZombie,20,EntityNPC,20,EntityEnemyAnimal,20,EntityAnimalSnake,20"/> <!-- class,maxChaseTime (return home) -->
+			<property name="AITask-3" value="ApproachSpot" data="class=EntityPlayer,100"/>
+			<property name="AITask-4" value=""/>
+
+			<property name="AITarget-1" value="SetNearestEntityAsTarget" data="class=EntityNPC,60,60,EntityZombie,60,60,EntityEnemyAnimal,60,60"/> <!-- class, hear dist, see dist (checked left to right, 0 dist uses entity default) -->
+			<property name="AITarget-2" value="SetAsTargetIfHurt" data="class=EntityNPC,EntityZombie,EntityEnemyAnimal,EntityAnimalSnake"/>
+
+			<property name="SurfaceCategory" value="organic"/>
+			<property name="ParticleOnDeath" value="blood_death"/>
+
+			<!-- Stealth settings -->
+			<property name="MaxViewAngle" value="360"/>
+			<property name="SightRange" value="60"/> 
+			<property name="SightLightThreshold" value="-100,-100"/> <!-- how well lit you have to be for entity to see you at min,max range -->
+
+			<property name="SleeperWakeupSightDetectionMin" value="-40,5"/> <!-- Indiv.Random. sight capability - "I see you" light value at point blank -->
+			<property name="SleeperWakeupSightDetectionMax" value="340,480"/> <!-- Indiv.Random. "I see you" light value at "SightRange" -->
+			<property name="SleeperSenseSightDetectionMin" value="-10,0"/> <!-- same for groaning, not waking -->
+			<property name="SleeperSenseSightDetectionMax" value="200,300"/>
+
+			<property name="SleeperNoiseSenseThreshold" value="3,8"/> <!-- Indiv.Random. hearing capability - "I hear something" noise value -->
+			<property name="SleeperNoiseWakeThreshold" value="9,12"/>
+
+			<property name="SleeperSmellSenseThreshold" value="20,50"/> <!-- Indiv.Random. smell capability - "I smell something" player smell value -->
+			<property name="SoundSleeperSenseChance" value=".5"/> <!-- the chance to play "SoundSleeperSense" when "SleeperSmellSenseThreshold" is triggered -->
+
+			<!-- Gameplay -->
+			<property name="PainResistPerHit" value="1"/>
+			<property name="MaxTurnSpeed" value="420"/> <!-- 420 -->
+			<property name="MoveSpeed" value="1.2"/>
+			<property name="MoveSpeedPanic" value="2.1"/>
+			<!-- <property name="MoveSpeedRand" value="-.2, .2"/> -->
+			<property name="JumpDelay" value=".1"/>
+			<property name="JumpMaxDistance" value="6, 7"/>
+			<property name="CanClimbLadders" value="false"/>
+
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+
+			<effect_group name="Base Effects"> <!-- animalTemplateHostile -->
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+		<!-- ELEMENTAL: OMNI -->
+		<entity_class name="sorceryElementalOmni" extends="sorceryElementalTemplate">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,animal,sorceryElemental,elementalOmni,sorceryimmune"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityElementalOmni.unity3d?entityElementalOmni"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_Conjure,summon_AutoDespawn,buffSorceryImmunity_All,spell_SpawnHeal"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="HealthMax" operation="base_set" value="7777"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="2000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<!-- Journal -->
+				<!-- <triggered_effect trigger="onOtherAttackedSelf" target="other" action="AddJournalEntry" journal="tip_sorcery_Wisp" target_tags="player"/> -->
+			</effect_group>
+		</entity_class>
+
+	<!-- ANIMAL: EVENT ______________________________________-->
+		<entity_class name="sorceryRabbitMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,animal,event,sorcerySpecial"/>
+			<property name="Class" value="EntityAnimalRabbit"/>
+			<property name="NavObject" value="sorcerySpecialTracking"/>
+			<property name="Parent" value="Animals"/>
+			<property name="EntityType" value="Animal"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="Prefab" value="/Entities/Animals/Rabbit/RABBIT"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_rabbitArcane.unity3d?mat_rabbitArcane"/>
+			<property name="SurfaceCategory" value="organic"/>
+			<property name="ParticleOnDeath" value="blood_death"/>
+			<property name="HasDeathAnim" value="true"/>
+			<!-- <property name="RootMotion" value="true"/> -->
+			<property name="HasRagdoll" value="false"/>
+			<property name="CanBigHead" value="false" />
+			<property name="AvatarController" value="GameObjectAnimalAnimation"/>
+			<property name="PhysicsBody" value="rabbit"/>
+			<property name="RotateToGround" value="true"/>
+			<property name="Mass" value="130"/>
+			<property name="Weight" value="300"/>
+			<property name="PushFactor" value="30"/>
+			<property name="SizeScale" value="3"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+			<property name="LookAtAngle" value="90"/>
+			<!-- AI -->
+			<property name="AIGroupCircle" value="1"/>
+			<property name="AINoiseSeekDist" value="5"/>
+			<property name="AIPathCostScale" value="100, 100"/>
+			<property name="AIFeralSense" value="5"/>
+			<!-- AI: Task -->
+			<property name="AITask-1" value="RunawayWhenHurt"/>
+			<property name="AITask-2" value="RunawayFromEntity" data="class=EntityPlayer,EntityZombie,EntityEnemyAnimal;safeDistance=30"/>
+			<property name="AITask-3" value="Look"/>
+			<property name="AITask-4" value="Wander"/>
+
+			<!-- Stealth settings -->
+			<property name="MaxViewAngle" value="360"/>
+			<property name="SightRange" value="30"/>
+			<property name="SightLightThreshold" value="-100,-100"/> <!-- how well lit you have to be for entity to see you at min,max range -->
+
+			<property name="SoundRandom" value="Animals/rabbitpain"/>
+			<property name="SoundHurt" value="Animals/rabbitpain"/>
+			<property name="SoundDeath" value="Animals/rabbitdeath"/>
+			<property name="SoundAttack" value="Animals/rabbitpain"/>
+			<property name="SoundSense" value="Animals/rabbitpain"/>
+			<property name="SoundGiveUp" value="Animals/rabbitpain"/>
+
+			<!-- Gameplay -->
+			<property name="PainResistPerHit" value=".9"/> <!-- no pain -1 -->
+			<property name="MaxTurnSpeed" value="420"/>
+			<property name="MoveSpeed" value=".7"/>
+			<property name="MoveSpeedAggro" value="2, 2"/>
+			<property name="MoveSpeedPanic" value="2.5"/>
+			<property name="SwimSpeed" value="2"/>
+			<property name="SwimStrokeRate" value="1.1,1.5"/>
+			<property name="AttackTimeoutDay" value="1.5"/>
+			<property name="AttackTimeoutNight" value="1.4"/>
+			<property name="CanClimbLadders" value="true"/>
+
+			<property name="Immunity" value="sickness;disease;wellness"/> <!-- bleeding; -->
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+
+			<property name="TimeStayAfterDeath" value="60"/>
+			<property name="DeadBodyHitPoints" value="300"/>
+		
+			<property name="HandItem" value="meleeHandRabbitUnholy"/>
+			<property name="ExperienceGain" value="0"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="summon_AutoDespawn,summonFamiliarArcane,summonFamiliarArcane_Spawn"/>
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_Conjure,summon_AutoDespawn,buffSorceryImmunity_All,spell_SpawnHeal"/> -->
+				<!-- <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_Conjure,spell_SpawnHeal"/> -->
+				<passive_effect name="HealthMax" operation="base_set" value="100"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="10000"/>
+				<passive_effect name="StaminaChangeOT" operation="base_add" value="10"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+		
+		<!-- Animal: RABBIT ARCANE -->
+		<entity_class name="sorceryRabbitArcane" extends="sorceryRabbitMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,animal,event,sorcerySpecial"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_rabbitArcane.unity3d?mat_rabbitArcane"/>
+			<property name="ExperienceGain" value="300"/>
+			<property name="DeadBodyHitPoints" value="100"/>
+			<property name="LootListOnDeath" value="sorceryRabbitArcane"/>
+			<!-- Harvest -->
+			<drop event="Harvest" name="resourceExtractOmni" tag="allToolsHarvest" count="30,40"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="4"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="5"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="2"/>
+			<drop event="Harvest" name="foodRawMeat" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<drop event="Harvest" name="resourceLeather" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<drop event="Harvest" name="resourceBone" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_Conjure,spell_SpawnHeal"/>
+				<passive_effect name="HealthMax" operation="base_set" value="100"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="45"/>
+			</effect_group>
+		</entity_class>
+		
+		<!-- Animal: RABBIT UNHOLY -->
+		<entity_class name="sorceryRabbitUnholy" extends="sorceryRabbitMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,animal,event,sorcerySpecial"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_rabbitUnholy.unity3d?mat_rabbitUnholy"/>
+			<property name="Class" value="EntityZombieDog"/>
+			<property name="IsEnemyEntity" value="true"/>
+			<property name="HandItem" value="meleeHandRabbitUnholy"/>
+			<!-- AI -->
+			<property name="AITask-1" value="BreakBlock"/>
+			<property name="AITask-2" value="Territorial"/>
+			<property name="AITask-3" value="RunawayWhenHurt" data="runChance=0.5;healthPer=0.3;healthPerMax=0.6"/>
+			<property name="AITask-4" value="ApproachAndAttackTarget" data="class=EntityNPC,0,EntityEnemyAnimal,0,EntityPlayer,0"/> <!-- class,maxChaseTime (return home) -->
+			<property name="AITask-5" value="ApproachSpot"/>
+			<property name="AITask-6" value="Look"/>
+			<property name="AITask-7" value="Wander"/>
+			<property name="AITask-8" value=""/>
+			<!-- AI: Target -->
+			<property name="AITarget-1" value="SetAsTargetIfHurt" data="class=EntityNPC,EntityEnemyAnimal,EntityPlayer"/>
+			<property name="AITarget-2" value="BlockingTargetTask"/>
+			<property name="AITarget-3" value="SetNearestCorpseAsTarget" data="class=EntityPlayer"/>
+			<property name="AITarget-4" value="SetNearestEntityAsTarget" data="class=EntityPlayer,0,0,EntityNPC,0,0"/> <!-- class, hear dist, see dist (checked left to right, 0 dist uses entity default) -->
+			<!-- Kill -->
+			<property name="ExperienceGain" value="300"/>
+					<!-- Fallen Summon -->
+					<!-- <property name="DeadBodyHitPoints" value="100"/> -->
+					<!-- <property name="LootListOnDeath" value="sorceryRabbitUnholy"/> -->
+					<property name="TimeStayAfterDeath" value="3"/>
+					<property name="DeadBodyHitPoints" value="0"/>
+			<!-- Harvest -->
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="7"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="3"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="7"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="2"/>
+			<drop event="Harvest" name="foodRottingFlesh" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<drop event="Harvest" name="resourceLeather" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<drop event="Harvest" name="resourceBone" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_UnholyConjure,spell_SpawnHeal,buffEntity_DrainLifeforce"/>
+				<passive_effect name="HealthMax" operation="base_set" value="100"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="45"/>
+			</effect_group>
+		</entity_class>
+		
+		<!-- Animal: RABBIT BOSS -->
+		<entity_class name="sorceryRabbitBoss" extends="sorceryRabbitMaster">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,animal,event,sorcerySpecial"/>
+			<property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_rabbitUnholy.unity3d?mat_rabbitUnholy"/>
+			<property name="Class" value="EntityZombieDog"/>
+			<property name="IsEnemyEntity" value="true"/>
+			<property name="HandItem" value="meleeHandRabbitBoss"/>
+			<!-- Boss -->
+			<property name="SightRange" value="30"/>
+			<property name="Mass" value="200"/>
+			<property name="Weight" value="400"/>
+			<property name="PushFactor" value="100"/>
+			<property name="SizeScale" value="8"/>
+			<property name="IsEnemyEntity" value="true"/>
+			<property name="MoveSpeed" value="2.5"/>
+			<property name="MoveSpeedAggro" value="3, 3"/>
+			<property name="MoveSpeedPanic" value="3.5"/>
+			<property name="SwimSpeed" value="3"/>
+			<!-- AI -->
+			<property name="AITask-1" value="BreakBlock"/>
+			<property name="AITask-2" value="Territorial"/>
+			<property name="AITask-3" value="RunawayWhenHurt" data="runChance=0.5;healthPer=0.3;healthPerMax=0.6"/>
+			<property name="AITask-4" value="ApproachAndAttackTarget" data="class=EntityNPC,0,EntityEnemyAnimal,0,EntityPlayer,0"/> <!-- class,maxChaseTime (return home) -->
+			<property name="AITask-5" value="ApproachSpot"/>
+			<property name="AITask-6" value="Look"/>
+			<property name="AITask-7" value="Wander"/>
+			<property name="AITask-8" value=""/>
+			<!-- AI: Target -->
+			<property name="AITarget-1" value="SetAsTargetIfHurt" data="class=EntityNPC,EntityEnemyAnimal,EntityPlayer"/>
+			<property name="AITarget-2" value="BlockingTargetTask"/>
+			<property name="AITarget-3" value="SetNearestCorpseAsTarget" data="class=EntityPlayer"/>
+			<property name="AITarget-4" value="SetNearestEntityAsTarget" data="class=EntityPlayer,0,0,EntityNPC,0,0"/> <!-- class, hear dist, see dist (checked left to right, 0 dist uses entity default) -->
+			<!-- Kill -->
+			<property name="ExperienceGain" value="2000"/>
+			<property name="DeadBodyHitPoints" value="300"/>
+			<property name="LootListOnDeath" value="sorceryRabbitBoss"/>
+			<!-- Harvest -->
+			<drop event="Harvest" name="resourceExtractOmni" tag="allToolsHarvest" count="80,100"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="15"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="5"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="25"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="5"/>
+			<drop event="Harvest" name="foodRottingFlesh" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<drop event="Harvest" name="resourceLeather" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<drop event="Harvest" name="resourceBone" count="1" tag="WasteTreasuresCompleteHarvest"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_UnholyConjure,spell_SpawnHeal,buffEntity_DrainLifeforce,buffRabbitBoss"/>
+				<passive_effect name="HealthMax" operation="base_set" value="666"/>
+				<!-- <passive_effect name="PhysicalDamageResist" operation="base_set" value="90"/> -->
+			</effect_group>
+		</entity_class>
+		
+		
+		
+		
+	<!-- SPELL TURRETS ______________________________________-->
+		<!-- FIRE SPELL TURRET -->
+		<entity_class name="spellTurretFire">	<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="turret,turretRanged,deployed,noMedBuffs,spellTurret,spellTurretFire,sorceryimmune"/>
+			<property name="Class" value="EntityTurret"/>
+			<property name="Parent" value="NPC"/>
+			<property name="Prefab" value="#Other/Items?Weapons/Ranged/JunkTurret/junkTurret_Prefab.prefab"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="SurfaceCategory" value="metal"/>
+			<property name="IgnoreTrigger" value="true"/>
+			<!-- <property name="LootListAlive" value="0"/> -->
+			<property name="LootListAlive" value="roboticTurret"/>
+			<property name="IsEnemyEntity" value="false"/>
+
+			<property name="WakeUpTime" value="0.5"/>
+			<property name="FallAsleepTime" value="10"/>
+
+			<property name="YawRange" value="179"/> <!-- horizontal swivel range. Keep under 180. -->
+			<property name="PitchRange" value="70"/>
+			<property name="TurnSpeed" value="30"/>
+			<property name="MaxDistance" value="15"/>
+
+			<property name="RaySpread" value="5"/>
+			<property name="BurstRoundCount" value="1"/>
+			<property name="BurstFireRate" value="1"/>
+			<property name="CooldownTime" value="1"/>
+			<property name="OvershootTime" value="0"/>
+			<property name="MaxOwnerDistance" value="16"/>
+
+			<property name="TargetingSound" value="turret_retarget_lp"/>
+			<property name="OverheatSound" value="turret_overheat_lp"/>
+			<property name="WakeUpSound" value="turret_windup"/>
+			<property name="FireSound" value="junkturret_fire"/>
+
+			<property name="ParticlesMuzzleFire" value="gunfire_junkturret"/>
+
+			<property name="TimeStayAfterDeath" value="0"/>
+			<property name="Explosion.ParticleIndex" value="6"/>
+			<property name="Explosion.RadiusBlocks" value="1"/>
+			<property name="Explosion.RadiusEntities" value="1"/>
+			<property name="RotateToGround" value="true"/>
+			<property name="Faction" value="none"/>
+
+			<property name="NavObject" value="sorcerySpellTurret" />
+			<property name="TrackerIcon" value="ui_game_symbol_assemble"/>
+			<!-- <property name="Buffs" value="buffEntity_SorceryManage"/> -->
+			<effect_group>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellTurretFire,spellTurretFire_Active,buffSorceryImmunity_All,buffSorceryImmunity_Entities"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="selfAOE" range="5" buff="spellTurretFire_Deploy" target_tags="player"/>
+			</effect_group>
+		</entity_class>
+		<!-- ICE SPELL TURRET -->
+		<entity_class name="spellTurretIce">	<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="turret,turretRanged,deployed,noMedBuffs,spellTurret,spellTurretIce,sorceryimmune"/>
+			<property name="Class" value="EntityTurret"/>
+			<property name="Parent" value="NPC"/>
+			<property name="Prefab" value="#Other/Items?Weapons/Ranged/JunkTurret/junkTurret_Prefab.prefab"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="SurfaceCategory" value="metal"/>
+			<property name="IgnoreTrigger" value="true"/>
+			<property name="LootListAlive" value="roboticTurret"/>
+			<property name="IsEnemyEntity" value="false"/>
+
+			<property name="WakeUpTime" value="0.5"/>
+			<property name="FallAsleepTime" value="10"/>
+
+			<property name="YawRange" value="179"/> <!-- horizontal swivel range. Keep under 180. -->
+			<property name="PitchRange" value="70"/>
+			<property name="TurnSpeed" value="30"/>
+			<property name="MaxDistance" value="15"/>
+
+			<property name="RaySpread" value="5"/>
+			<property name="BurstRoundCount" value="1"/>
+			<property name="BurstFireRate" value="1"/>
+			<property name="CooldownTime" value="1"/>
+			<property name="OvershootTime" value="0"/>
+			<property name="MaxOwnerDistance" value="16"/>
+
+			<property name="TargetingSound" value="turret_retarget_lp"/>
+			<property name="OverheatSound" value="turret_overheat_lp"/>
+			<property name="WakeUpSound" value="turret_windup"/>
+			<property name="FireSound" value="junkturret_fire"/>
+
+			<property name="ParticlesMuzzleFire" value="gunfire_junkturret"/>
+
+			<property name="TimeStayAfterDeath" value="0"/>
+			<property name="Explosion.ParticleIndex" value="6"/>
+			<property name="Explosion.RadiusBlocks" value="1"/>
+			<property name="Explosion.RadiusEntities" value="1"/>
+			<property name="RotateToGround" value="true"/>
+			<property name="Faction" value="none"/>
+
+			<property name="NavObject" value="sorcerySpellTurret" />
+			<property name="TrackerIcon" value="ui_game_symbol_assemble"/>
+			<!-- <property name="Buffs" value="buffEntity_SorceryManage"/> -->
+			<effect_group>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellTurretIce,spellTurretIce_Active,buffSorceryImmunity_All,buffSorceryImmunity_Entities"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="selfAOE" range="5" buff="spellTurretIce_Deploy" target_tags="player"/>
+			</effect_group>
+		</entity_class>
+		<!-- LIGHTNING SPELL TURRET -->
+		<entity_class name="spellTurretLightning">	<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="turret,turretRanged,deployed,noMedBuffs,spellTurret,spellTurretLightning,sorceryimmune"/>
+			<property name="Class" value="EntityTurret"/>
+			<property name="Parent" value="NPC"/>
+			<property name="Prefab" value="#Other/Items?Weapons/Ranged/JunkTurret/junkTurret_Prefab.prefab"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="SurfaceCategory" value="metal"/>
+			<property name="IgnoreTrigger" value="true"/>
+			<property name="LootListAlive" value="roboticTurret"/>
+			<property name="IsEnemyEntity" value="false"/>
+
+			<property name="WakeUpTime" value="0.5"/>
+			<property name="FallAsleepTime" value="10"/>
+
+			<property name="YawRange" value="179"/> <!-- horizontal swivel range. Keep under 180. -->
+			<property name="PitchRange" value="70"/>
+			<property name="TurnSpeed" value="30"/>
+			<property name="MaxDistance" value="15"/>
+
+			<property name="RaySpread" value="5"/>
+			<property name="BurstRoundCount" value="1"/>
+			<property name="BurstFireRate" value="1"/>
+			<property name="CooldownTime" value="1"/>
+			<property name="OvershootTime" value="0"/>
+			<property name="MaxOwnerDistance" value="16"/>
+
+			<property name="TargetingSound" value="turret_retarget_lp"/>
+			<property name="OverheatSound" value="turret_overheat_lp"/>
+			<property name="WakeUpSound" value="turret_windup"/>
+			<property name="FireSound" value="junkturret_fire"/>
+
+			<property name="ParticlesMuzzleFire" value="gunfire_junkturret"/>
+
+			<property name="TimeStayAfterDeath" value="0"/>
+			<property name="Explosion.ParticleIndex" value="6"/>
+			<property name="Explosion.RadiusBlocks" value="1"/>
+			<property name="Explosion.RadiusEntities" value="1"/>
+			<property name="RotateToGround" value="true"/>
+			<property name="Faction" value="none"/>
+
+			<property name="NavObject" value="sorcerySpellTurret" />
+			<property name="TrackerIcon" value="ui_game_symbol_assemble"/>
+			<!-- <property name="Buffs" value="buffEntity_SorceryManage"/> -->
+			<effect_group>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellTurretLightning,spellTurretLightning_Active,buffSorceryImmunity_All,buffSorceryImmunity_Entities"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="selfAOE" range="5" buff="spellTurretLightning_Deploy" target_tags="player"/>
+			</effect_group>
+		</entity_class>
+
+	
+	<!-- DEV: TRADERS -->
+		<!-- TRADER: ARCANE MERCHANT -->
+		<entity_class name="sorceryTraderArcane">	<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,npc,trader,sorceryTrader,sorceryimmune"/>
+			<property name="NPCID" value="sorceryTraderArcane"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenArcane"/>
+			<!-- <property name="ReplaceMaterial0" value="#@modfolder:Resources/mat_fallenHoly.unity3d?mat_fallenHoly"/>
+			<property name="ReplaceMaterial1" value="#@modfolder:Resources/mat_awakenedEyeHoly.unity3d?mat_awakenedEyeHoly"/> -->
+			<property name="AvatarController" value="AvatarZombie01Controller"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="PhysicsBody" value="sorceryStandardBody"/>
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityTrader"/>
+			<!-- <property name="Class" value="EntityZombie"/> -->
+			<!-- <property name="SizeScale" value="1"/> -->
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Parent" value="Enemies"/>
+			
+			<property name="HasDeathAnim" value="true"/>
+			<property name="ParticleOnDeath" value="blood_death"/>
+			<property name="SurfaceCategory" value="organic"/>
+			
+			<property name="RootMotion" value="true"/>
+			<property name="WalkType" value="7"/>
+			<property name="DanceType" value="2"/>
+			<property name="HasRagdoll" value="true"/>
+			<property name="Mass" value="180"/>
+			<property name="Weight" value="70"/>
+			<property name="PushFactor" value="0"/>
+			<property name="LookAtAngle" value="0"/>
+			<property name="MaxTurnSpeed" value="360"/>
+			
+			<!-- AI -->
+			<property name="AINoiseSeekDist" value="8"/>
+			<property name="AIPathCostScale" value=".15, .4"/>
+			<property name="AITask-1" value="Look"/>
+			<property name="AITarget-1" value="SetNearestEntityAsTarget" data="class=EntityPlayer,20,15"/>
+
+			
+			
+			<property name="MaxViewAngle" value="180"/>
+			<property name="SightRange" value="30"/> 
+			<property name="SightLightThreshold" value="-100,-100"/>
+			
+			<property name="LootListAlive" value="traderNPC"/>
+
+			<property name="MoveSpeed" value="0"/>
+			<property name="MoveSpeedAggro" value="0"/>
+			<property name="MoveSpeedPanic" value="0"/>
+			
+			<!-- <property name="NavObject" value="trader" /> -->
+			<property name="NavObject" value="sorceryTrader" />
+			
+			<effect_group name="Base Effects">
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="HealthLoss" operation="base_set" value="0"/>
+				<passive_effect name="HealthLoss" operation="perc_set" value="0"/>
+				<passive_effect name="HealthLoss" operation="perc_add" value="-5"/>
+				<passive_effect name="HealthMax" operation="base_set" value="100000"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="1000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="1" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingOne,buffInjuryBleedingTwo,buffInjuryBleeding,buffBurningZombie,buffBurningElement,buffBurningEnvironment,buffBurningEnvironmentHack,buffBurningFlamingArrow,buffBurningMolotov,buffIsOnFire,buffBurningWeapon,buffShocked"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="sorceryTraderArcane,buffSorceryImmunity_All,buffSorceryImmunity_Entities"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="sorceryTraderArcane,buffSorceryImmunity_All,buffSorceryImmunity_Entities"/>
+			</effect_group>
+		</entity_class>
+		
+		<!-- ARCANE TRADER: INTRO SPAWN -->
+		<entity_class name="sorceryFallenIntroArcaneTrader" extends="sorceryFallenIntroMaster"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="sorceryArcaneTraderIntro"/>
+			<property name="Mesh" value="#@modfolder:Resources/entityFallen.unity3d?sorceryFallenArcane"/>
+			<property name="AIPathCostScale" value="100, 100"/>
+			<property name="AINoiseSeekDist" value="100"/>
+			<property name="AITask-1" value="ApproachAndAttackTarget" data="class=EntityPlayer,0"/> <!-- class,maxChaseTime (return home) -->
+			<property name="AITask-2" value="ApproachSpot" data="class=EntityPlayer,60"/>
+			<property name="AITask-3" value="Look"/>
+			<property name="AITask-4" value=""/>
+			<property name="AITask-5" value=""/>
+			<property name="AITask-6" value=""/>
+			<property name="AITask-7" value=""/>
+			<property name="AITask-8" value=""/>
+			<property name="AITask-9" value=""/>
+			<property name="AITarget-1" value="SetNearestEntityAsTarget" data="class=EntityPlayer,100,100"/>
+			<property name="AITarget-2" value=""/>
+			<property name="AITarget-3" value=""/>
+			<property name="AITarget-4" value=""/>
+			<property name="SoundRandom" value=""/>
+			<property name="SoundAlert" value=""/>
+			<property name="SoundAttack" value=""/>
+			<property name="SoundHurt" value=""/>
+			<property name="SoundDeath" value=""/>
+			<property name="SoundSense" value=""/>
+			<property name="SoundSleeperSense" value="sleepersense"/>
+			<property name="SoundSleeperBackToSleep" value="sleeperbacktosleep"/>
+			<property name="MaxTurnSpeed" value="360"/>
+			<property name="MoveSpeed" value="0.14"/>
+			<property name="MoveSpeedAggro" value=".14, .14"/>
+			<property name="MoveSpeedPanic" value=".14"/>
+			<property name="TimeStayAfterDeath" value="0"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="HandItem" value="meleeHandSorceryNone"/>
+			<property name="Buffs" value="sorceryTraderArcaneIntroSpawn,buffSorceryImmunity_All,buffSorceryImmunity_Entities,spellFX_Conjure"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="sorceryTraderArcaneIntroSpawn,buffSorceryImmunity_All,buffSorceryImmunity_Entities,spellFX_Conjure"/>
+				<passive_effect name="HealthMax" operation="base_set" value="7777"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="2000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="-100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100" tags="sorceryTraderArcaneIntroSpawn,buffSorceryImmunity_All,buffSorceryImmunity_Entities,spellFX_Conjure"/>
+			</effect_group>
+		</entity_class>
+	<!-- END - DEV: TRADERS -->
+
+
+
+	
+	<!-- LOOT ENTITIES -->
+		<!-- EVENT LOOT -->
+		<entity_class name="sorcery_chest_master">
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="TimeStayAfterDeath" value="2400"/>
+			<property name="Faction" value="none"/>
+			<property name="NavObject" value="twitch_supply,twitch_supply_other" />
+		</entity_class>
+		<entity_class name="EventLoot_FallenStash" extends="sorcery_chest_master">
+			<property name="HideInSpawnMenu" value="true"/>
+			<!-- <property name="Model" value="#@modfolder:Resources/chestsWoodenRunic.unity3d?chestUnholy" /> -->
+			<property name="Mesh" value="#Entities/LootContainers?crate_storeSignablePrefab.prefab"/>
+			<property name="TintColor" value="6600cc"/>
+			<property name="LootListOnDeath" value="fallenBoss_sorcery"/>
+		</entity_class>
+
+		<!-- Familiar Loot: ARCANE -->
+		<entity_class name="FamiliarLootContainerArcane">
+			<property name="Tags" value="sorceryLootFamiliar"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/chestFallenOrbLightning.unity3d?chestFallenOrbLightning"/>
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="TimeStayAfterDeath" value="1"/>
+			<!-- <property name="LootListOnDeath" value="690"/> -->
+			<property name="LootListOnDeath" value="familiarStorage_sorcery"/>
+			<property name="Faction" value="none"/>	
+		</entity_class>
+		<!-- Fallen Loot: FIRE -->
+		<entity_class name="FallenLootContainerFire">
+			<property name="Tags" value="sorceryLootFallen"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/chestFallenOrbFire.unity3d?chestFallenOrbFire"/>
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="TimeStayAfterDeath" value="120"/>
+			<!-- <property name="LootListOnDeath" value="693"/> -->
+			<property name="LootListOnDeath" value="fallenFireSoul_sorcery"/>
+			<property name="Faction" value="none"/>	
+		</entity_class>
+		<!-- Fallen Loot: ICE -->
+		<entity_class name="FallenLootContainerIce">
+			<property name="Tags" value="sorceryLootFallen"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/chestFallenOrbIce.unity3d?chestFallenOrbIce"/>
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="TimeStayAfterDeath" value="120"/>
+			<!-- <property name="LootListOnDeath" value="692"/> -->
+			<property name="LootListOnDeath" value="fallenIceSoul_sorcery"/>
+			<property name="Faction" value="none"/>	
+		</entity_class>
+		<!-- Fallen Loot: LIGHTNING -->
+		<entity_class name="FallenLootContainerLightning">
+			<property name="Tags" value="sorceryLootFallen"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/chestFallenOrbLightning.unity3d?chestFallenOrbLightning"/>
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="TimeStayAfterDeath" value="120"/>
+			<!-- <property name="LootListOnDeath" value="691"/> -->
+			<property name="LootListOnDeath" value="fallenLightningSoul_sorcery"/>
+			<property name="Faction" value="none"/>	
+		</entity_class>
+		<!-- Fallen Loot: CHAMPION -->
+		<entity_class name="FallenLootContainerOmni">
+			<property name="Tags" value="sorceryLootFallen"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/chestsWoodenRunic.unity3d?chestArcaneBoss" />
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="TimeStayAfterDeath" value="120"/>
+			<property name="LootListOnDeath" value="fallenOmni_sorcery"/>
+			<property name="Faction" value="none"/>	
+		</entity_class>
+		<!-- Fallen Loot: BOSS -->
+		<entity_class name="FallenLootContainerChampion">
+			<property name="Tags" value="sorceryLootFallen"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/chestsWoodenRunic.unity3d?chestArcaneBoss" />
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="TimeStayAfterDeath" value="120"/>
+			<property name="LootListOnDeath" value="fallenChampion_sorcery"/>
+			<property name="Faction" value="none"/>	
+			<property name="NavObject" value="sorcery_boss_loot" />
+		</entity_class>
+		
+	<!-- DEATH ENTITY -->
+		<entity_class name="FallenDeathArcane">
+			<property name="Tags" value="sorceryDeathFallen"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/fallenDeathArcane.unity3d?fallenDeathArcane" />
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="TimeStayAfterDeath" value="8"/>
+			<property name="LootListOnDeath" value="cntDropBag"/>
+			<property name="Faction" value="none"/>	
+		</entity_class>
+		<entity_class name="FallenDeathSoulArcane">
+			<property name="Tags" value="sorceryDeathFallen"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/fallenDeathSoulArcane.unity3d?fallenDeathSoulArcane" />
+			<property name="ModelType" value="Custom"/>
+			<property name="Prefab" value="Backpack"/>
+			<property name="Class" value="EntityLootContainer"/>
+			<property name="Parent" value="Backpack"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="TimeStayAfterDeath" value="8"/>
+			<property name="LootListOnDeath" value="cntDropBag"/>
+			<property name="Faction" value="none"/>	
+		</entity_class>
+		
+		
+	<!-- CONJURATIONS ______________________________________-->
+		<entity_class name="sorceryConjureTemplate">
+			<property name="Tags" value="conjuration,sorceryimmune"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value=""/>
+			<!-- <property name="Mesh" value="#@modfolder:Resources/entityWispIce.unity3d?entityWispIce"/> -->
+			<property name="Prefab" value="NPC"/>
+			<property name="Class" value="EntityEnemyAnimal"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<property name="CompassIcon" value="ui_game_symbol_enemy_dot" />
+			<property name="CompassUpIcon" value="ui_game_symbol_enemy_dot_up" />
+			<property name="CompassDownIcon" value="ui_game_symbol_enemy_dot_down" />
+			
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<!-- <property name="IgnoreTrigger" value="true"/> -->
+			
+			<property name="Collide" value="none"/>
+			<property name="Mass" value="0"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+			
+			<property name="SoundRandom" value=""/>
+			<property name="SoundAlert" value=""/>
+			<property name="SoundHurt" value=""/>
+			<property name="SoundDeath" value=""/>
+			<property name="SoundAttack" value=""/>
+			<property name="SoundSense" value=""/>
+			<property name="SoundGiveUp" value=""/>
+
+			<!-- Gameplay -->
+			<!-- <property name="PhysicsBody" value="vulture"/> -->
+			<!-- <property name="PhysicsBody" value="snake"/> -->
+			<!-- <property name="PhysicsBody" value="boar"/> -->
+			<!-- <property name="PhysicsBody" value="bear"/> -->
+			<property name="Weight" value="0"/>
+			<property name="PushFactor" value="0"/>
+			<!-- <property name="LookAtAngle" value="90"/> -->
+			
+			<property name="RotateToGround" value="true"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+
+			<property name="AINoiseSeekDist" value="100"/>
+			<property name="AIPathCostScale" value="100, 100"/>
+			<property name="AIGroupCircle" value="1"/>
+			<property name="AITask-1" value="ApproachAndAttackTarget" data="class=EntityZombie,20,EntityNPC,20,EntityEnemyAnimal,20,EntityAnimalSnake,20"/> <!-- class,maxChaseTime (return home) -->
+			<!-- <property name="AITask-2" value="ApproachSpot" data="class=EntityPlayer,100"/> -->
+			<!-- <property name="AITask-3" value="Look"/> -->
+			<!-- <property name="AITask-3" value="Wander"/> -->
+			<!-- class, hear dist, see dist (checked left to right, 0 dist uses entity default) -->
+			<!-- <property name="AITarget-1" value="SetNearestEntityAsTarget" data="class=EntityPlayer,100,100,EntityNPC,40,40,EntityZombie,40,40,EntityEnemyAnimal,40,40"/> -->
+			<property name="AITarget-1" value="SetNearestEntityAsTarget" data="class=EntityNPC,60,60,EntityZombie,60,60,EntityEnemyAnimal,60,60"/> <!-- class, hear dist, see dist (checked left to right, 0 dist uses entity default) -->
+			<property name="AITarget-2" value="SetAsTargetIfHurt" data="class=EntityNPC,EntityZombie,EntityEnemyAnimal,EntityAnimalSnake"/>
+
+			<property name="SurfaceCategory" value="organic"/>
+			<!-- <property name="ParticleOnDeath" value="blood_death"/> -->
+
+			<!-- Stealth settings -->
+			<property name="MaxViewAngle" value="360"/> <!-- 210 -->
+			<property name="SightRange" value="60"/> <!-- distance in m -->
+			<property name="SightLightThreshold" value="-2,150"/>
+
+			<property name="SleeperWakeupSightDetectionMin" value="-40,5"/> <!-- Indiv.Random. sight capability - "I see you" light value at point blank -->
+			<property name="SleeperWakeupSightDetectionMax" value="340,480"/> <!-- Indiv.Random. "I see you" light value at "SightRange" -->
+			<property name="SleeperSenseSightDetectionMin" value="-10,0"/> <!-- same for groaning, not waking -->
+			<property name="SleeperSenseSightDetectionMax" value="200,300"/>
+
+			<property name="SleeperNoiseSenseThreshold" value="3,8"/> <!-- Indiv.Random. hearing capability - "I hear something" noise value -->
+			<property name="SleeperNoiseWakeThreshold" value="9,12"/>
+
+			<property name="SleeperSmellSenseThreshold" value="20,50"/> <!-- Indiv.Random. smell capability - "I smell something" player smell value -->
+			<property name="SoundSleeperSenseChance" value=".5"/> <!-- the chance to play "SoundSleeperSense" when "SleeperSmellSenseThreshold" is triggered -->
+
+			<!-- Gameplay -->
+			<property name="PainResistPerHit" value="3"/> <!-- no pain -1 -->
+			<property name="MaxTurnSpeed" value="300"/>
+			<property name="MoveSpeed" value="1"/>
+			<property name="MoveSpeedAggro" value="2, 2"/>
+			<property name="MoveSpeedPanic" value="2"/>
+			<property name="SwimSpeed" value="2"/>
+			<!-- <property name="SwimStrokeRate" value="2,2"/> -->
+			<property name="JumpDelay" value="100"/>
+			<property name="JumpMaxDistance" value="0"/>
+			<!-- <property name="MoveSpeedPanic" value="1.5"/> -->
+			<!-- <property name="SwimSpeed" value="1.2"/> -->
+			<!-- <property name="SwimStrokeRate" value="1.1,1.5"/> -->
+			<!-- <property name="AttackTimeoutDay" value="1.5"/>
+			<property name="AttackTimeoutNight" value="1.4"/> -->
+			<property name="CanClimbLadders" value="false"/>
+
+			<!-- <property name="HandItem" value="meleeHandAnimalBear"/> -->
+
+			<!-- <property name="NavObject" value="sorceryWispIce"/> -->
+
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<!-- <property name="LootDropEntityClass" value="FallenLootContainerLightning"/> -->
+			<property name="TimeStayAfterDeath" value="3"/>
+			<property name="DeadBodyHitPoints" value="7777"/>
+			<property name="PassThroughDamage" value="true"/>
+
+			<effect_group name="Base Effects"> <!-- animalTemplateHostile -->
+				<passive_effect name="JumpStrength" operation="base_set" value="0"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+
+		<!-- CONJURATION: ICE STORM -->
+		<entity_class name="sorceryConjureIceStorm" extends="sorceryConjureTemplate">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="conjuration,conjureIceStorm,sorceryimmune,sorceryimmuneall"/>
+			<!-- <property name="Mesh" value="#@modfolder:Resources/entityWispIce.unity3d?entityWispIce"/> -->
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellIce3_Conjure,buffSorceryImmunity_All,buffSorceryImmunity_Entities"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="HealthMax" operation="base_set" value="7777"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="1000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+		<!-- CONJURATION: FIRENADO -->
+		<entity_class name="sorceryConjureFirenado" extends="sorceryConjureTemplate">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="conjuration,conjureFirenado,sorceryimmune,sorceryimmuneall"/>
+			<!-- <property name="Mesh" value="#@modfolder:Resources/entityWispFire.unity3d?entityWispFire"/> -->
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFire2_Conjure,buffSorceryImmunity_All,buffSorceryImmunity_Entities"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="HealthMax" operation="base_set" value="7777"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="1000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+		<!-- CONJURATION: LIGHTNING STORM -->
+		<entity_class name="sorceryConjureLightningStorm" extends="sorceryConjureTemplate">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="conjuration,conjureLightningStorm,sorceryimmune,sorceryimmuneall"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellLightning3_Conjure,buffSorceryImmunity_All,buffSorceryImmunity_Entities"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="HealthMax" operation="base_set" value="7777"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="1000"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+
+
+	<!-- CONJURATIONS: TOTEMS ______________________________________-->
+		<entity_class name="sorceryTotemTemplate">
+			<property name="Tags" value="entity,animal,sorceryTotem"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#@modfolder:Resources/lightningTotem.unity3d?lightningTotem"/>
+			<property name="Prefab" value="NPC"/>
+			<!-- <property name="Class" value="EntityEnemyAnimal"/> -->
+			<property name="Class" value="EntityAnimalStag"/>
+			<property name="Parent" value="Animals"/>
+			<property name="AvatarController" value="AvatarControllerDummy"/>
+			<!-- <property name="AvatarController" value="GameObjectAnimalAnimation"/> -->
+			<!-- <property name="AvatarController" value="AvatarAnimalController"/> -->
+			<property name="CompassIcon" value="ui_game_symbol_enemy_dot" />
+			<property name="CompassUpIcon" value="ui_game_symbol_enemy_dot_up" />
+			<property name="CompassDownIcon" value="ui_game_symbol_enemy_dot_down" />
+			
+			<property name="ModelType" value="Custom"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="IgnoreTrigger" value="true"/>
+			
+			<property name="Mass" value="1000"/>
+			<property name="HasDeathAnim" value="false"/>
+			<property name="RootMotion" value="false"/>
+			<property name="RagdollOnDeathChance" value="0"/>
+
+			<property name="SoundRandom" value=""/>
+			<property name="SoundAlert" value=""/>
+			<property name="SoundHurt" value=""/>
+			<property name="SoundDeath" value=""/>
+			<property name="SoundAttack" value=""/>
+			<property name="SoundSense" value=""/>
+			<property name="SoundGiveUp" value=""/>
+
+			<!-- Gameplay -->
+			<property name="Weight" value="1000"/>
+			<!-- <property name="LookAtAngle" value="90"/> -->
+			<property name="RotateToGround" value="true"/>
+			<property name="IsAnimalEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="Faction" value="animals"/>
+
+			<!-- <property name="AINoiseSeekDist" value="60"/> -->
+			<!-- <property name="AIPathCostScale" value=".1, .1"/> -->
+			
+			<property name="AITask-1" value=""/>
+			<property name="AITarget-1" value=""/>
+			<!-- <property name="AITask-1" value="RunawayWhenHurt"/> -->
+			<!-- <property name="AITask-1" value="RunawayFromEntity" data="class=EntityZombie,EntityEnemyAnimal"/> -->
+			<!-- <property name="AITask-1" value="ApproachDistraction"/> -->
+			<!-- <property name="AITask-2" value="ApproachSpot" data="class=EntityZombie,60,EntityEnemyAnimal,60"/> -->
+			<!-- <property name="AITask-3" value="Look"/> -->
+			
+			
+			<!-- class, hear dist, see dist (checked left to right, 0 dist uses entity default) -->
+			<!-- <property name="AITarget-1" value="SetNearestEntityAsTarget" data="class=EntityZombie,60,60,EntityEnemyAnimal,60,60"/> -->
+			<!-- <property name="AITarget-2" value="SetAsTargetIfHurt" data="class=EntityNPC,EntityZombie,EntityEnemyAnimal,EntityAnimalSnake"/> -->
+
+			<property name="SurfaceCategory" value="wood"/>
+			<!-- <property name="SurfaceCategory" value="organic"/> -->
+			<!-- <property name="ParticleOnDeath" value="blood_death"/> -->
+
+			<!-- Stealth settings -->
+			<!-- <property name="MaxViewAngle" value="360"/> --> <!-- 210 -->
+			<!-- <property name="SightRange" value="60"/> --> <!-- distance in m -->
+			<!-- <property name="SightLightThreshold" value="-2,150"/> -->
+
+			<property name="SleeperWakeupSightDetectionMin" value="-40,5"/> <!-- Indiv.Random. sight capability - "I see you" light value at point blank -->
+			<property name="SleeperWakeupSightDetectionMax" value="340,480"/> <!-- Indiv.Random. "I see you" light value at "SightRange" -->
+			<property name="SleeperSenseSightDetectionMin" value="-10,0"/> <!-- same for groaning, not waking -->
+			<property name="SleeperSenseSightDetectionMax" value="200,300"/>
+
+			<property name="SleeperNoiseSenseThreshold" value="3,8"/> <!-- Indiv.Random. hearing capability - "I hear something" noise value -->
+			<property name="SleeperNoiseWakeThreshold" value="9,12"/>
+
+			<property name="SleeperSmellSenseThreshold" value="20,50"/> <!-- Indiv.Random. smell capability - "I smell something" player smell value -->
+			<property name="SoundSleeperSenseChance" value=".5"/> <!-- the chance to play "SoundSleeperSense" when "SleeperSmellSenseThreshold" is triggered -->
+
+			<!-- Gameplay -->
+			<property name="PainResistPerHit" value="-1"/>
+			<property name="MaxTurnSpeed" value="0"/>
+			<property name="MoveSpeed" value="0"/>
+			<property name="MoveSpeedPanic" value="0"/>
+			<property name="MoveSpeedRand" value="0, 0"/>
+			<property name="JumpDelay" value="200"/>
+			<property name="JumpMaxDistance" value="0, 0"/>
+			<property name="CanClimbLadders" value="false"/>
+
+			<property name="Immunity" value="sickness;disease;wellness"/> <!-- bleeding; -->
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<property name="TimeStayAfterDeath" value="-1"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="PassThroughDamage" value="true"/>
+
+			<effect_group name="Base Effects"> <!-- animalTemplateHostile -->
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+		<!-- TOTEM: LIGHTNING -->
+		<entity_class name="sorceryTotemLightning" extends="sorceryTotemTemplate"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="entity,animal,sorceryTotem,conjuration,sorceryimmune,conjureLightningTotem"/>
+			<property name="Mesh" value="#@modfolder:Resources/lightningTotem.unity3d?lightningTotem"/>
+			<effect_group name="Base Effects">
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellLightning2_Conjure,buffSorceryImmunity_All,spell_SpawnHeal"/>
+				<passive_effect name="BuffProcChance" operation="base_set" value="100"/>
+				<passive_effect name="HealthMax" operation="base_set" value="200"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="100" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"/>
+			</effect_group>
+		</entity_class>
+		
+		
+		
+		<!-- FALLEN SUMMONS -->
+		<entity_class name="sorcerySummonZombieDog" extends="animalZombieDog">	 <property name="HideInSpawnMenu" value="true"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="TimeStayAfterDeath" value="3"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="TintColor" value="FF0000"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_UnholyConjure,summon_AutoDespawn45"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="sorcerySummonZombieBurnt" extends="zombieBurnt"> <property name="HideInSpawnMenu" value="true"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Mesh" value="#Entities/Zombies?Prefabs/ZBurntFeral.prefab"/>
+			<property name="TimeStayAfterDeath" value="3"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="TintColor" value="FF0000"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_UnholyConjure,summon_AutoDespawn45"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="sorcerySummonVulture" extends="animalZombieVulture">	<property name="HideInSpawnMenu" value="true"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="TimeStayAfterDeath" value="3"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="TintColor" value="FF0000"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_UnholyConjure,summon_AutoDespawn45"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="sorcerySummonScreamer" extends="zombieScreamer">	<property name="HideInSpawnMenu" value="true"/>
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="TimeStayAfterDeath" value="3"/>
+			<property name="DeadBodyHitPoints" value="0"/>
+			<property name="TintColor" value="FF0000"/>
+			<property name="ExperienceGain" value="0"/>
+			<property name="LootDropProb" value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="spellFX_UnholyConjure,summon_AutoDespawn45"/>
+			</effect_group>
+		</entity_class>
+		
+		
+	</append>
+<!-- END - ENTITIES ______________________________________-->
+	
+</Sorcery>

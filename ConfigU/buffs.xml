@@ -1,0 +1,223 @@
+<Subquake>
+    
+<set xpath="/buffs/buff[@name='god']/effect_group/passive_effect[@name='CarryCapacity']/@value">300</set>
+
+<set xpath="/buffs/buff[@name='buffDrugSteroids']">
+	<stack_type value="replace"/><duration value="0"/>
+	<display_value value=".buffDrugSteroidsDisplay"/><display_value_format value="time"/>
+	<effect_group>
+		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugSteroidsDuration" operation="subtract" value="@$MetabolismDuration"/>
+		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffDrugSteroidsDisplay" operation="set" value="@$buffDrugSteroidsDuration"/>
+		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffDrugSteroidsDisplay" operation="divide" value="@$MetabolismDuration"/>
+	</effect_group>
+	<effect_group>
+		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDrugSteroids">
+			<requirement name="CVarCompare" cvar="$buffDrugSteroidsDuration" operation="LTE" value="0"/>
+		</triggered_effect>
+		<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffDrugSteroidsDisplay" operation="set" value="0"/>
+		<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$buffDrugSteroidsDuration" operation="set" value="0"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="ULM_RecalculatePlayerWeight,UndeadLegacy" target="self"/>
+	</effect_group>
+	<effect_group>
+		<passive_effect name="StatWeightMax" operation="base_add" value="1000"/>
+	<!--<passive_effect name="RunSpeed" operation="perc_add" value=".2"/>-->
+		<passive_effect name="WaterChangeOT" operation="base_subtract" value=".05"/>
+	</effect_group>
+</set>
+    
+<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+    <effect_group>
+        <!-- Encumbrance -->
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1"/>
+        <requirement name="NotHasBuff" buff="god"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="ulmDebuffEncumbered"/>
+    </effect_group>
+</append>
+	
+<set xpath="/buffs/buff[@name='buffJournalUnlocks']">
+	<stack_type value="ignore"/>
+	<duration value="500"/>
+	<update_rate value="1"/>
+	<effect_group>
+		<triggered_effect trigger="onSelfBuffStart" action="LogMessage" message="buffJournalUnlocks Started"/>
+		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$journalUnlockTimer" operation="add" value="1"/>
+		<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$journalUnlockTimer" operation="set" value="0"/>
+		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffJournalUnlocks"><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="35"/></triggered_effect>
+	</effect_group>
+	<!--
+	<effect_group>
+		<triggered_effect trigger="onSelfBuffStart" action="LogMessage" message="buffJournalUnlocks Started"/>
+		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$journalUnlockTimer" operation="add" value="1"/>
+		<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$journalUnlockTimer" operation="set" value="0"/>
+	
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="tutorialTipQuest02"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="6"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="vehicleFeatureToggleTip"		><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="7"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="abandonedVehicleRepairTip"	><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="8"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="vehicleEncumbranceTip"		><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="9"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="pinRecipeTip"				><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="10"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="searchInventoryTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="11"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="lockInventorySlotsTip"		><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="12"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="researchSystemTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="13"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="scavengeTitaniumTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="14"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="scavengeFuelTip"				><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="15"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="scavengeWaterTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="16"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="scavengeNailsTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="17"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="scavengeResinTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="18"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="scavengeHingesTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="19"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="pickUpLightsTip"				><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="20"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="pickUpDecorationsTip"		><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="21"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="pickUpStationsTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="22"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="pickUpStorageTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="23"/></triggered_effect>
+
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="survivalTip"					><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="24"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="firstAidTip"					><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="25"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="infectionTip"				><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="26"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="waterTip"					><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="27"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="foodPoisoningTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="28"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="meleeWeaponStatsTip"			><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="29"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="rangedWeaponStatsTip"		><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="30"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="armorStatsTip"				><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="31"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="stealthTip"					><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="32"/></triggered_effect>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddJournalEntry" journal="criticalHitsTip"				><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="33"/></triggered_effect>
+
+		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffJournalUnlocks"><requirement name="CVarCompare" cvar="$journalUnlockTimer" operation="Equals" value="35"/></triggered_effect>
+	</effect_group>
+	-->
+</set>
+
+<append xpath="/buffs">
+    
+<buff name="ulmDebuffEncumbered" name_key="ulmDebuffEncumbered" description_key="ulmDebuffEncumberedDesc" tooltip_key="buffEncumberedInvTooltip" icon="symbol_weight" icon_color="255,128,0">
+	<stack_type value="ignore"/>
+	<damage_type value="stun"/>
+	<update_rate value="2.1"/>
+    <!--<display_value value=".encumbranceDisplayPerc"/><display_value_key value="{0:0}%"/>
+	<effect_group>
+		<triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="buffEncumberedInvDesc"/>
+	</effect_group>
+	<effect_group>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".encumbranceDisplayPerc" operation="set" value="@ulmStatEncumbered"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".encumbranceDisplayPerc" operation="subtract" value="1"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".encumbranceDisplayPerc" operation="multiply" value="100"/></effect_group>-->
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1"/>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="LTE" value="1.2"/>
+		<passive_effect name="Mobility" operation="perc_subtract" value=".18"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value=".1"/></effect_group>
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1.2"/>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="LTE" value="1.4"/>
+		<passive_effect name="Mobility" operation="perc_subtract" value=".36"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value=".3"/></effect_group>
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1.4"/>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="LTE" value="1.6"/>
+		<passive_effect name="Mobility" operation="perc_subtract" value=".54"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value=".5"/></effect_group>
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1.6"/>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="LTE" value="1.8"/>
+		<passive_effect name="Mobility" operation="perc_subtract" value=".72"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value=".7"/></effect_group>
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1.8"/>
+		<passive_effect name="Mobility" operation="perc_subtract" value=".9"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value="1"/></effect_group>
+    <!--
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1.5"/>
+        <requirement name="NotHasBuff" buff="buffFatigued"/>
+		<passive_effect name="BuffResistance" operation="base_subtract" value="5" tags="buffFatiguedTrigger"/>
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffFatiguedTrigger"/></effect_group>
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1.5"/>
+        <requirement name="NotHasBuff" buff="buffArmSprained"/>
+        <passive_effect name="BuffResistance" operation="base_subtract" value="5" tags="buffArmSprainedCHTrigger"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffArmSprainedCHTrigger"/></effect_group>
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="1.75"/>
+        <requirement name="NotHasBuff" buff="buffLegSprained"/>
+        <passive_effect name="BuffResistance" operation="base_subtract" value="5" tags="buffLegSprainedCHTrigger"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffLegSprainedCHTrigger"/></effect_group>
+	<effect_group>
+        <requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="GT" value="2"/>
+        <requirement name="NotHasBuff" buff="buffLegBroken"/>
+        <passive_effect name="BuffResistance" operation="base_subtract" value="5" tags="buffLegBroken"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffLegBroken"/></effect_group>
+    -->
+	<effect_group>
+        <requirements compare_type="or">
+            <requirement name="HasBuff" buff="god"/>
+			<requirement name="CVarCompare" cvar="ulmStatEncumbered" operation="LTE" value="1"/>
+        </requirements>
+		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="ulmDebuffEncumbered"/></effect_group>
+</buff>
+
+<buff name="ulmBuffTargetHit" icon="symbol_aim" icon_color="0,255,0" hidden="true">
+	<stack_type value="replace"/>
+	<duration value=".2"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorDamagedHead" icon="symbol_helmet" icon_color="255,128,0" name_key="ulmBuffArmorDamagedHead" description_key="ulmBuffArmorDamagedHeadDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityHead"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorDamagedChest" icon="symbol_armor" icon_color="255,128,0" name_key="ulmBuffArmorDamagedChest" description_key="ulmBuffArmorDamagedChestDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityChest"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorDamagedHands" icon="symbol_gloves" icon_color="255,128,0" name_key="ulmBuffArmorDamagedHands" description_key="ulmBuffArmorDamagedHandsDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityHands"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorDamagedLegs" icon="symbol_pants" icon_color="255,128,0" name_key="ulmBuffArmorDamagedLegs" description_key="ulmBuffArmorDamagedLegsDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityLegs"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorDamagedFeet" icon="symbol_boots" icon_color="255,128,0" name_key="ulmBuffArmorDamagedFeet" description_key="ulmBuffArmorDamagedFeetDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityFeet"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorBrokenHead" icon="symbol_helmet" icon_color="255,0,0" name_key="ulmBuffArmorBrokenHead" description_key="ulmBuffArmorBrokenHeadDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityHead"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorBrokenChest" icon="symbol_armor" icon_color="255,0,0" name_key="ulmBuffArmorBrokenChest" description_key="ulmBuffArmorBrokenChestDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityChest"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorBrokenHands" icon="symbol_gloves" icon_color="255,0,0" name_key="ulmBuffArmorBrokenHands" description_key="ulmBuffArmorBrokenHandsDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityHands"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorBrokenLegs" icon="symbol_pants" icon_color="255,0,0" name_key="ulmBuffArmorBrokenLegs" description_key="ulmBuffArmorBrokenLegsDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityLegs"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+<buff name="ulmBuffArmorBrokenFeet" icon="symbol_boots" icon_color="255,0,0" name_key="ulmBuffArmorBrokenFeet" description_key="ulmBuffArmorBrokenFeetDesc">
+	<stack_type value="replace"/>
+	<update_rate value="60"/>
+	<display_value value="equippedDurabilityFeet"/><display_value_key value="{0:0}%"/>
+	<effect_group/></buff>
+
+</append>
+    
+</Subquake>

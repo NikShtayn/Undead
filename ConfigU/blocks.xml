@@ -1,0 +1,1147 @@
+<Subquake>
+
+<!--
+	EntitySpawner = SB_EntitySpawner
+    PrefabBoundingBox = SB_Prefabs
+    StartPoint = SB_StartPoint
+    TraderTeleport = SB_TraderTeleport
+    SleeperVolume = SB_SleeperVolume
+    Item = Item
+    BlocksMesh = B_Mesh
+    TerrainMesh = T_Mesh
+    BlocksMeshBlockModel = T_Mesh_B
+    BlocksMeshBlockEntity = T_Block
+    PrefixEntity = E_
+    PrefixBodyPart = E_BP_
+    Player = E_Player
+    Vehicle = E_Vehicle
+    Enemy = E_Enemy
+    Animal = E_Animal
+    Head = E_BP_Head
+    Body = E_BP_Body
+    LArm = E_BP_LArm
+    RArm = E_BP_RArm
+    LLeg = E_BP_LLeg
+    RLeg = E_BP_RLeg
+    EBPSpecial = E_BP_Special
+    LUpperArm = E_BP_LArm
+    LLowerArm = E_BP_LLowerArm
+    RUpperArm = E_BP_RArm
+    RLowerArm = E_BP_RLowerArm
+    LUpperLeg = E_BP_LLeg
+    LLowerLeg = E_BP_LLowerLeg
+    RUpperLeg = E_BP_RLeg
+    RLowerLeg = E_BP_RLowerLeg
+    HeadGore = L_HeadGore
+    LeftUpperArmGore = L_LeftUpperArmGore
+    LeftLowerArmGore = L_LeftLowerArmGore
+    RightUpperArmGore = L_RightUpperArmGore
+    RightLowerArmGore = L_RightLowerArmGore
+    LeftUpperLegGore = L_LeftUpperLegGore
+    LeftLowerLegGore = L_LeftLowerLegGore
+    RightUpperLegGore = L_RightUpperLegGore
+    RightLowerLegGore = L_RightLowerLegGore
+    Deco = T_Deco
+    PrefabSub = TE_PrefabSub
+-->
+
+<set xpath="/blocks/block[@name='cntGasPumpRandomLootHelper']">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Group" value="StorageTanks,Automotive,Outdoor,Blocks"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Industrial/gasPumpFullPrefab"/>
+	<property name="ImposterExchange" value="imposterDontBlockCTRPlate" param1="90"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="Path" value="solid"/>
+	<property name="CanPickup" value="false"/>
+	<property name="LPHardnessScale" value="0"/>
+	<property name="DisplayInfo" value="Name"/>
+	<property name="CustomIcon" value="cntGasPumpFull"/>
+	<property name="CustomIconTint" value="ff8000"/>
+	<property name="Material" value="Mmetal_thin"/>
+	<property name="EconomicValue" value="50"/><property name="CarryWeight" value="5"/>
+	<property class="RepairItems">
+		<property name="resourceElectricParts" value="10"/>
+		<property name="resourceMechanicalParts" value="5"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceElectricParts" count="2,10" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceMechanicalParts" count="2,4" tag="salvageHarvest"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+	<drop event="Destroy" count="0"/></set>
+	
+<set xpath="/blocks/block[@name='cntGasPumpEmpty']">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="cntGasPumpRandomLootHelper" param1="DisplayInfo,CustomIcon,CustomIconTint"/>
+	<property name="Model" value="Entities/Industrial/gasPumpEmptyPrefab"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="false"/>
+		<property name="Size" value="0"/>
+		<property name="RestockRange" value="0,0"/>
+		<property name="RestockItemType" value="Gasoline"/>
+	</property></set>
+
+<set xpath="/blocks/block[@name='cntGasPumpFull']">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/>
+	<property name="Extends" value="cntGasPumpRandomLootHelper" param1="DisplayInfo,CustomIcon,CustomIconTint"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="false"/>
+		<property name="Size" value="5"/>
+		<property name="RestockRange" value="0,5"/>
+		<property name="RestockItemType" value="Gasoline"/>
+	</property></set>
+	
+<set xpath="/blocks/block[@name='cntCoffeeMaker']">
+	<property name="Group" value="StorageTanks,Appliances,Furniture,Blocks"/>
+	<property name="Extends" value="decoEntityMetalMaster"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/>
+	<property name="Model" value="Entities/Appliances/coffeeMakerPrefab"/>
+	<property name="Path" value="solid"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="EconomicValue" value="98"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="Size" value="20"/>
+		<property name="RestockRange" value="0,2"/>
+		<property name="RestockItemType" value="Coffee"/></property>
+	<property class="RepairItems">
+		<property name="resourceForgedIron" value="2"/>
+		<property name="resourceElectricParts" value="4"/>
+		<property name="resourceScrapPolymers" value="2"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapPolymers" count="1,2" tag="allHarvest"/>
+	<drop event="Destroy" name="resourceScrapIron" count="2,5"/></set>
+	
+<set xpath="/blocks/block[@name='cntCoffeeMakerCommercial']">
+	<property name="Group" value="StorageTanks,Electrical,Appliances,Furniture,Eommercial,Blocks"/>
+	<property name="Extends" value="cntCoffeeMaker"/>
+	<property name="Model" value="Entities/Appliances/commercialCoffeeMakerPrefab"/></set>
+    
+<set xpath="/blocks/block[@name='cntSodaFountain']">
+	<property name="Extends" value="cntCoffeeMaker" param1="Class,Consumable"/>
+	<property name="Group" value="Storage,Appliances,Furniture,Blocks"/>
+	<property name="Model" value="Entities/Electrical/sodaFountainPrefab"/>
+	<property name="Class" value="ULM_Loot,UndeadLegacy"/><property name="LootList" value="sodaFountain"/></set>
+
+<set xpath="/blocks/block[@name='faucet02']">
+	<property name="Group" value="Plumbing,Blocks"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="CanPickup" value="false"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Plumbing/faucet02Prefab"/>
+	<property name="Collide" value="melee,bullet,arrow,rocket"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Material" value="matIron"/><property name="Weight" value="20"/>
+	<property name="EconomicValue" value="40"/><property name="CarryWeight" value="0.35"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="false"/>
+		<property name="Size" value="3"/>
+		<property name="RestockRange" value="0,3"/>
+		<property name="RestockItemType" value="RiverWater"/></property>
+	<drop event="Harvest" name="resourceScrapIron" count="1,5" tag="allHarvest"/>
+	<drop event="Destroy" count="0"/></set>
+
+<set xpath="/blocks/block[@name='faucet04']">
+	<property name="Extends" value="faucet02"/>
+	<property name="Model" value="Entities/Plumbing/faucet04Prefab"/>
+	<property name="Weight" value="20"/>
+	<property name="EconomicValue" value="20"/></set>
+
+<set xpath="/blocks/block[@name='faucetBrass02']">
+	<property name="Extends" value="faucet02" param1="Harvest"/>
+	<property name="Material" value="matBrass"/><property name="Weight" value="20"/>
+	<property name="Model" value="Entities/Plumbing/faucet_brass02Prefab"/>
+	<property name="EconomicValue" value="125"/>
+	<drop event="Harvest" name="resourceScrapBrass" count="1,5" tag="allHarvest"/></set>
+
+<set xpath="/blocks/block[@name='faucetBrass04']">
+	<property name="Extends" value="faucet02" param1="Harvest"/>
+	<property name="Material" value="matBrass"/><property name="Weight" value="20"/>
+	<property name="Model" value="Entities/Plumbing/faucet_brass04Prefab"/>
+	<property name="EconomicValue" value="80"/>
+	<drop event="Harvest" name="resourceScrapBrass" count="1,5" tag="allHarvest"/></set>
+    
+<set xpath="/blocks/block[@name='showerHead']">
+	<property name="Group" value="Plumbing,Blocks"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="CanPickup" value="false"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Plumbing/bathTubShowerHeadPrefab"/>
+	<property name="HandleFace" value="South"/><property name="Collide" value="melee,bullet,arrow,rocket"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Material" value="Mmetal_thin"/><property name="Weight" value="20"/>
+	<property name="EconomicValue" value="40"/><property name="CarryWeight" value="0.25"/>
+	<property name="DescriptionKey" value="creativeMenuBlockGroupDesc"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="false"/>
+		<property name="Size" value="3"/>
+		<property name="RestockRange" value="0,3"/>
+		<property name="RestockItemType" value="RiverWater"/>
+	</property></set>
+
+<set xpath="/blocks/block[@name='decoClawFootBathTub']">
+	<property name="Group" value="StorageTank,Plumbing,Furniture,Blocks"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/>
+	<property name="Extends" value="decoEntityMetalMaster"/>
+	<property name="Model" value="Entities/Plumbing/clawFootTubPrefab"/><property name="ModelOffset" value="0,0,0"/>
+	<property name="DisplayType" value="blockMulti"/><property name="MultiBlockDim" value="1,1,2"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Material" value="Mmetal"/>
+	<property name="EconomicValue" value="10"/><property name="CarryWeight" value="20"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="Size" value="20"/>
+		<property name="RestockRange" value="0,3"/>
+		<property name="RestockItemType" value="RiverWater"/></property>
+	<property class="RepairItems">
+		<property name="resourceScrapIron" value="60"/>
+		<property name="resourceMechanicalParts" value="2"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceScrapIron" count="30" tag="allHarvest"/>
+	<drop event="Harvest" name="resourceMechanicalParts" count="0,2" tag="salvageHarvest"/></set>
+	
+<append xpath="/blocks/block[@name='wallMountSinkCommercial' or @name='counterMountedSinkCommercial' or @name='cntBathTubEmpty']">
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="CanPickup" value="false"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="false"/>
+		<property name="Size" value="3"/>
+		<property name="RestockRange" value="0,3"/>
+		<property name="RestockItemType" value="RiverWater"/>
+	</property></append>
+	
+<set xpath="/blocks/block[@name='utilitySink']">
+	<property name="Group" value="Plumbing,Blocks,Player"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="CanPickup" value="false"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Plumbing/utility_sinkPrefab"/>
+	<property name="Path" value="solid"/><property name="Place" value="TowardsPlacerInverted"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="DescriptionKey" value="furnitureGroupDesc"/>
+	<property name="Material" value="Mmetal"/>
+	<property name="EconomicValue" value="60"/><property name="CarryWeight" value="0.35"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="false"/>
+		<property name="Size" value="3"/>
+		<property name="RestockRange" value="0,3"/>
+		<property name="RestockItemType" value="RiverWater"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceMetalPipe" count="4" tag="allHarvest"/>
+	<drop event="Harvest" name="resourceScrapBrass" count="1,5" tag="WasteTreasuresSinkHarvest"/>
+	<drop event="Harvest" name="resourceScrapLead" count="1,5" tag="WasteTreasuresSinkHarvest"/>
+	<drop event="Destroy" name="resourceScrapIron" count="5,10"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/></set>
+	
+<set xpath="/blocks/block[@name='drinkingfountainSingle']">
+	<property name="Group" value="Plumbing,Blocks,Player"/>
+	<property name="Material" value="Mmetal_weak"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="CanPickup" value="false"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Commercial/fountainCommercialMountedSinglePrefab"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="DescriptionKey" value="creativeMenuBlockGroupDesc"/>
+	<property name="Path" value="solid"/>
+	<property name="EconomicValue" value="45"/><property name="CarryWeight" value="1"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="false"/>
+		<property name="Size" value="3"/>
+		<property name="RestockRange" value="0,3"/>
+		<property name="RestockItemType" value="RiverWater"/></property>
+	<property class="RepairItems">
+		<property name="resourceForgedIron" value="4"/>
+		<property name="resourceMetalPipe" value="3"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceMetalPipe" count="1,2" tag="salvageHarvest"/>
+	<drop event="Destroy" name="resourceScrapIron" count="1,15"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/></set>
+	
+<set xpath="/blocks/block[@name='pedestalSink']">
+	<property name="Group" value="Plumbing,Blocks,Player"/>
+	<property name="Extends" value="stoneNoUpgradeMaster" param1="SortOrder1,SortOrder2"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="CanPickup" value="false"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Entities/LootContainers?wallHungSinkPrefab"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="Path" value="solid"/>
+	<property name="ImposterExclude" value="true"/>
+	<property name="DescriptionKey" value="creativeMenuBlockGroupDesc"/>
+	<property name="Material" value="MstoneFurniture"/>
+	<property name="EconomicValue" value="80"/><property name="CarryWeight" value="1"/>
+	<property name="DescriptionKey" value="furnitureGroupDesc"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="false"/>
+		<property name="Size" value="3"/>
+		<property name="RestockRange" value="0,3"/>
+		<property name="RestockItemType" value="RiverWater"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceMetalPipe" count="4" tag="allHarvest"/>
+	<drop event="Harvest" name="resourceScrapBrass" count="1,5" tag="WasteTreasuresSinkHarvest"/>
+	<drop event="Harvest" name="resourceScrapLead" count="1,5" tag="WasteTreasuresSinkHarvest"/>
+	<drop event="Destroy" name="resourceScrapIron" count="5,10"/></set>
+	
+<set xpath="/blocks/block[@name='sinksToiletsBlockVariantHelper']">
+	<property name="CreativeMode" value="Player"/>
+	<property name="Group" value="Plumbing,Decor,Blocks"/>
+	<property name="Extends" value="pedestalSink"/>
+	<property name="CustomIcon" value="pedestalSink"/>
+	<property name="DescriptionKey" value="blockVariantHelperGroupDesc"/>
+	<property name="SelectAlternates" value="true"/>
+	<property name="PlaceAltBlockValue" value="pedestalSink,utilitySink,wallMountSinkCommercial,counterMountedSinkCommercial,cntCabinetGraniteSinkHoleRound,cntCabinetOldSink,cntGraniteSink,faucet04,faucet02,showerHead,drinkingfountainSingle,drinkingfountainDouble,cntToilet02,cntToilet01,cntToilet03,urinalCommercialMounted"/>
+	<property name="ItemTypeIcon" value="all_blocks"/></set>
+
+<remove xpath="/blocks/block[@name='cntBarrelGasSingle00']/property[@name='LootList']"/>
+<remove xpath="/blocks/block[@name='cntBarrelRadiatedSingle00']/property[@name='LootList']"/>
+<remove xpath="/blocks/block[@name='cntBarrelWhiteSingle00']/property[@name='LootList']"/>
+
+<set xpath="/blocks/block[@name='cntBarrelPlasticSingle00']">
+	<property name="Group" value="StorageTanks,Furniture,Blocks"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="TakeDelay" value="2.5"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Industrial/barrelPlasticPrefab"/>
+	<property name="Path" value="solid"/><property name="Collide" value="sight,movement,melee,bullet,arrow,rocket"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="CanDecorateOnSlopes" value="false"/>
+	<property name="Material" value="matPlastic"/><property name="Weight" value="30"/>
+	<property name="EconomicValue" value="50"/><property name="CarryWeight" value="2.5"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="RestockRange" value="0,10"/>
+		<property name="Size" value="50"/>
+		<property name="RestockItemType" value="RiverWater"/></property>
+	<drop event="Harvest" name="resourceScrapPolymers" count="3,5" tag="allToolsHarvest"/>
+	<drop event="Fall" name="resourceScrapPolymers" count="3" prob="0.3" stick_chance="0"/>
+	<drop event="Destroy" count="0"/></set>
+	
+<remove xpath="/blocks/block[@name='cntBarrelAcidSingle00']/property[@name='LootList']"/>
+<remove xpath="/blocks/block[@name='cntBarrelGenericSingle00']/property[@name='LootList']"/>
+<remove xpath="/blocks/block[@name='cntBarrelOilSingle00']/property[@name='LootList']"/>
+    
+<set xpath="/blocks/block[@name='cntBarrelMetalMaster']">
+	<property name="CreativeMode" value="None"/>
+	<property name="Group" value="StorageTanks,Blocks"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="TakeDelay" value="2.5"/>
+	<property name="CustomIcon" value="cntBarrelAcidSingle00"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Industrial/barrelGasPrefab"/>
+	<property name="Path" value="solid"/><property name="Collide" value="sight,movement,melee,bullet,arrow,rocket"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="CanDecorateOnSlopes" value="false"/>
+	<property name="DescriptionKey" value="cntBarrelGroupDesc"/>
+	<property name="Material" value="matIronBarrel"/><property name="Weight" value="30"/>
+	<property name="EconomicValue" value="25"/><property name="CarryWeight" value="5"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="14"/>
+		<property name="RadiusBlocks" value="5"/>
+		<property name="RadiusEntities" value="5"/>
+		<property name="BlockDamage" value="750"/>
+		<property name="EntityDamage" value="300"/>
+	</property>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="Size" value="60"/>
+		<property name="RestockRange" value="0,5"/>
+		<property name="RestockItemType" value="Gasoline"/></property>
+	<property class="RepairItems">
+		<property name="resourceForgedIron" value="5"/></property>
+	<drop event="Harvest" name="resourceScrapIron" count="3,6" tag="allToolsHarvest"/>
+	<drop event="Fall" name="scrapMetalPile" count="1,5" prob="0.75" stick_chance="1"/>
+	<drop event="Destroy" count="0"/></set>
+    
+<append xpath="/blocks/block[
+   @name='cntBarrelAcidQuadA'
+or @name='cntBarrelAcidQuadB'
+or @name='cntBarrelGasQuadA'
+or @name='cntBarrelGasQuadB'
+or @name='cntBarrelGenericQuadA'
+or @name='cntBarrelGenericQuadB'
+or @name='cntBarrelOilQuadA'
+or @name='cntBarrelOilQuadB'
+or @name='cntBarrelRadiatedQuadA'
+or @name='cntBarrelRadiatedQuadB'
+or @name='cntBarrelWhiteQuadA'
+or @name='cntBarrelWhiteQuadB']">
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="Size" value="240"/>
+		<property name="RestockRange" value="0,10"/>
+		<property name="RestockItemType" value="Gasoline"/>
+	</property></append>
+    
+<set xpath="/blocks/block[@name='cntBarrelPolymerMaster']">
+	<property name="CreativeMode" value="None"/>
+	<property name="Group" value="StorageTanks,Furniture,Blocks"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="TakeDelay" value="2.5"/>
+	<property name="CustomIcon" value="cntBarrelAcidSingle00"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Industrial/barrelGasPrefab"/>
+	<property name="Collide" value="sight,movement,melee,bullet,arrow,rocket"/><property name="Path" value="solid"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="Material" value="MFuelBarrelPolymer"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="CanDecorateOnSlopes" value="false"/>
+	<property name="EconomicValue" value="50"/><property name="CarryWeight" value="1"/>
+	<property class="RepairItems"><property name="resourceScrapPolymers" value="10"/></property>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="Size" value="60"/>
+		<property name="RestockRange" value="0,5"/>
+		<property name="RestockItemType" value="RiverWater"/></property>
+	<property name="DescriptionKey" value="cntBarrelGroupDesc"/>
+	<drop event="Harvest" name="resourceScrapPolymers" count="2,5" tag="allToolsHarvest"/>
+	<drop event="Fall" name="resourceScrapPolymers" count="3" prob="0.3" stick_chance="0"/>
+	<drop event="Destroy" count="0"/></set>
+    
+<set xpath="/blocks/block[@name='cntWaterCoolerFull']">
+	<property name="Group" value="StorageTanks,Furniture,Blocks"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="TakeDelay" value="2.5"/>
+	<property name="DisplayType" value="blockMulti"/><property name="MultiBlockDim" value="1,2,1"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Entities/LootContainers?water_cooler_fullPrefab"/>
+	<property name="Path" value="solid"/><property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Material" value="matPlastic"/><property name="Weight" value="0"/><property name="MaxDamage" value="250"/>
+	<property name="EconomicValue" value="250"/><property name="CarryWeight" value="0.5"/>
+	<property class="RepairItems"><property name="resourceScrapPolymers" value="10"/></property>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="Size" value="30"/>
+		<property name="RestockRange" value="0,4"/>
+		<property name="RestockItemType" value="MineralWater"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceScrapPolymers" count="2,4" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapPolymers" count="1,3" tag="allHarvest"/>
+	<drop event="Destroy" name="resourceScrapIron" count="1,8"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/></set>
+    
+<set xpath="/blocks/block[@name='cntWaterCoolerBottle']">
+	<property name="Group" value="StorageTanks,Furniture,Blocks"/>
+	<property name="Class" value="ULM_StorageTank,UndeadLegacy"/><property name="TakeDelay" value="2.5"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Entities/LootContainers?water_cooler_bottlePrefab"/>
+	<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="Material" value="matPlastic"/><property name="Weight" value="0"/>
+	<property name="EconomicValue" value="50"/><property name="CarryWeight" value="0.4"/>
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="Size" value="20"/>
+		<property name="RestockRange" value="0,4"/>
+		<property name="RestockItemType" value="MineralWater"/></property>
+	<property class="RepairItems"><property name="resourceScrapPolymers" value="10"/></property>
+	<drop event="Destroy" name="resourceScrapPolymers" count="2,3"/>
+	<drop event="Fall" count="0"/></set>
+    
+<append xpath="/blocks/block[@name='cntBarrelPlasticQuadA' or @name='cntBarrelPlasticQuadB']">
+	<property class="Consumable">
+		<property name="AllowPlayerRefill" value="true"/>
+		<property name="RestockRange" value="0,10"/>
+		<property name="Size" value="200"/>
+		<property name="RestockItemType" value="RiverWater"/>
+	</property></append>
+
+<set xpath="/blocks/block[@name='batterybank']">
+	<property name="CreativeMode" value="Player"/>
+	<property name="Group" value="Electrical,Powered,Blocks"/>
+	<property name="Class" value="BatteryBank"/>
+	<property name="ItemTypeIcon" value="powered"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Electrical/battery_bankPrefab"/>
+	<property name="Path" value="solid"/><property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Mesh" value="models"/>
+	<property name="HandleFace" value="Bottom"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="DescriptionKey" value="powerSourceDesc"/>
+	<property name="UnlockedBy" value="batterybankSchematic"/>
+	<property name="MaxPower" value="400"/>
+	<property name="InputPerTick" value="5"/>
+	<property name="ChargePerInput" value="1"/>
+	<property name="OutputPerStack" value="50"/>
+	<property name="OutputPerCharge" value="90"/>
+	<property name="SlotItem" value="ulmBatteryMaster"/>
+	<property name="TakeDelay" value="5"/>
+	<property name="Stacknumber" value="10"/>
+	<property name="Material" value="Mmetal_weak"/>
+	<property name="EconomicValue" value="400"/><property name="CarryWeight" value="10"/>
+	<property class="RepairItems">
+		<property name="resourceForgedIron" value="5"/>
+		<property name="resourceElectricParts" value="5"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+	<drop event="Harvest" name="resourceScrapIron" count="20,40" tag="allHarvest"/>
+	<drop event="Harvest" name="resourceForgedIron" count="1,2" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceElectricParts" count="1,5" tag="salvageHarvest"/>
+	<drop event="Destroy" name="resourceScrapPolymers" count="1,2"/></set>
+
+<set xpath="/blocks/block[@name='cntCollapsedBatterybank']">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Group" value="Electrical,Blocks"/>
+	<property name="Extends" value="batterybank" param1="Class,MaxPower,InputPerTick,ChargePerInput,OutputPerStack,OutputPerCharge,SlotItem,TakeDelay,Stacknumber"/>
+	<property name="CustomIcon" value="batterybank"/>
+	<property name="Class" value="Loot"/><property name="LootList" value="collapsedBatteryBank"/>
+	<property name="Material" value="Miron_scrap"/><property name="MaxDamage" value="500"/>
+	<property name="Place" value="TowardsPlacer"/>
+	<property name="OnlySimpleRotations" value="true"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="DescriptionKey" value="creativeMenuBlockGroupDesc"/>
+	<property name="SellableToTrader" value="false"/></set>
+	
+<set xpath="/blocks/block[@name='solarbank']">
+	<property name="CreativeMode" value="Player"/>
+	<property name="Group" value="Electrical,Blocks,Player"/>
+	<property name="Class" value="SolarPanel"/>
+	<property name="ItemTypeIcon" value="powered"/>
+	<property name="Material" value="Mmetal_weak"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Electrical/solar_panelPrefab"/><property name="ModelOffset" value=".5,.5,0"/>
+	<property name="DisplayType" value="blockElectricalMulti"/><property name="MultiBlockDim" value="4,1,1"/>
+	<property name="Mesh" value="models"/>
+	<property name="Path" value="solid"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="OnlySimpleRotations" value="true"/>
+	<property name="ImposterExchange" value="imposterRamp" param1="18"/>
+	<property name="DescriptionKey" value="powerSourceDesc"/>
+	<property name="OutputPerStack" value="30"/>
+	<property name="SlotItem" value="ulmSolarMaster"/>
+	<property name="MaxPower" value="180"/>
+	<property name="ActivationDistance" value="6"/>
+	<property name="Stacknumber" value="10"/>
+	<property name="TakeDelay" value="5"/>
+	<property name="EconomicValue" value="2000"/><property name="CarryWeight" value="2.5"/>
+	<property class="RepairItems">
+		<property name="resourceForgedIron" value="5"/>
+		<property name="resourceElectricParts" value="5"/></property>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceElectricParts" count="1,5" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapIron" count="20,40" tag="allHarvest"/>
+	<drop event="Harvest" name="resourceForgedIron" count="1,2" tag="salvageHarvest"/>
+	<drop event="Destroy" name="resourceScrapPolymers" count="1,2" tag="salvageHarvest"/></set>
+
+<set xpath="/blocks/block[@name='cntCollapsedSolarbank']">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="solarbank" param1="Class,DisplayType,DescriptionKey,OutputPerStack,SlotItem,MaxPower,TakeDelay,Stacknumber"/>
+	<property name="CustomIcon" value="solarbank"/>
+	<property name="Material" value="matIron"/><property name="MaxDamage" value="500"/>
+	<property name="DisplayType" value="blockMulti"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="DescriptionKey" value="creativeMenuBlockGroupDesc"/>
+	<property name="SellableToTrader" value="false"/></set>
+	
+<set xpath="/blocks/block[@name='generatorbank']">
+	<property name="CreativeMode" value="Player"/>
+	<property name="Group" value="Electrical,Powered,Blocks"/>
+	<property name="Class" value="ULM_Generator,UndeadLegacy"/>
+	<property name="DisplayType" value="blockElectricalHardened"/>
+	<property name="ItemTypeIcon" value="powered"/>
+	<property name="UnlockedBy" value="generatorbankSchematic"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="Entities/Electrical/generatorPrefab"/>
+	<property name="Mesh" value="models"/>
+	<property name="Path" value="solid"/>
+	<property name="HandleFace" value="Bottom"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="DescriptionKey" value="powerSourceDesc"/>
+	<property name="MaxFuel" value="600"/>
+	<property name="OutputPerFuel" value="60000"/>
+	<property name="MaxPower" value="60600"/>
+	<property name="OutputPerStack" value="100"/>
+	<property name="SlotItem" value="ulmEngineMaster"/>
+	<property name="TakeDelay" value="5"/>
+	<property name="Stacknumber" value="10"/>
+	<property name="Material" value="Mmetal_medium"/>
+	<property name="EconomicValue" value="500"/><property name="CarryWeight" value="10"/>
+	<property name="RefuelUseDegradation" value="true"/>
+	<property name="Consumables" value="ulmAmmoFuelGasoline,ulmAmmoFuelGasolineBarrel"/>
+	<property class="RepairItems">
+		<property name="resourceForgedIron" value="8"/>
+		<property name="resourceMechanicalParts" value="8"/>
+		<property name="resourceElectricParts" value="8"/>
+		<property name="resourceElectricParts" value="3"/></property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceScrapIron" count="192" tag="allHarvest"/>
+	<drop event="Harvest" name="resourceForgedIron" count="3" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceMechanicalParts" count="3" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceElectricParts" count="3,4" tag="salvageHarvest"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+	<drop event="Destroy" count="0"/></set>
+	
+<set xpath="/blocks/block[@name='cntCollapsedGeneratorbank']">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Group" value="Electrical,Blocks"/>
+	<property name="Extends" value="generatorbank" param1="Class,DisplayType,UnlockedBy,DescriptionKey,MaxFuel,OutputPerFuel,MaxPower,OutputPerStack,SlotItem,TakeDelay"/>
+	<property name="Class" value="Loot"/><property name="LootList" value="collapsedGeneratorBank"/>
+	<property name="DescriptionKey" value="creativeMenuBlockGroupDesc"/>
+	<property name="CustomIcon" value="generatorbank"/>
+	<property name="Material" value="matIron"/><property name="MaxDamage" value="500"/>
+	<property name="Place" value="TowardsPlacer"/>
+	<property name="OnlySimpleRotations" value="true"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="SellableToTrader" value="false"/></set>
+
+<append xpath="/blocks/block[@name='ductSoft']"><property name="CarryWeight" value="0.25"/></append>
+<append xpath="/blocks/block[@name='ductControlPanel']"><property name="CarryWeight" value="0.25"/></append>
+<append xpath="/blocks/block[@name='steelMaster']"><property name="CarryWeight" value="0.35"/></append>
+
+<append xpath="/blocks">
+
+<!-- DEPRECATED -->
+<block name="ulmContainerGunSafePlayer">
+	<property name="CreativeMode" value="None"/>
+	<property name="Tags" value="safes,door"/>
+	<property name="Group" value="Storage,Furniture,Blocks,Player"/>
+	<property name="Class" value="ULM_LootSecure,UndeadLegacy"/><property name="LootList" value="gunSafePlayer"/>
+	<property name="CanPickup" value="true" param1="ulmContainerGunSafePlayer"/><property name="TakeDelay" value="3"/>
+	<property name="CustomIcon" value="cntGunSafe"/>
+	<property name="DisplayType" value="blockHardenedMulti"/>
+	<property name="Material" value="Mmetal_hard"/><property name="MaxDamage" value="5000"/>
+	<property name="Shape" value="ModelEntity"/>
+	<property name="Path" value="solid"/>
+	<property name="Model" value="#Entities/LootContainers?gun_safePrefab"/>
+	<property name="MultiBlockDim" value="1,2,1"/>
+	<property name="ImposterExchange" value="imposterBlock" param1="18"/>
+	<property name="Collide" value="sight,movement,melee,bullet,arrow,rocket"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="DowngradeBlock" value="ulmContainerGunSafeInsecurePlayer"/>
+		<property name="LockPickItem" value="resourceLockPick"/>
+		<property name="LockPickTime" value="20"/>
+		<property name="LockPickBreakChance" value="0.75"/>
+	<property class="RepairItems"> <property name="resourceForgedIron" value="30"/> </property>
+	<drop event="Destroy" count="0"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+	<property name="EconomicValue" value="690"/>
+    <property name="CarryWeight" value="50.0"/></block>
+
+<!-- DEPRECATED -->
+<block name="ulmContainerGunSafeInsecurePlayer">
+	<property name="CreativeMode" value="None"/>
+	<property name="Group" value="Storage,Furniture,Blocks,Player"/>
+	<property name="Class" value="ULM_Loot,UndeadLegacy"/><property name="LootList" value="gunSafePlayer"/>
+	<property name="CanPickup" value="true" param1="ulmContainerGunSafeInsecurePlayer"/><property name="TakeDelay" value="3"/>
+	<property name="Tags" value="safes"/>
+	<property name="CustomIcon" value="cntGunSafe"/>
+	<property name="DisplayType" value="blockHardenedMulti"/>
+	<property name="Material" value="Mmetal_hard"/><property name="MaxDamage" value="5000"/>
+	<property name="Shape" value="ModelEntity"/>
+	<property name="Path" value="solid"/>
+	<property name="Model" value="#Entities/LootContainers?gun_safePrefab"/>
+	<property name="MultiBlockDim" value="1,2,1"/>
+	<property name="ImposterExchange" value="imposterBlock" param1="18"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="Collide" value="sight,movement,melee,bullet,arrow,rocket"/>
+	<property class="RepairItems"> <property name="resourceForgedIron" value="30"/> </property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="" count="0" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapIron" count="10,30" tag="allHarvest"/>
+	<drop event="Destroy" count="0"/>
+	<drop event="Harvest" name="resourceForgedIron" count="8,12" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceForgedSteel" count="2,4" prob="1" tag="salvageHarvest"/>
+	<drop event="Destroy" name="resourceSpring" count="1,5" tag="salvageHarvest"/>
+	<drop event="Destroy" name="resourceMechanicalParts" count="1,5" tag="salvageHarvest"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+    <property name="CarryWeight" value="50.0"/></block>
+    
+<!-- DEPRECATED -->
+<block name="ulmContainerHardenedChestSecurePlayer">
+	<property name="CreativeMode" value="None"/>
+	<property name="Group" value="Storage,Furniture,Blocks,Player"/>
+	<property name="Class" value="ULM_LootSecure,UndeadLegacy"/><property name="LootList" value="hardenedChestPlayer"/>
+	<property name="CanPickup" value="true" param1="ulmContainerHardenedChestSecurePlayer"/><property name="TakeDelay" value="3"/>
+	<property name="CustomIcon" value="cntHardenedChestSecureT5"/>
+	<property name="Tags" value="safes,door,hardenedSafe"/>
+	<property name="DisplayType" value="blockHardenedMulti"/>
+	<property name="Material" value="Mmetal_hard"/><property name="MaxDamage" value="5000"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Entities/LootContainers?tier5LootChestPrefab"/>
+	<property name="ModelOffset" value="0,.5,0"/>
+	<property name="MultiBlockDim" value="2,1,1"/>
+	<property name="AllowAllRotations" value="true"/>
+	<property name="ImposterExchange" value="imposterBlock" param1="115"/>
+	<property name="Path" value="solid"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="DowngradeBlock" value="ulmContainerHardenedChestInsecurePlayer"/>
+		<property name="LockPickItem" value="resourceLockPick"/>
+		<property name="LockPickTime" value="15"/>
+		<property name="LockPickBreakChance" value="0.75"/>
+	<property class="RepairItems"> <property name="resourceForgedIron" value="60"/> </property>
+	<drop event="Destroy" count="0"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+	<property name="EconomicValue" value="690"/>
+    <property name="CarryWeight" value="100.0"/></block>
+
+<!-- DEPRECATED -->
+<block name="ulmContainerHardenedChestInsecurePlayer">
+	<property name="CreativeMode" value="None"/>
+	<property name="Group" value="Storage,Furniture,Blocks,Player"/>
+	<property name="Class" value="ULM_Loot,UndeadLegacy"/><property name="LootList" value="hardenedChestPlayer"/>
+	<property name="CanPickup" value="true" param1="ulmContainerHardenedChestInsecurePlayer"/><property name="TakeDelay" value="3"/>
+	<property name="Tags" value="safes"/>
+	<property name="CustomIcon" value="cntHardenedChestSecureT5"/>
+	<property name="DisplayType" value="blockHardenedMulti"/>
+	<property name="Material" value="Mmetal_hard"/><property name="MaxDamage" value="10000"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Entities/LootContainers?tier5LootChestPrefab"/>
+	<property name="ModelOffset" value="0,.5,0"/>
+	<property name="MultiBlockDim" value="2,1,1"/>
+	<property name="AllowAllRotations" value="true"/>
+	<property name="ImposterExchange" value="imposterBlock" param1="115"/>
+	<property name="Path" value="solid"/>
+	<property class="RepairItems"> <property name="resourceForgedIron" value="60"/> </property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="" count="0" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapIron" count="15,45" tag="allHarvest"/>
+	<drop event="Destroy" count="0"/>
+	<drop event="Harvest" name="resourceForgedIron" count="16,24" tag="salvageHarvest"/>
+	<drop event="Harvest" name="resourceForgedSteel" count="1,2" prob="1" tag="salvageHarvest"/>
+	<drop event="Destroy" name="resourceSpring" count="2,8" tag="salvageHarvest"/>
+	<drop event="Destroy" name="resourceMechanicalParts" count="2,10" tag="salvageHarvest"/>
+	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+	<property name="EconomicValue" value="690"/>
+    <property name="CarryWeight" value="50.0"/></block>
+
+<block name="ulmVehicleVariantMaster">
+	<property name="CreativeMode" value="None"/>
+	<property name="Group" value="Vehicles,Blocks"/>
+	<property name="Class" value="ULM_DynamicVehicle,UndeadLegacy"/><property name="LootList" value="cars"/>
+	<property name="Material" value="Mmetal"/><property name="MaxDamage" value="1500"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="ModelOffset" value="0,0,0"/>
+	<property name="MultiBlockDim" value="2,2,6"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="ShowModelOnFall" value="false"/>
+	<property name="PassThroughDamage" value="true"/>
+	<property name="CanDecorateOnSlopes" value="false"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_SUV_NG_Block"/>
+	<property name="Place" value="TowardsPlacer"/>
+	<property name="PlacementDistance" value="6"/>
+	<property name="BigDecorationRadius" value="5"/>
+	<property name="CarryWeight" value="1"/>
+	<property name="GndAlign" value="1"/>
+	<property class="DynamicVehicle">
+		<property name="ItemPrefix" value=""/>
+		<property name="ItemSuffix" value=""/>
+		<property name="Variants" value="White,Gray,Black,Blue,Green,Red,Cherry,Pink,Orange,Beige,Police,Security"/>
+		<property name="States" value="Damage0,Damage1,Damage2"/>
+		<property name="Prob" value=".18,.5,1"/>
+		<property name="Offsets" value="0,-.15,-.15"/>
+        <property name="Lootable" value="0,1"/>
+        <property name="Repairable" value="0,1"/>
+	</property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="ulmResourceScrapWires"		count="1,2"					tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceCarWheel"		count="1"		prob=".25"	tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceBallBearings"	count="1,2"					tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="resourceHeadlight"			count="1,2"					tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="resourceElectricParts"		count="1,2"		prob=".1"	tag="salvage0,salvageHarvest"/>
+	
+	<drop event="Harvest" name="resourceRadiator"			count="1"		prob=".5"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="resourceLeather"			count="1,3"		prob=".2"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="resourceMechanicalParts"	count="1,4"		prob=".5"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceEngineV8"		count="1"		prob=".15"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="carBattery"					count="1"		prob=".2"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceGears"			count="1"		prob=".5"	tag="salvage1,salvageHarvest"/>
+	
+	<drop event="Harvest" name="resourceMetalPipe"			count="5"		prob=".5"	tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapPolymers"		count="2,7"					tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="resourceOil"				count="0,2"					tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="resourceSpring"				count="1,3"					tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceScrapRubber"		count="4,8"					tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="resourceAcid"				count="1"		prob=".1"	tag="WasteTreasuresAcidHarvest"/>
+	<drop event="Harvest" name="resourceScrapIron"			count="15,30"				tag="allHarvest"/>
+	<drop event="Destroy" count="0"/></block>
+
+<block name="ulmVehicleSUV1VariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleVariantMaster"/>
+	<property name="CustomIcon" value="ulmVehicleSUV1White"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_SUV_NG_Block.prefab"/>
+	<property class="DynamicVehicle">
+		<property name="ItemPrefix" value="ulmVehicleSUV1"/>
+		<property name="Variants" value="White,Gray,Black,Blue,Cyan,Green,Purple,Red,Cherry,Pink,Yellow,Orange,Brown,Beige"/>
+		<property name="VariantsChangeMaterial" value="true"/>
+	</property></block>
+<block name="ulmVehicleSUV1WreckedVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="ItemTypeIcon" value="cracked_cube"/>
+	<property name="Extends" value="ulmVehicleSUV1VariantHelper"/>
+	<property class="DynamicVehicle"><property name="Prob" value="0,0,1"/></property></block>
+	
+<!-- DEPRECATED -->
+<block name="ulmVehicleSUV1WideLockedVariantHelper">
+	<property name="CreativeMode" value="None"/>
+	<property name="Extends" value="ulmVehicleSUV1VariantHelper"/>
+	<property name="MultiBlockDim" value="3,2,6"/></block>
+	
+<block name="ulmVehicleSUV1SecureVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="LockPickTier" value="0"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_SUV_Block.prefab"/>
+	<property name="Extends"		value="ulmVehicleSUV1VariantHelper"/>
+	<property name="DowngradeBlock" value="ulmVehicleSUV1VariantHelper"/>
+	<property name="Class" value="ULM_DynamicVehicleSecure,UndeadLegacy"/></block>
+
+<!-- DEPRECATED -->
+<block name="ulmVehicleSUV1SecureWideVariantHelper">
+	<property name="CreativeMode" value="None"/>
+	<property name="Extends" value="ulmVehicleSUV1SecureVariantHelper"/></block>
+	
+<block name="ulmVehicleSUV1PoliceVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleVariantMaster"/><property name="LootList" value="police"/>
+	<property name="CustomIcon" value="ulmVehicleSUV1Police"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_SUV_Police_Block.prefab"/>
+	<property class="DynamicVehicle">
+		<property name="ItemPrefix" value="ulmVehicleSUV1"/>
+		<property name="Variants" value="Police"/>
+		<property name="VariantProb" value="1"/>
+	</property></block>
+<block name="ulmVehicleSUV1PoliceWreckedVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="ItemTypeIcon" value="cracked_cube"/>
+	<property class="DynamicVehicle">
+        <property name="Lootable" value="-1"/>
+	</property>
+	<property name="Extends" value="ulmVehicleSUV1PoliceVariantHelper"/>
+	<property class="DynamicVehicle"><property name="Prob" value="0,0,1"/></property></block>
+<block name="ulmVehicleSUV1PoliceSecureVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="LockPickTier" value="0"/>
+	<property name="Extends"		value="ulmVehicleSUV1PoliceVariantHelper"/>
+	<property name="DowngradeBlock" value="ulmVehicleSUV1PoliceVariantHelper"/>
+	<property name="Class" value="ULM_DynamicVehicleSecure,UndeadLegacy"/></block>
+
+<block name="ulmVehicleSUV1SecurityVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleSUV1PoliceVariantHelper"/><property name="LootList" value="police"/>
+	<property name="CustomIcon" value="ulmVehicleSUV1Security"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_SUV_Security_Block.prefab"/>
+	<property class="DynamicVehicle">
+		<property name="Variants" value="Security"/>
+		<property name="VariantProb" value="1"/>
+	</property></block>
+<block name="ulmVehicleSUV1SecurityWreckedVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="ItemTypeIcon" value="cracked_cube"/>
+	<property class="DynamicVehicle">
+        <property name="Lootable" value="-1"/>
+	</property>
+	<property name="Extends" value="ulmVehicleSUV1SecurityVariantHelper"/>
+	<property class="DynamicVehicle"><property name="Prob" value="0,0,1"/></property></block>
+<block name="ulmVehicleSUV1SecuritySecureVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="LockPickTier" value="0"/>
+	<property name="Extends"		value="ulmVehicleSUV1SecurityVariantHelper"/>
+	<property name="DowngradeBlock" value="ulmVehicleSUV1SecurityVariantHelper"/>
+	<property name="Class" value="ULM_DynamicVehicleSecure,UndeadLegacy"/></block>
+
+<block name="ulmVehicle4x4TruckVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleVariantMaster"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_4x4Truck_Block.prefab"/>
+	<property name="CustomIcon" value="ulmVehicle4x4TruckVariantHelper"/>
+	<property class="DynamicVehicle">
+		<property name="ItemName" value="vehicle4x4TruckPlaceable"/>
+		<property name="VariantsAsDyes" value="true"/>
+		<property name="Variants" value="White,Red,Green,Black,Blue,Brown,Pink,Purple,Yellow"/>
+	</property></block>
+<block name="ulmVehicle4x4TruckWreckedVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="ItemTypeIcon" value="cracked_cube"/>
+	<property name="Extends" value="ulmVehicle4x4TruckVariantHelper"/>
+	<property class="DynamicVehicle"><property name="Prob" value="0,0,1"/></property></block>
+	
+<!-- DEPRECATED -->
+<block name="ulmVehicle4x4TruckWideVariantHelper">
+	<property name="CreativeMode" value="None"/>
+	<property name="Extends" value="ulmVehicle4x4TruckVariantHelper"/></block>
+<block name="ulmVehicle4x4TruckSecureVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="LockPickTier" value="0"/>
+	<property name="Extends"		value="ulmVehicle4x4TruckVariantHelper"/>
+	<property name="DowngradeBlock" value="ulmVehicle4x4TruckVariantHelper"/>
+	<property name="Class" value="ULM_DynamicVehicleSecure,UndeadLegacy"/></block>
+	
+<!-- DEPRECATED -->
+<block name="ulmVehicle4x4TruckSecureWideVariantHelper">
+	<property name="CreativeMode" value="None"/>
+	<property name="Extends" value="ulmVehicle4x4TruckSecureVariantHelper"/></block>
+
+<block name="ulmVehicleSedan1VariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleVariantMaster"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Sedan_Block.prefab"/>
+	<property name="CustomIcon" value="ulmVehicleSedan1VariantHelper"/>
+	<property class="DynamicVehicle">
+		<property name="ItemPrefix" value="ulmVehicleSedan1"/>
+		<property name="DedicatedDamageStates" value="true"/>
+		<property name="Variants" value="White,Black,Yellow,Green,Mixed,Red,Blue,Police"/>
+	</property></block>
+<block name="ulmVehicleSedan1RepairableVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleSedan1VariantHelper"/></block>
+<block name="ulmVehicleSedan1DamagedVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleSedan1VariantHelper"/>
+	<property class="DynamicVehicle"><property name="Prob" value="0,1,0"/></property></block>
+<block name="ulmVehicleSedan1WreckedVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="ItemTypeIcon" value="cracked_cube"/>
+	<property name="Extends" value="ulmVehicleSedan1VariantHelper"/>
+	<property class="DynamicVehicle"><property name="Prob" value="0,0,1"/></property></block>
+<block name="ulmVehicleSedan1WideVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleSedan1VariantHelper"/>
+	<property name="CustomIcon" value="ulmVehicleSedan1VariantHelper"/>
+	<property name="MultiBlockDim" value="3,2,6"/></block>
+<block name="ulmVehicleSedan1SecureVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="LockPickTier" value="0"/>
+	<property name="Extends"		value="ulmVehicleSedan1VariantHelper"/>
+	<property name="DowngradeBlock" value="ulmVehicleSedan1VariantHelper"/>
+	<property name="Class" value="ULM_DynamicVehicleSecure,UndeadLegacy"/></block>
+<block name="ulmVehicleSedan1SecureWideVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleSedan1SecureVariantHelper"/>
+	<property name="MultiBlockDim" value="3,2,6"/></block>
+
+<block name="ulmVehicleBicycleAVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Group" value="Vehicles,Blocks"/>
+	<property name="Class" value="ULM_DynamicVehicle,UndeadLegacy"/><property name="LootList" value="cars"/>
+	<property name="Material" value="Mmetal"/><property name="MaxDamage" value="750"/>
+	<property name="ModelOffset" value="0,0,0"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="MultiBlockDim" value="1,1,1"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="ShowModelOnFall" value="false"/>
+	<property name="PassThroughDamage" value="true"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Bicycle_A_Block.prefab"/>
+	<property name="Place" value="TowardsPlacer"/>
+	<property name="PlacementDistance" value="6"/>
+	<property name="BigDecorationRadius" value="5"/>
+	<property name="CarryWeight" value="1"/>
+	<property name="GndAlign" value="1"/>
+	<property class="DynamicVehicle">
+		<property name="ItemPrefix" value=""/>
+		<property name="ItemSuffix" value=""/>
+		<property name="ItemName" value="vehicleBicyclePlaceable"/>
+		<property name="DedicatedDamageStates" value="true"/>
+		<property name="VariantsAsDyes" value="true"/>
+		<property name="Variants" value="White,Red,Green,Black,Blue,Brown,Pink,Purple,Yellow"/>
+		<property name="States" value="Damage0,Damage1,Damage2"/>
+		<property name="Prob" value=".18,.5,1"/>
+        <property name="Lootable" value="-1"/>
+        <property name="Repairable" value="0,1"/>
+        <property name="RepairRotationOffset" value="90"/>
+        <property name="RepairTime" value="10"/>
+	</property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceLeather"			count="1,3"		prob=".2"	tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="resourceMechanicalParts"	count="1,2"					tag="salvage0,salvageHarvest"/>
+	
+	<drop event="Harvest" name="ulmResourceBicycleWheel"	count="1"		prob=".2"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceBallBearings"	count="1,3"		prob=".5"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="resourceSpring"				count="0,1"					tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceScrapRubber"		count="3,6"					tag="salvage1,salvageHarvest"/>
+	
+	<drop event="Harvest" name="resourceMetalPipe"			count="1,10"				tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceNutsAndBolts"	count="2,4"					tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapIron"			count="2,5"					tag="allHarvest"/>
+	<drop event="Destroy" count="0"/></block>
+
+<block name="ulmVehicleBicycleBVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleBicycleAVariantHelper"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Bicycle_B_Block.prefab"/></block>
+
+<block name="ulmVehicleBicycleCVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleBicycleAVariantHelper"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Bicycle_C_Block.prefab"/></block>
+
+<block name="ulmVehicleMinibikeAVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Group" value="Vehicles,Blocks"/>
+	<property name="Class" value="ULM_DynamicVehicle,UndeadLegacy"/><property name="LootList" value="cars"/>
+	<property name="Material" value="Mmetal"/><property name="MaxDamage" value="900"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="MultiBlockDim" value="1,1,1"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="ShowModelOnFall" value="false"/>
+	<property name="PassThroughDamage" value="true"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Minibike_A_Block.prefab"/>
+	<property name="Place" value="TowardsPlacer"/>
+	<property name="PlacementDistance" value="6"/>
+	<property name="BigDecorationRadius" value="5"/>
+	<property name="CarryWeight" value="1"/>
+	<property name="GndAlign" value="1"/>
+	<property class="DynamicVehicle">
+		<property name="ItemPrefix" value=""/>
+		<property name="ItemSuffix" value=""/>
+		<property name="ItemName" value="vehicleMinibikePlaceable"/>
+		<property name="DedicatedDamageStates" value="true"/>
+		<property name="VariantsAsDyes" value="true"/>
+		<property name="Variants" value="White,Red,Green,Black,Blue,Brown,Pink,Purple,Yellow"/>
+		<property name="States" value="Damage0,Damage1,Damage2"/>
+		<property name="Prob" value=".18,.5,1"/>
+        <property name="Lootable" value="-1"/>
+        <property name="Repairable" value="0,1"/>
+        <property name="RepairRotationOffset" value="90"/>
+        <property name="RepairTime" value="10"/>
+	</property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceLeather"			count="1,3"		prob=".2"	tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapPolymers"		count="2,4"					tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="smallEngine"				count="1"		prob=".35"	tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="carBattery"					count="1"		prob=".05"	tag="salvage0,salvageHarvest"/>
+	
+	<drop event="Harvest" name="ulmResourceMinibikeWheel"	count="1,2"		prob=".2"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceBallBearings"	count="1,2"		prob=".5"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="resourceMechanicalParts"	count="1,2"					tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="resourceSpring"				count="0,1"					tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceScrapRubber"		count="3,6"					tag="salvage1,salvageHarvest"/>
+	
+	<drop event="Harvest" name="resourceMetalPipe"			count="1,10"				tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceNutsAndBolts"	count="3,6"					tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="resourceHeadlight"			count="1"		prob=".2"	tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapIron"			count="5,10"				tag="allHarvest"/>
+	<drop event="Destroy" count="0"/></block>
+
+<block name="ulmVehicleMinibikeBVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleMinibikeAVariantHelper"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Minibike_B_Block.prefab"/></block>
+
+<block name="ulmVehicleMinibikeCVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleMinibikeAVariantHelper"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Minibike_C_Block.prefab"/></block>
+
+<block name="ulmVehicleMotorcycleAVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Group" value="Vehicles,Blocks"/>
+	<property name="Class" value="ULM_DynamicVehicle,UndeadLegacy"/><property name="LootList" value="cars"/>
+	<property name="Material" value="Mmetal"/><property name="MaxDamage" value="1200"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="MultiBlockDim" value="1,1,1"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="ShowModelOnFall" value="false"/>
+	<property name="PassThroughDamage" value="true"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Motorcycle_A_Block.prefab"/>
+	<property name="Place" value="TowardsPlacer"/>
+	<property name="PlacementDistance" value="6"/>
+	<property name="BigDecorationRadius" value="5"/>
+	<property name="CarryWeight" value="1"/>
+	<property name="GndAlign" value="1"/>
+	<property class="DynamicVehicle">
+		<property name="ItemPrefix" value=""/>
+		<property name="ItemSuffix" value=""/>
+		<property name="ItemName" value="vehicleMotorcyclePlaceable"/>
+		<property name="DedicatedDamageStates" value="true"/>
+		<property name="VariantsAsDyes" value="true"/>
+		<property name="Variants" value="White,Red,Green,Black,Blue,Brown,Pink,Purple,Yellow"/>
+		<property name="States" value="Damage0,Damage1,Damage2"/>
+		<property name="Prob" value=".18,.5,1"/>
+        <property name="Lootable" value="-1"/>
+        <property name="Repairable" value="0,1"/>
+        <property name="RepairRotationOffset" value="90"/>
+        <property name="RepairTime" value="10"/>
+	</property>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Harvest" name="resourceLeather"			count="2,4"		prob=".2"	tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapPolymers"		count="2,4"					tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceEngineV8M"		count="1"		prob=".2"	tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="carBattery"					count="1"		prob=".05"	tag="salvage0,salvageHarvest"/>
+	<drop event="Harvest" name="resourceHeadlight"			count="1"		prob=".2"	tag="salvage0,salvageHarvest"/>
+	
+	<drop event="Harvest" name="ulmResourceMotorcycleWheel"	count="1,2"		prob=".2"	tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceScrapWires"		count="1,2"					tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceBallBearings"	count="1,2"					tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="resourceMechanicalParts"	count="1,2"					tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="resourceSpring"				count="1,3"					tag="salvage1,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceScrapRubber"		count="3,6"					tag="salvage1,salvageHarvest"/>
+	
+	<drop event="Harvest" name="resourceMetalPipe"			count="1,10"				tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="ulmResourceNutsAndBolts"	count="4,8"					tag="salvage2,salvageHarvest"/>
+	<drop event="Harvest" name="resourceScrapIron"			count="5,10"				tag="allHarvest"/>
+	<drop event="Destroy" count="0"/></block>
+
+<block name="ulmVehicleMotorcycleBVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleMotorcycleAVariantHelper"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Motorcycle_B_Block.prefab"/></block>
+
+<block name="ulmVehicleMotorcycleCVariantHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleMotorcycleAVariantHelper"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Motorcycle_C_Block.prefab"/></block>
+
+<block name="ulmVehiclesGenericRandomHelper">
+	<property name="CreativeMode" value="None"/>
+	<property name="Group" value="Vehicles,Outdoor,Blocks"/>
+	<property name="CustomIcon" value="cntCar03SedanDamage0Master"/>
+	<property name="CustomIconTint" value="ff8000"/>
+	<property name="Material" value="matIron"/><property name="CarryWeight" value=".001"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Entities/Vehicles?Car/car_black_dmg0Prefab"/>
+	<property name="ModelOffset" value="-.5,0,-.5"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="ShowModelOnFall" value="false"/>
+	<property name="BigDecorationRadius" value="6"/>
+	<property name="IsReplaceRandom" value="true"/>
+	<property name="PlacementDistance" value="12"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="CanDecorateOnSlopes" value="true"/>
+	<property name="PassThroughDamage" value="true"/>
+	<property name="DisplayInfo" value="Name"/>
+	<property name="Path" value="solid"/>
+	<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+	<property name="ItemTypeIcon" value="dice"/>
+	<drop event="Destroy" count="0"/></block>
+
+<block name="ulmVehiclesEmergencyRandomHelper">
+	<property name="CreativeMode" value="None"/>
+	<property name="Extends" value="ulmVehiclesGenericRandomHelper"/></block>
+
+<block name="ulmVehicleBikesARandomHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Group" value="Vehicles,Outdoor,Blocks"/>
+	<property name="Shape" value="ModelEntity"/><property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Bicycle_A_Block.prefab"/>
+	<property name="ModelOffset" value="0,0,0"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="ImposterDontBlock" value="true"/>
+	<property name="ShowModelOnFall" value="false"/>
+	<property name="PassThroughDamage" value="true"/>
+	<property name="BigDecorationRadius" value="5"/>
+	<property name="PlacementDistance" value="6"/>
+	<property name="CanDecorateOnSlopes" value="false"/>
+	<property name="Material" value="Mmetal"/>
+	<property name="CarryWeight" value=".001"/>
+	<property name="ItemTypeIcon" value="dice"/>
+	<property name="DisplayInfo" value="Name"/>
+	<property name="IsReplaceRandom" value="false"/>
+	<property name="CustomIcon" value="ulmVehicleBicycleAVariantHelper"/><property name="CustomIconTint" value="ff8000"/>
+	<drop event="Harvest" name="air" count="0" tool_category="Disassemble"/>
+	<drop event="Destroy" count="0"/></block>
+
+<block name="ulmVehicleBikesBRandomHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleBikesARandomHelper" param1="MultiBlockDim"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Bicycle_B_Block.prefab"/>
+	<property name="CustomIcon" value="ulmVehicleBicycleBVariantHelper"/></block>
+
+<block name="ulmVehicleBikesCRandomHelper">
+	<property name="CreativeMode" value="Dev"/>
+	<property name="Extends" value="ulmVehicleBikesARandomHelper" param1="MultiBlockDim"/>
+	<property name="Model" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Bicycle_C_Block.prefab"/>
+	<property name="CustomIcon" value="ulmVehicleBicycleCVariantHelper"/></block>
+
+</append>
+  
+</Subquake>

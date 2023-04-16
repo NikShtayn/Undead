@@ -1,0 +1,237 @@
+<Sorcery>
+ <!--_____________________________________________________________________________________________________________________
+	TERMS OF USE: YOU AGREE TO THESE TERMS BY USING SORCERY MOD.
+	_____________________________________________________________________________________________________________________
+	2023 "DEVRIX", SORCERY MOD
+	All Rights Reserved.
+	_____________________________________________________________________________________________________________________
+	HOME: http://sorcerymod.com
+	AUTHOR: http://author.sorcerymod.com
+	FORUM: http://forum.sorcerymod.com
+	DISCORD: http://discord.sorcerymod.com
+	YOUTUBE: http://youtube.sorcerymod.com
+	DOWNLOAD: http://download.sorcerymod.com
+	TFP POLICY: http://tfpmodforumpolicy.sorcerymod.com
+	_____________________________________________________________________________________________________________________
+	NOTICE: All digital assets and ideas contained herein, and made possible by the "Sorcery Mod", is 
+	the sole digital proprietary property of mod Author Devrix. Ownership and equal rights are hereby, 
+	irrefutably and solely, extended and granted to The Fun Pimps legal entity in good faith.
+
+	USAGE: The Sorcery Mod may be downloaded and used by players of the 7 Days to Die community, 
+	with no required royalties. Other than the XML Code itself, digital assets and works of the Sorcery Mod 
+	may not be used outside of the Sorcery Mod. By downloading and using the Sorcery Mod, users of the 
+	mod understand and accept full and sole responsibility and liability of using the mod. Author, nor The 
+	Fun Pimps, shall be held responsible or liable for any possible conflict(s) as a direct or indirect result 
+	of using this mod.
+
+	REDISTRIBUTION: The XML code of the Sorcery Mod may solely be redistributed within the 7 Days 
+	to Die community. Conditions of redistribution require this notice to remain in full, unmodified, and a 
+	direct link, with credit stated, to the original Mod and Author. You may not redistribute the digital 
+	Assets or works, aside from XML Code, of the Sorcery Mod. The Sorcery Mod itself should not be 
+	redistributed outside of its original distribution channels.
+
+	PROHIBITED USE: Users are not permitted to modify, or bypass, Supporter Exclusive perks or items in any way.
+	The free in-game "Supporter Key Item" can be obtained through normal game means (loot, trader) and will unlock all 
+	supporter exclusive perks and items. Modifying or bypassing Supporter Exclusive perks or items is a violation of the 
+	Sorcery Terms of Use.
+
+	CREDIT: This mod is made possible through the framework provided by The Fun Pimps. It is their 
+	hard work and ongoing dedication to building and improving an awesome game that fuels the passion 
+	and drives the creation of this mod. Supporters of the Sorcery Mod make ongoing development 
+	possible. Without their support, it is not possible to put in the enormous amount of time required to 
+	create the plethora of unique assets that make Sorcery.
+
+	MODIFICATION: The Terms of Use and Disclaimer herein are subject to changes and modifications.
+	_____________________________________________________________________________________________________________________
+
+	DISCLAIMER
+	_____________________________________________________________________________________________________________________
+	Sorcery is and will always be 100% FREE. When you choose to Support Development, you are supporting the
+	unique individual work I personally do outside of the game: The creation of unique VFX, SFX, Art, Time creating
+	content and the services/interaction I provide here on Discord. You are not supporting "derivative work of 
+	7 Days to Die" (AKA modding code/changing skins/etc). That is against TFP policy.
+
+	Support Not Required: Those unwilling, or unable, to support development can obtain in-game items 100% FREE.
+	You are not required to support in order to obtain in-game items. Non-supporters are able to obtain any
+	"In-Game Supporter Exclusives" 100% FREE, without supporting development. However, I cannot continue development
+	of Sorcery at this level without Ongoing Support. If support drops below a threshold, development halts. The large
+	amount of time allotted to development is made possible through the generous support given by our Supporters.
+	Disclaimer subject to ongoing changes.
+	_____________________________________________________________________________________________________________________-->
+	
+	<!-- AWAKENED -->
+	<!-- BOSS -->
+	<!-- <append xpath="/entitygroups/entitygroup[@name='ZombiesBoss']">
+		<entity name="sorceryAwakenedMaster" prob="0.01"/>
+	</append> -->
+	
+	<!-- HORDE SPANWS -->
+	<!-- WANDERING -->
+	<append xpath="/entitygroups/entitygroup[starts-with(@name, 'wanderingHordeStage')]">
+		<entity name="sorceryFallenFire" prob="0.06"/>
+		<entity name="sorceryFallenIce" prob="0.06"/>
+		<entity name="sorceryFallenLightning" prob="0.06"/>
+	</append>
+	<append xpath="/entitygroups/entitygroup[starts-with(@name, 'FwanderingHordeStage')]">
+		<entity name="sorceryFallenFire" prob="0.08"/>
+		<entity name="sorceryFallenIce" prob="0.08"/>
+		<entity name="sorceryFallenLightning" prob="0.08"/>
+	</append>	
+	<!-- SLEEPER -->
+	<!-- <append xpath="/entitygroups/entitygroup[starts-with(@name, 'sleeperHordeStage')]">
+		<entity name="sorceryFallenLightning" prob="0.15"/>
+	</append> -->
+	<!-- BADASS -->
+	<append xpath="/entitygroups/entitygroup[starts-with(@name, 'badassHordeStage')]">
+		<entity name="sorceryFallenFire" prob="0.06"/>
+		<entity name="sorceryFallenIce" prob="0.06"/>
+		<entity name="sorceryFallenLightning" prob="0.06"/>
+	</append>
+	<!-- BADASS ONLY -->
+	<append xpath="/entitygroups/entitygroup[starts-with(@name, 'badassOnlyHordeStage')]">
+		<entity name="sorceryFallenFire" prob="0.08"/>
+		<entity name="sorceryFallenIce" prob="0.08"/>
+		<entity name="sorceryFallenLightning" prob="0.08"/>
+		<entity name="sorceryFallenOmni" prob="0.01"/>
+	</append>	
+	<!-- SCOUT -->
+	<append xpath="/entitygroups/entitygroup[starts-with(@name, 'scoutHordeStage')]">
+		<entity name="sorceryFallenFire" prob="0.02"/>
+		<entity name="sorceryFallenIce" prob="0.02"/>
+		<entity name="sorceryFallenLightning" prob="0.01"/>
+	</append>	
+	<!-- FERAL: Blood Moon -->
+	<append xpath="/entitygroups/entitygroup[starts-with(@name, 'feralHordeStage')]">
+		<entity name="sorceryFallenFire" prob="0.08"/>
+		<entity name="sorceryFallenIce" prob="0.08"/>
+		<entity name="sorceryFallenLightning" prob="0.08"/>
+		<entity name="sorceryFallenOmni" prob="0.01"/>
+	</append>
+	
+	<!-- ZOMBIESALL -->
+	<!-- pine_forest -->
+	<!-- desert -->
+	<!-- wasteland -->
+	<!-- <append xpath="/entitygroups/entitygroup[@name='ZombiesAll']">
+	</append> -->	
+	
+	<!-- NIGHT -->
+	<!-- <append xpath="/entitygroups/entitygroup[@name='ZombiesNight']">
+	</append> -->	
+	
+	<!-- CAVES -->
+	<append xpath="/entitygroups/entitygroup[@name='ZombiesCave']">
+		<entity name="sorceryFallenFire" prob="0.2"/>
+		<entity name="sorceryFallenIce" prob="0.2"/>
+		<entity name="sorceryFallenLightning" prob="0.2"/>
+	</append>
+	
+	<!-- NEW GROUP -->
+	<append xpath="/entitygroups">
+	<!-- FALLEN -->
+		<!-- Any Fallen -->
+		<entitygroup name="SorceryFallenOmni">
+			<entity name="sorceryFallenFire" prob="1"/>
+			<entity name="sorceryFallenIce" prob="1"/>
+			<entity name="sorceryFallenLightning" prob="1"/>
+			<entity name="sorceryWispFire" prob="3"/>
+			<entity name="sorceryWispIce" prob="3"/>
+			<entity name="sorceryWispLightning" prob="3"/>
+			<!-- Event: Easter -->
+			<entity name="sorceryRabbitArcane" prob="1"/>
+			<!-- <entity name="sorceryRabbitUnholy" prob="2"/> -->
+			<!-- <entity name="sorceryRabbitBoss" prob=".8"/> -->
+			<entity name="none" prob="60"/><!-- must not be first since first name determines if enemy group -->
+		</entitygroup>
+	<!-- FIRE -->
+		<entitygroup name="SorceryFallenFire">
+			<entity name="sorceryFallenFire" prob="1"/>
+			<entity name="sorceryWispFire" prob="2"/>
+			<entity name="none" prob="50"/><!-- must not be first since first name determines if enemy group -->
+		</entitygroup>
+		<entitygroup name="SorceryFallenFireT2">
+			<entity name="sorceryFallenFire" prob="1"/>
+			<entity name="sorceryWispFire" prob="3"/>
+			<entity name="none" prob="35"/><!-- must not be first since first name determines if enemy group -->
+		</entitygroup>
+	<!-- ICE -->
+		<entitygroup name="SorceryFallenIce">
+			<entity name="sorceryFallenIce" prob="1"/>
+			<entity name="sorceryWispIce" prob="2"/>
+			<entity name="none" prob="50"/><!-- must not be first since first name determines if enemy group -->
+		</entitygroup>	
+		<entitygroup name="SorceryFallenIceT2">
+			<entity name="sorceryFallenIce" prob="1"/>
+			<entity name="sorceryWispIce" prob="3"/>
+			<entity name="none" prob="35"/><!-- must not be first since first name determines if enemy group -->
+		</entitygroup>	
+	<!-- LIGHTNING -->
+		<entitygroup name="SorceryFallenLightning">
+			<entity name="sorceryFallenLightning" prob="1"/>
+			<entity name="sorceryWispLightning" prob="2"/>
+			<entity name="none" prob="50"/><!-- must not be first since first name determines if enemy group -->
+		</entitygroup>
+		<entitygroup name="SorceryFallenLightningT2">
+			<entity name="sorceryFallenLightning" prob="1"/>
+			<entity name="sorceryWispLightning" prob="3"/>
+			<entity name="none" prob="35"/><!-- must not be first since first name determines if enemy group -->
+		</entitygroup>
+		
+		
+	<!-- SLEEPER GROUPS: gamestages.xml -->
+		<entitygroup name="sorceryEntityInvisible">
+			<entity name="sorceryEntityInvisible" />
+		</entitygroup>
+		<entitygroup name="SorceryFallenGroup">
+			<entity name="sorceryFallenFire"/>
+			<entity name="sorceryFallenIce"/>
+			<entity name="sorceryFallenLightning"/>
+		</entitygroup>
+		<entitygroup name="fireFallenGroup">
+			<entity name="sorceryFallenFire"/>
+		</entitygroup>		
+		<entitygroup name="iceFallenGroup">
+			<entity name="sorceryFallenIce"/>
+		</entitygroup>	
+		<entitygroup name="lightningFallenGroup">
+			<entity name="sorceryFallenLightning"/>
+		</entitygroup>
+		<!--<entitygroup name="unholyFallenGroup">
+			<entity name="sorceryFallenUnholy"/>
+		</entitygroup>
+		<entitygroup name="holyFallenGroup">
+			<entity name="sorceryFallenHoly"/>
+		</entitygroup>-->
+		
+	<!-- SUMMON GROUPS (Sorcery.dll) -->
+		<!-- NOTE: Incantations, Summons -->
+		<entitygroup name="SorceryFamiliarGroup">
+			<entity name="sorceryFamiliarArcane"/>
+		</entitygroup>
+		<entitygroup name="SorceryFamiliarFireGroup">
+			<entity name="sorceryFamiliarFire"/>
+		</entitygroup>
+		<entitygroup name="SorceryFamiliarIceGroup">
+			<entity name="sorceryFamiliarIce"/>
+		</entitygroup>
+		<entitygroup name="SorceryFamiliarLightningGroup">
+			<entity name="sorceryFamiliarLightning"/>
+		</entitygroup>
+		<!-- FALLEN -->
+		<entitygroup name="SorceryFallenSummonGroup">
+			<!-- <entity name="sorcerySummonZombieDog"/> -->
+			<entity name="sorcerySummonZombieBurnt"/>
+			<entity name="sorcerySummonVulture"/>
+			<!-- event -->
+			<entity name="sorceryRabbitUnholy"/>
+			<!-- <entity name="sorcerySummonScreamer"/> -->
+		</entitygroup>
+		<!-- RABBIT -->
+		<entitygroup name="SorceryRabbitSummonGroup">
+			<entity name="sorceryRabbitUnholy"/>
+		</entitygroup>
+
+
+	</append>
+	
+</Sorcery>

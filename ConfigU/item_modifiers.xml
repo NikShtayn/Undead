@@ -1,0 +1,208 @@
+<Subquake>
+	
+<set xpath="/item_modifiers/item_modifier[@name='modGeneralMaster']">
+	<property name="CreativeMode" value="None"/>
+	<property name="Stacknumber" value="1"/>
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+	<property name="Group" value="Mods,Tool/Weapon Mods"/>
+	<property name="PickupJournalEntry" value="augmentGunsTip"/>
+	<property name="EconomicValue" value="440"/><property name="CarryWeight" value="0.5"/>
+</set>
+	
+<set xpath="/item_modifiers/item_modifier[@name='modMeleeClubBurningShaft']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="CreativeMode" value="None"/></set>
+	
+<set xpath="/item_modifiers/item_modifier[@name='modVehicleExpandedSeat']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="CreativeMode" value="None"/></set>
+    
+<append xpath="/item_modifiers/item_modifier[                   
+   @name='modDyeGreen'                         
+or @name='modDyeRed'                           
+or @name='modDyeYellow'                       
+or @name='modDyeBlack'                           
+or @name='modDyeBlue'                              
+or @name='modDyeBrown'                                    
+or @name='modDyePink'                                    
+or @name='modDyePurple'                              
+or @name='modArmorBallCap'                           
+or @name='modArmorSkullCap'                          
+or @name='modArmorCowboyHat'                          
+or @name='modArmorPressboyCap'                      ]"><property name="CarryWeight" value="0.05"/></append>
+    
+<append xpath="/item_modifiers/item_modifier[                     
+   @name='modGunForegrip'                
+or @name='modGunTriggerGroupSemi'        
+or @name='modGunTriggerGroupAutomatic'     
+or @name='modGunTriggerGroupBurst3'					]"><property name="CarryWeight" value="0.20"/></append>
+    
+<append xpath="/item_modifiers/item_modifier[
+   @name='modGunBarrelExtender'                           
+or @name='modGunBipod'                                        
+or @name='modGunChoke'                                     
+or @name='modMeleeErgonomicGrip'                   
+or @name='modArmorHelmetLight'                      ]"><property name="CarryWeight" value="0.25"/></append>
+    
+<append xpath="/item_modifiers/item_modifier[                     
+   @name='modGunScopeMedium'                           
+or @name='modShotgunSawedOffBarrel'                     
+or @name='modGunDuckbill'                      
+or @name='modGunCrippleEm'                       
+or @name='modMeleeFortifyingGrip'              
+or @name='modMeleeClubBarbedWire'              
+or @name='modFuelTankSmall'                      ]"><property name="CarryWeight" value="0.35"/></append>
+    
+<append xpath="/item_modifiers/item_modifier[                     
+   @name='modMeleeClubMetalChain'               
+or @name='modArmorImpactBracing'             
+or @name='modArmorWaterPurifier'                    ]"><property name="CarryWeight" value="0.40"/></append>
+    
+<append xpath="/item_modifiers/item_modifier[                     
+   @name='modGunScopeLarge'                         
+or @name='modGunMeleeRadRemover'                     
+or @name='modMeleeSerratedBlade'   
+or @name='modMeleeClubMetalSpikes'        
+or @name='modMeleeStunBatonRepulsor'        
+or @name='modArmorBandolier'                   
+or @name='modFuelTankLarge'							]"><property name="CarryWeight" value="0.50"/></append>
+    
+<append xpath="/item_modifiers/item_modifier[                     
+   @name='modGunShotgunTubeExtenderMagazine'              
+or @name='modMeleeWeightedHead'                     ]"><property name="CarryWeight" value="1.00"/></append>
+    
+<set xpath="/item_modifiers/item_modifier[@name='modArmorStoragePocket']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modCarryCapacity"/>
+    <property name="UnlockedBy" value="modArmorStoragePocketSchematic"/>
+	<property name="Material" value="matLeather"/>
+    <property name="EconomicValue" value="100"/><property name="CarryWeight" value="0.05"/>
+	<property name="MaintenanceGroup" value="MG_PocketModT0"/>
+	<effect_group>
+		<passive_effect name="CargoCapacity" operation="base_add" value="50,100" tier="1,90"/>
+	</effect_group></set>
+    
+<set xpath="/item_modifiers/item_modifier[@name='modArmorDoubleStoragePocket']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modCarryCapacity"/>
+    <property name="UnlockedBy" value="modArmorDoubleStoragePocketSchematic"/>
+	<property name="Material" value="matLeather"/>
+    <property name="EconomicValue" value="150"/><property name="CarryWeight" value="0.1"/>
+	<property name="MaintenanceGroup" value="MG_PocketModT1"/>
+	<effect_group>
+		<passive_effect name="CargoCapacity" operation="base_add" value="100,200" tier="1,90"/>
+	</effect_group></set>
+    
+<set xpath="/item_modifiers/item_modifier[@name='modArmorTripleStoragePocket']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modCarryCapacity"/>
+    <property name="UnlockedBy" value="modArmorTripleStoragePocketSchematic"/>
+	<property name="Material" value="matLeather"/>
+    <property name="EconomicValue" value="200"/><property name="CarryWeight" value="0.15"/>
+	<property name="MaintenanceGroup" value="MG_PocketModT2"/>
+	<effect_group>
+		<passive_effect name="CargoCapacity" operation="base_add" value="200,300" tier="1,90"/>
+	</effect_group></set>
+
+<set xpath="/item_modifiers/item_modifier[@name='modClothingStoragePocket']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modCarryCapacity"/>
+    <property name="Material" value="matLeather"/>
+    <property name="EconomicValue" value="25"/><property name="CarryWeight" value="0.05"/>
+	<property name="MaintenanceGroup" value="MG_PocketModT0"/>
+	<effect_group>
+		<passive_effect name="CargoCapacity" operation="base_add" value="50,100" tier="1,90"/>
+	</effect_group></set>
+
+<set xpath="/item_modifiers/item_modifier[@name='modClothingCargoStoragePocket']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modCarryCapacity"/>
+	<property name="UnlockedBy" value="bookNeedleAndThreadPockets"/>
+	<property name="Material" value="Mleather"/>
+    <property name="EconomicValue" value="50"/><property name="CarryWeight" value="0.1"/>
+	<property name="MaintenanceGroup" value="MG_PocketModT1"/>
+	<effect_group>
+		<passive_effect name="CargoCapacity" operation="base_add" value="100,200" tier="1,90"/>
+	</effect_group></set>
+
+<set xpath="/item_modifiers/item_modifier[@name='modVehicleFuelSaver']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modVehicleFuelUse"/>
+	<property name="UnlockedBy" value="modVehicleFuelSaverSchematic"/>
+	<property name="CustomIcon" value="modVehicleFuelSaver"/>
+	<property name="MaintenanceGroup" value="MG_Steel"/>
+	<effect_group>
+		<passive_effect name="VehicleFuelUsePer" operation="perc_set" value=".95,.5" tier="1,90"/>
+	</effect_group></set>
+
+<set xpath="/item_modifiers/item_modifier[@name='modVehicleOffRoadHeadlights']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modVehicleLights"/>
+	<property name="UnlockedBy" value="modVehicleOffRoadHeadlightsSchematic"/>
+	<property name="CustomIcon" value="modVehicleOffRoadHeadlights"/>
+	<property name="MaintenanceGroup" value="MG_Steel"/>
+	<effect_group>
+		<passive_effect name="LightIntensity" operation="perc_set" value="1.05,2.2" tier="1,90"/>
+	</effect_group></set>
+
+<set xpath="/item_modifiers/item_modifier[@name='modVehicleSuperCharger']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modVehicleTurbo"/>
+	<property name="UnlockedBy" value="modVehicleSuperChargerSchematic"/>
+	<property name="CustomIcon" value="modVehicleSuperCharger"/>
+	<property name="MaintenanceGroup" value="MG_Steel"/>
+	<effect_group>
+		<passive_effect name="VehicleVelocityMaxPer" operation="perc_set" value="1.05,1.25" tier="1,90"/>
+		<passive_effect name="VehicleVelocityMaxTurboPer" operation="perc_set" value="1.05,1.15" tier="1,90"/>
+	</effect_group></set>
+	
+<set xpath="/item_modifiers/item_modifier[@name='modVehicleReserveFuelTank']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modVehicleFuelTank"/>
+	<property name="UnlockedBy" value="modVehicleReserveFuelTankSchematic"/>
+	<property name="CustomIcon" value="modVehicleReserveFuelTank"/>
+	<property name="MaintenanceGroup" value="MG_Steel"/>
+	<effect_group>
+		<passive_effect name="VehicleFuelMaxPer" operation="perc_set" value="1.05,1.5" tier="1,90"/>
+	</effect_group></set>
+<!--
+doesn't show stat correctly with EntityTagCompare
+<set xpath="/item_modifiers/item_modifier[@name='modGunMeleeBlessedMetal']">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modBlessedMetal"/>
+	<property name="UnlockedBy" value="modGunMeleeBlessedMetalSchematic"/>
+	<effect_group>
+		<requirement name="EntityTagCompare" target="other" tags="zombie"/>
+		<passive_effect name="EntityDamage" operation="perc_add" value="0.1,1" tier="1,90"/>
+	</effect_group></set> -->
+
+<append xpath="/item_modifiers">
+    
+<item_modifier name="ulmModArmorBackpackBasic" installable_tags="armorChest" modifier_tags="backpack" type="attachment">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modCarryCapacity"/>
+	<property name="Material" value="matLeather"/><property name="Weight" value="20"/>
+    <property name="EconomicValue" value="200"/><property name="CarryWeight" value="1"/>
+	<property name="UnlockedBy" value="ulmModArmorBackpackBasicBlueprint"/>
+	<property name="MaintenanceGroup" value="MG_Backpack"/>
+	<effect_group>
+		<passive_effect name="CargoCapacity" operation="base_add" value="100,1000" tier="1,90"/>
+	</effect_group></item_modifier>
+    
+<item_modifier name="ulmModVehicleCargoBag" installable_tags="vehicle" blocked_tags="dye" type="attachment">
+	<property name="Extends" value="modGeneralMaster"/>
+	<property name="DisplayType" value="modVehicleCargo"/>
+	<property name="Material" value="matLeather"/><property name="Weight" value="20"/>
+    <property name="EconomicValue" value="500"/><property name="CarryWeight" value="5"/>
+	<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+	<property name="UnlockedBy" value="ulmModVehicleCargoBagBlueprint"/>
+	<property name="MaintenanceGroup" value="MG_Backpack"/>
+	<effect_group>
+		<passive_effect name="VehicleCargoCapacity" operation="base_add" value="500,1000" tier="1,90"/>
+	</effect_group></item_modifier>
+    
+</append>
+    
+</Subquake>
