@@ -1,0 +1,147 @@
+<Subquake>
+    
+<set xpath="//entity_class[@name='playerMale']//passive_effect[@name='CarryCapacity']/@value">300</set>
+<set xpath="//entity_class[@name='playerMale']//passive_effect[@name='BagSize']/@value">300</set>
+
+<append xpath="//entity_class[@name='playerMale']/effect_group">
+	<passive_effect operation="base_set" name="StatWeightMax" value="1400"/>
+	<passive_effect operation="base_set" name="StatWaterRate" value="0.01"/>
+	<passive_effect operation="base_set" name="StatFoodRate" value="0.01"/>
+	<passive_effect operation="base_set" name="StatFoodMax" value="100"/>
+	<passive_effect operation="base_set" name="StatFatMax" value="100"/>
+	<passive_effect operation="base_set" name="StatCarbsMax" value="100"/>
+	<passive_effect operation="base_set" name="StatProteinMax" value="100"/>
+	<passive_effect operation="base_set" name="StatVitaminsMax" value="100"/>
+	<passive_effect operation="base_set" name="StatAlcoholMax" value="100"/>
+	<passive_effect operation="base_set" name="StatWellnessMax" value="100"/>
+	<passive_effect operation="base_set" name="StatWellnessRate" value=".002"/>
+	<passive_effect operation="base_set" name="StatShieldMax" value="0"/>
+	<passive_effect operation="base_set" name="StatEnergyMax" value="0"/>
+	<passive_effect operation="base_set" name="StatOxygenMax" value="60"/>
+	<passive_effect operation="base_set" name="StatWaterMax" value="100"/>
+	<passive_effect operation="base_set" name="CraftingBroadcastRange" value="5.5"/>
+
+	<passive_effect operation="base_set" name="ResistCold" value="10"/>
+	<passive_effect operation="base_set" name="ResistDiseases" value="10"/>
+	<passive_effect operation="base_set" name="ResistElectric" value="10"/>
+	<passive_effect operation="base_set" name="ResistFallDamage" value="10"/>
+	<passive_effect operation="base_set" name="ResistHeat" value="10"/>
+	<passive_effect operation="base_set" name="ResistInfection" value="10"/>
+	<passive_effect operation="base_set" name="ResistPhysical" value="10"/>
+	<passive_effect operation="base_set" name="ResistRadiation" value="10"/>
+	<passive_effect operation="base_set" name="ResistToxic" value="10"/>
+    <!--<passive_effect operation="base_set" name="CraftingTier" value="0" tags="craftingTier0"/>-->
+	<passive_effect operation="base_set" name="LockPickTier" value="25"/>
+	<!-- Referenced in H_Crosshair.cs
+	<triggered_effect trigger="onSelfSecondaryActionStart" action="ModifyCVar" cvar=".secondaryActionActive" operation="set" value="1"/>
+	<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar=".secondaryActionActive" operation="set" value="0"/>
+	-->
+	<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="ulmBuffTargetHit">
+		<requirement name="ItemHasTags" tags="ranged"/>
+	</triggered_effect>
+</append>
+	
+<append xpath="//entity_class[@name='playerMale']">
+	<effect_group name="Stamina Modifier">
+		<requirement name="!EntityHasMovementTag" tags="idle"/>
+		<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1" tags="running"/>
+	</effect_group>
+</append>
+
+<!--
+<append xpath="//entity_class[@name='playerMale']">
+	<effect_group name="Hit Counter">
+		<requirement name="EntityTagCompare" target="other" tags="human,zombie,bear,wolf,dog,coyote,mountainlion,deer,vulture"/>
+		<triggered_effect trigger="onOtherAttackedSelf" action="ModifyCVar" cvar="$selfHitCounter" operation="add" value="30"/>
+	</effect_group>
+</append>
+-->
+
+<set xpath="//entity_class[@name='playerMale']//passive_effect[@name='BagSize']/@value">1000</set>
+<!--<set xpath="//entity_class[@name='playerMale']//passive_effect[@name='StaminaChangeOT' and @operation='base_set']/@value">12</set>-->
+	
+<append xpath="/entity_classes">
+	
+<entity_class name="ulmVehicleSUV1">
+	<property name="HideInSpawnMenu" value="true"/>
+	<property name="Tags" value="vehicle"/>
+	<property name="Class" value="EntityVJeep"/>
+	<property name="Parent" value="Cars"/>
+	<property name="Prefab" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_SUV"/>
+	<property name="ModelType" value="Standard"/>
+	<property name="SurfaceCategory" value="metal"/>
+	<property name="IgnoreTrigger" value="true"/>
+	<property name="LootListAlive" value="vehicle4x4Truck"/>
+	<property name="IsEnemyEntity" value="false"/>
+	<property name="Explosion.ParticleIndex" value="6"/>
+	<property name="Explosion.RadiusBlocks" value="5"/>
+	<property name="Explosion.RadiusEntities" value="5"/>
+	<property name="Explosion.BlockDamage" value="250"/>
+	<property name="Explosion.EntityDamage" value="250"/>
+	<property name="RotateToGround" value="true"/>
+	<property name="Faction" value="none"/>
+	<property name="MapIcon" value="symbol_steering_wheel"/>
+    <property name="Consumables" value="ulmAmmoFuelGasoline,ulmAmmoFuelGasolineBarrel"/>
+	<property name="NavObject" value="car"/></entity_class>
+
+<entity_class name="ulmVehicleSUV1Police" extends="ulmVehicleSUV1">
+	<property name="HideInSpawnMenu" value="true"/>
+	<property name="Prefab" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_SUV_Police"/>
+	</entity_class>
+
+<entity_class name="ulmVehicleSUV1Security" extends="ulmVehicleSUV1">
+	<property name="HideInSpawnMenu" value="true"/>
+	<property name="Prefab" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_SUV_Security"/>
+	</entity_class>
+
+<entity_class name="ulmVehicleSedan1" extends="ulmVehicleSUV1">
+	<property name="HideInSpawnMenu" value="true"/>
+	<property name="Prefab" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Sedan"/>
+	</entity_class>
+
+<entity_class name="ulmVehicleSedan1Police" extends="ulmVehicleSUV1">
+	<property name="HideInSpawnMenu" value="true"/>
+	<property name="Prefab" value="#Mods/UndeadLegacy/Resources/Subquake_Vehicles.ulm?Subquake_Sedan_Police"/>
+	</entity_class>
+
+</append>
+	
+<append xpath="//entity_class[@name='vehicleBicycle']">
+	<property name="HideInSpawnMenu" value="true"/></append>
+	
+<append xpath="//entity_class[
+   @name='vehicleMinibike'
+or @name='vehicleMotorcycle'
+or @name='vehicle4x4Truck'
+or @name='vehicleGyrocopter']">
+	<property name="HideInSpawnMenu" value="true"/>
+	<property name="Consumables" value="ulmAmmoFuelGasoline,ulmAmmoFuelGasolineBarrel"/></append>
+	
+<!-- 
+
+Zombie Walk Types: 
+-1 Swim
+ 1 Fat, Moe, FemaleFat, FatHawaiian, FatCop
+ 2 Boe, LumberJack, Soldier, WightFeral, Mutated
+ 3 Arlene, Darlene, Screamer
+ 5 Marlene, Janitor
+ 4 Crawler, SteveCrawler
+ 5 Cripple, Joe, Yo
+ 6 Steve, Tom Clark, Utility Worker
+ 7 Default, Nurse, Business Man, Burnt, Lab, Biker, Hazmat, Snake, Trader
+ 8 Spider
+
+-->
+
+<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']">
+	<effect_group name="Additional Effects">
+		<!-- Change Walk Type -->
+		<triggered_effect trigger="onSelfFirstSpawn" action="ULM_SetRandomWalkType,UndeadLegacy" values="1,2,3,5,6,7"/>
+		<!-- Change Movement Speed +-10% -->
+		<triggered_effect trigger="onSelfFirstSpawn" action="ULM_RandomRoll,UndeadLegacy" cvar="zombieRandomMobility" min="-10" max="10"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" cvar="zombieRandomMobility" operation="divide" value="100"/>
+		<passive_effect name="Mobility" operation="perc_add" value="@zombieRandomMobility"/>
+	</effect_group>
+</append>
+    
+</Subquake>

@@ -1,0 +1,1333 @@
+<Subquake>
+
+<remove xpath="/windows/window[@name='credits']"/>
+<remove xpath="/windows/window[@name='editingTools']"/>
+<remove xpath="/windows/window[@name='loadingScreen']"/>
+<remove xpath="/windows/window[@name='mainMenu']"/>
+<remove xpath="/windows/window[@name='mainMenuLogo']"/>
+<remove xpath="/windows/window[@name='menuBackground']"/>
+<remove xpath="/windows/window[@name='newContinueGame']"/>
+<remove xpath="/windows/window[@name='optionsAudio']"/>
+<remove xpath="/windows/window[@name='optionsControls']"/>
+<remove xpath="/windows/window[@name='optionsMenu']"/>
+<remove xpath="/windows/window[@name='optionsProfiles']"/>
+<remove xpath="/windows/window[@name='optionsVideo']"/>
+<remove xpath="/windows/window[@name='progress']"/>
+<remove xpath="/windows/window[@name='spawnselection']"/>
+<remove xpath="/windows/window[@name='toolTip']"/>
+<remove xpath="/windows/window[@name='serverBrowser']"/>
+<remove xpath="/windows/window[@name='serverPassword']"/>
+<remove xpath="/windows/window[@name='worldGeneration']"/>
+
+<append xpath="/windows">
+
+<window name="credits" pos="150,0" anchor="LeftCenter" size="300,525" controller="Credits" cursor_area="true">
+	<mainMenu/>
+	<ulmMenuButton pos="0,-343" name="btnBack" text="xuiBack" visible="{notingame}" sound="[sfx_btn_menu_back]"/>
+	<panel disableautobackground="true" pos="700,400" size="1000,800" clipping="softclip" clippingsoftness="0,40">
+		<rect name="headerRowTemplate">
+			<label name="caption" depth="1" height="42" font_size="40" justify="center" text="test"/>
+		</rect>
+		<rect name="normalRowTemplate">
+			<label name="name" depth="1" height="32" font_size="30" text="test1"/>
+			<label name="centertext" depth="1" height="32" font_size="30" justify="center" text="test2"/>
+			<label name="contribution" depth="1" height="32" font_size="30" justify="right" text="test3"/>
+			<sprite name="line" depth="1" pos="0,-27" height="1" color="255,255,255,50"/>
+		</rect>
+		<grid name="creditsGrid" no_panel="true" rows="0" cell_width="590" cell_height="32" repeat_content="false" arrangement="vertical"/>
+	</panel>
+</window>
+
+<window name="editingTools" pos="150,0" anchor="LeftCenter" size="300,525" controller="EditingTools" cursor_area="true">
+    <mainMenu/>
+	<grid pos="0,77" name="buttons" rows="13" cell_width="300" cell_height="70" repeat_content="false" arrangement="vertical">
+		<ulmMenuButton name="btnRwgPreviewer" text="xuiRwgPreviewer" visible="false"/>
+		<ulmMenuButton name="btnWorldEditor" text="xuiWorldEditor"/>
+		<ulmMenuButton name="btnPrefabEditor" text="xuiPrefabEditor"/>
+		<rect/>
+		<rect/>
+		<rect/>
+		<ulmMenuButton pos="0,0" name="btnBack" text="xuiBack" visible="{notingame}" sound="[sfx_btn_menu_back]"/>
+	</grid>
+</window>
+	
+<window name="progress" depth="201" anchor="CenterCenter" width="4224" height="1188" controller="ProgressWindow">
+	<texture depth="0" style="menuBackground" controller="ULM_MainMenuBackground,UndeadLegacy"/>
+    <texture depth="1" style="menuLogoLoading"/>
+	<widget depth="10" anchor_left="#cam,0,25" anchor_bottom="#cam,0,150" pivot="bottomleft" controller="ULM_LoadingScreenGlyph,UndeadLegacy">
+		<texture depth="10" style="menuLoading"/>
+		<sprite depth="12" name="glyph" pivot="center" type="sliced" pos="67,-50" sprite="symbol_undead_legacy_1" size="124,124"/>
+		<sprite depth="13" name="glyph2" pivot="center" type="sliced" pos="67,-50" sprite="symbol_undead_legacy_3" size="138,138"/>
+		<sprite depth="14" pivot="center" type="sliced" pos="67,-50" sprite="symbol_undead_legacy_2" size="124,124" foregroundlayer="true"/>
+		<!--<sprite depth="15" pos="360,-50" size="458,94" pivot="center" type="sliced" color="0,0,0,128"/>-->
+		<label depth="20" pos="360,-50" size="458,94" font_size="34" name="lblProgress" pivot="center" justify="center"/>
+		<label depth="20" pos="360,-130" size="458,94" font_size="24" name="lblMemoryUsed" pivot="center" justify="center" color="200,200,200" upper_case="true"/>
+	</widget>
+</window>
+
+<window name="spawnselection" anchor="CenterCenter" width="4224" height="1188" depth="202" controller="SpawnSelectionWindow" cursor_area="true">
+	<texture depth="0" style="menuBackground" controller="ULM_MainMenuBackground,UndeadLegacy"/>
+	<texture depth="1" style="menuLogoLoading"/>
+    <label pos="0,9999" size="100,20" font_size="20" name="lblProgress"/>
+	<rect depth="1000" pos="-250,0" visible="{buttonsVisible}">
+		<background size="520,324" bg_color="43,51,47,245"/>
+		<rect depth="1" name="content" pos="4,14">
+			<rect depth="1" pos="0,-60">
+				<sprite style="background" atlas="UIBackground" sprite="ui_respawn" size="500,240"/>
+			</rect>
+			<label style="ulmHeaderNoIcon" text_key="respawnTitleMessage"/>
+			<grid pos="250,-134" rows="2" cols="1" cell_width="320" cell_height="90" repeat_content="false" arrangement="vertical">
+				<ulmButtonRespawn pos="0,0" name="btnSpawnOnBedroll" caption_key="lblSpawnOnBedroll" sound="[sfx_btn_start]"/>
+				<ulmButtonRespawn pos="0,0" name="btnSpawnNearBedroll" caption_key="lblSpawnNearBedroll" sound="[sfx_btn_start]"/>
+			</grid>
+		</rect>
+	</rect>
+</window>
+
+<window name="loadingScreen" depth="0" anchor="CenterCenter" pos="0,0" width="1" height="1" controller="LoadingScreen">
+	<texture depth="0" style="menuBackground" name="loading_image" size="1,1"/>
+    <!--
+	<widget anchor_left="#bottomright,0,0" anchor_bottom="#bottomright,0,0" anchor_right="#bottomright,0,0" anchor_top="#bottomright,0,0" pivot="bottomright">
+        <texture style="menuLoadingTipBackground" pivot="bottom"/>
+	    <label name="lblTitle" pos="-1040,250" size="1000,50" depth="6" font_size="40" color="0,255,144" justify="left" parse_actions="true" text="{title}" upper_case="true"/>
+	    <label name="lblText" pos="-1040,190" size="1000,150" depth="6" font_size="32" justify="left" parse_actions="true" actions_default_format="( [BEA158]###[-] )" spacing_y="5" text="{text}"/>
+    </widget>
+		
+	<label name="lblLeft"     depth="6" anchor_left="#cam,1,-180" anchor_right="#cam,1,-140"  anchor_bottom="#cam,0,190" anchor_top="#cam,0,250" font_size="30" color="[white]" pivot="center" justify="right" parse_actions="true" max_line_count="1" text=" [action:local:Secondary]"/>
+	<label name="lblIndex"    depth="6" anchor_left="#cam,1,-140" anchor_right="#cam,1,-60"   anchor_bottom="#cam,0,190" anchor_top="#cam,0,250" font_size="30" color="[white]" pivot="center" justify="center" parse_actions="true" max_line_count="1" text="{index}/{count}"/>
+	<label name="lblRight"    depth="6" anchor_left="#cam,1,-60"  anchor_right="#cam,1,-20"   anchor_bottom="#cam,0,190" anchor_top="#cam,0,250" font_size="30" color="[white]" pivot="center" justify="left" parse_actions="true" max_line_count="1" text="[action:local:Primary] "/>
+    -->
+</window>
+
+<window name="mainMenu" pos="150,0" anchor="LeftCenter" size="300,525" controller="MainMenu" cursor_area="true">
+    <mainMenu/>
+	<mainMenuVersion/>
+	<grid pos="0,77" rows="13" cell_width="300" cell_height="70" repeat_content="false" arrangement="vertical">
+		<ulmMenuButton name="btnNewGame" text="xuiNewGame"/>
+		<ulmMenuButton name="btnContinueGame" text="xuiContinueGame"/>
+		<ulmMenuButton name="btnConnectToServer" text="xuiConnectToServer"/>
+		<ulmMenuButton name="btnEditingTools" text="xuiEditingTools"/>
+		<ulmMenuButton name="btnOptions" text="xuiOptions"/>
+		<ulmMenuButton name="btnCredits" text="xuiCredits"/>
+		<ulmMenuButton pos="0,0" name="btnQuit" text="xuiQuit" sound="[sfx_btn_menu_back]"/>
+	</grid>
+</window>
+
+<window name="mainMenuSupport" pos="150,0" anchor="LeftCenter" size="300,525" controller="ULM_SupportLinks,UndeadLegacy" cursor_area="true">
+	<grid depth="1" pos="50,-550" rows="1" cols="4" cell_width="60" cell_height="40" repeat_content="false">
+		<ulmSupportEntry btn_id="mm_pa" hvr_id="mm_pa_h" sprite_id="ui_mm_pa"/>
+		<ulmSupportEntry btn_id="mm_pp" hvr_id="mm_pp_h" sprite_id="ui_mm_pp"/>
+		<ulmSupportEntry btn_id="mm_ds" hvr_id="mm_ds_h" sprite_id="ui_mm_ds"/>
+	</grid>
+</window>
+
+<window name="mainMenuLogo" size="0,0"/>
+
+<window name="mainMenuCredits" anchor="RightTop" pos="-800,-50" width="750" height="600" controller="ULM_Credits,UndeadLegacy" cursor_area="true">
+	<panel disableautobackground="true" clipping="softclip" clippingsoftness="0,40">
+		<rect name="headerRowTemplate">
+			<label name="caption" pos="0,10" depth="1" height="36" font_size="36" justify="center" text="test" color="0,255,144"/>
+			<sprite name="line" depth="1" pos="0,-27" height="2" color="255,255,255,40"/>
+		</rect>
+		<rect name="normalRowTemplate">
+			<label name="name" width="250" depth="1" height="32" font_size="30" justify="center"/>
+			<label name="centertext" depth="1" height="32" font_size="30" justify="center"/>
+			<label name="contribution" width="250" pos="500,0" depth="1" height="32" font_size="30" justify="center"/>
+			<sprite name="line" depth="1" pos="0,-27" height="1" color="255,255,255,0"/>
+		</rect>
+		<grid name="creditsGrid" no_panel="true" rows="0" cell_width="590" cell_height="36" repeat_content="false" arrangement="vertical">
+		</grid>
+	</panel>
+</window>
+
+<!--
+<window name="mainMenuSupport" depth="201" pos="-1200,260" anchor="RightBottom" controller="ULM_SupportLinks,UndeadLegacy">
+	<grid depth="1" rows="1" cols="2" cell_width="190" cell_height="250" repeat_content="false">
+		<rect>
+			<background size="180,260" bg_color="43,51,47,245"/>
+			<sprite depth="1" pos="4,14" size="160,205" atlas="UIBackground" sprite="ui_mm_pa_lg"/>
+			<sprite depth="2" style="background" pos="4,-194" size="160,32"/>
+			<label depth="3" pos="4,-202" size="160,22" text="Support" justify="center" font_size="22" upper_case="true" spacing_x="4"/>
+			<sprite depth="4" pos="0,18" size="168,213" name="mm_pa_h" style="background" color="255,255,255,128"/>
+			<rect depth="5" pos="4,14" size="160,205" name="mm_pa" on_hover="true" on_press="true"/>
+		</rect>
+		<rect>
+			<background size="180,260" bg_color="43,51,47,245"/>
+			<sprite depth="1" pos="4,14" size="160,205" atlas="UIBackground" sprite="ui_mm_pp_lg"/>
+			<sprite depth="2" style="background" pos="4,-194" size="160,32"/>
+			<label depth="3" pos="4,-202" size="160,22" text="Donate" justify="center" font_size="22" upper_case="true" spacing_x="4"/>
+			<sprite depth="4" pos="0,18" size="168,213" name="mm_pp_h" style="background" color="255,255,255,128"/>
+			<rect depth="5" pos="4,14" size="160,205" name="mm_pp" on_hover="true" on_press="true"/>
+		</rect>
+	</grid>
+</window>
+-->
+
+<window name="mainMenuPatchNotes" depth="201" pos="-820,500" anchor="RightBottom" controller="ULM_PatchNotes,UndeadLegacy">
+	<background size="800,500" bg_color="43,51,47,245"/> <!-- bg_color="43,51,47,225" -->
+	<rect depth="1" name="content" pos="4,14">
+		<label style="ulmHeaderNoIcon" text_key="uiPatchNotes"/>
+		<!--<sprite style="backgroundStrong" size="780,48"/>-->
+		<!--<sprite style="background" pos="0,-50" size="780,429"/>-->
+		<label depth="2" pos="10,-60" size="760,409" name="patchNotes" font_size="22"/>
+	</rect>
+</window>
+
+<window name="menuBackground" anchor="CenterCenter" pos="0,0" width="4224" height="1188" depth="-3">
+	<!-- Main Menu Background -->
+	<texture style="menuBackground" controller="ULM_MainMenuBackground,UndeadLegacy"/>
+</window>
+
+<window name="worldGeneration" pos="510,480" anchor="LeftCenter" size="1500,1000" controller="WorldGenerationWindowGroup" cursor_area="true">
+	<mainMenu pos="-360,-480"/>
+	<ulmMenuButton pos="-360,-823" name="btnBack" text="xuiBack" sound="[sfx_btn_menu_back]"/>
+	<background size="1429,1000"/>
+    <rect depth="1" name="content" pos="4,14">
+        <label style="ulmHeaderNoIcon" name="windowheader" text_key="xuiGenerateWorld"/>
+    </rect>
+	
+		
+	<rect depth="2" size="477,917" cursor_area="true" name="generationControls">
+		<sprite style="background" pos="6,-47" sprite="ui_new_game" atlas="UIBackground"/>
+				
+		<rect pos="959,6">
+			<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+			<label depth="4" width="150" height="30" style="hover" tooltip_key="xuiPreviewQuality" text="Preview Quality" text_key="xuiPreviewQuality" font_size="28" color="[white]" justify="right" pivot="topleft" />
+			<ulmComboBox depth="108" pos="155,0" width="200" height="32" name="PreviewQuality" type="ComboBoxEnum`1[XUiC_WorldGenerationWindowGroup+PreviewQuality]" value_min="0" value_max="5" value="3" value_increment="1" value_wrap="false" />
+		</rect>
+
+		<grid pos="23,-67" rows="20" cell_width="425" cell_height="45" repeat_content="false" arrangement="vertical">
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="goWorldSeed"/>
+                <ulmTextField name="seedInput" pos="160,0" on_hover="true" character_limit="28"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="goWorldSize"/>
+				<ulmComboBox depth="108" pos="160,0" name="WorldSize" type="ComboBoxList`1[System.String]" values="2048,3072,4096,5120,6144,7168,8192,9216,10240,11264,12288,13312,14336,15360" localization_prefix="goMapSize" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="xuiRwgCountyName" tooltip_key="xuiRwgCountyNameDesc"/>
+				<sprite style="inputOption" pos="160,10"/>
+				<label depth="2" name="countyName" pos="160,-3" size="300,26" font_size="26" justify="center" style="outline"/>
+			</rect>
+			<!--
+			<rect name="Divider">
+				<sprite depth="-1" pos="-10,4" size="462,2" color="80,80,80" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
+			</rect>
+			-->
+			<rect/>
+			<rect>
+				<sectionHeader pos="-10,10" width="462" text_key="goAdvanced"/>
+			</rect>
+		</grid>
+		<!-- pos="23,-214" -->
+		<grid pos="23,-292" rows="20" cell_width="425" cell_height="45" repeat_content="false" arrangement="vertical">
+			<!--
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="xuiGenCity" tooltip_key="xuiGenWildernessDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="City" type="ComboBoxEnum`1[WorldGenerationEngineFinal.WorldBuilder+GenerationSelections]" value_min="0" value_max="10" value_wrap="false"/>
+			</rect>
+			-->
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiGenCity" tooltip_key="xuiGenTownsDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="Towns" type="ComboBoxEnum`1[WorldGenerationEngineFinal.WorldBuilder+GenerationSelections]" value_min="0" value_max="10" value_wrap="false"/>
+			</rect>
+			<!--
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="xuiGenRural" tooltip_key="xuiGenTownsDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="Rural" type="ComboBoxEnum`1[WorldGenerationEngineFinal.WorldBuilder+GenerationSelections]" value_min="0" value_max="10" value_wrap="false"/>
+			</rect>
+			-->
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiGenWilderness" tooltip_key="xuiGenWildernessDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="Wilderness" type="ComboBoxEnum`1[WorldGenerationEngineFinal.WorldBuilder+GenerationSelections]" value_min="0" value_max="10" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiRivers" tooltip_key="xuiRiversDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="Rivers" type="ComboBoxEnum`1[WorldGenerationEngineFinal.WorldBuilder+GenerationSelections]" value_min="0" value_max="10" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiCraters" tooltip_key="xuiCratersDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="Craters" type="ComboBoxEnum`1[WorldGenerationEngineFinal.WorldBuilder+GenerationSelections]" value_min="0" value_max="10" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiCracks" tooltip_key="xuiCracksDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="Cracks" type="ComboBoxEnum`1[WorldGenerationEngineFinal.WorldBuilder+GenerationSelections]" value_min="0" value_max="10" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiLakes" tooltip_key="xuiLakesDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="Lakes" type="ComboBoxEnum`1[WorldGenerationEngineFinal.WorldBuilder+GenerationSelections]" value_min="0" value_max="10" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiPlainsWeight" tooltip_key="xuiPlainsWeightDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="PlainsWeight" type="ComboBoxInt" value_min="0" value_max="10" value="5" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiHillsWeight" tooltip_key="xuiHillsWeightDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="HillsWeight" type="ComboBoxInt" value_min="0" value_max="10" value="5" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="150,30" font_size="28" style="hover" text_key="xuiMountainsWeight" tooltip_key="xuiMountainsWeightDesc"/>
+				<ulmComboBox depth="108" pos="160,0" name="MountainsWeight" type="ComboBoxInt" value_min="0" value_max="10" value="5" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<sprite style="background" atlas="UIBackground" sprite="ui_map_preview_biome" size="25,25" globalopacity="false" color="0,64,0"/>
+				<label depth="1" pos="32,0" size="110,30" font_size="28" style="hover" text_key="xuiPineForest" tooltip_key="xuiPineForest"/>
+				<ulmComboBox depth="108" pos="160,0" name="Forest" type="ComboBoxInt" value_min="0" value_max="10" value="5" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<sprite style="background" atlas="UIBackground" sprite="ui_map_preview_biome" size="25,25" globalopacity="false" color="255,228,119"/>
+				<label depth="1" pos="32,0" size="110,30" font_size="28" style="hover" text_key="xuiDesert" tooltip_key="xuiDesert"/>
+				<ulmComboBox depth="108" pos="160,0" name="Desert" type="ComboBoxInt" value_min="0" value_max="10" value="5" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<sprite style="background" atlas="UIBackground" sprite="ui_map_preview_biome" size="25,25" globalopacity="false" color="255,255,255"/>
+				<label depth="1" pos="32,0" size="110,30" font_size="28" style="hover" text_key="xuiSnow" tooltip_key="xuiSnow"/>
+				<ulmComboBox depth="108" pos="160,0" name="Snow" type="ComboBoxInt" value_min="0" value_max="10" value="5" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<sprite style="background" atlas="UIBackground" sprite="ui_map_preview_biome" size="25,25" globalopacity="false" color="255,168,0"/>
+				<label depth="1" pos="32,0" size="110,30" font_size="28" style="hover" text_key="xuiWasteland" tooltip_key="xuiWasteland"/>
+				<ulmComboBox depth="108" pos="160,0" name="Wasteland" type="ComboBoxInt" value_min="0" value_max="10" value="5" value_wrap="false"/>
+			</rect>
+		</grid>
+		<ulmButtonOption pos="245,-915" name="generate" caption_key="goWorldGenerate" sound="[sfx_btn_start]"/>
+	</rect>
+	<!-- 838 -->
+	<rect depth="2" pos="494,-47">
+		<sprite depth="2" size="917,917" style="background" sprite="ui_map_preview_2" atlas="UIBackground"/>
+		<!--<sprite depth="5" style="background" pos="20,-20" size="877,877" color="[darkestGrey]"/>-->
+		<texture depth="100" pos="20,-20" size="877,877" name="worldPreviewTex" material="Materials/Transparent Colored" globalopacity="false" on_drag="true" controller="WorldGenerationPreview"/>
+	</rect>
+</window>
+	
+<window name="newContinueGame" pos="510,480" anchor="LeftCenter" size="1500,1000" controller="NewContinueGame" cursor_area="true">
+	<mainMenu pos="-360,-480"/>
+	<ulmMenuButton pos="-360,-823" name="btnBack" text="xuiBack" sound="[sfx_btn_menu_back]"/>
+	<ulmButtonOption pos="1204,-915" name="btnStart" caption_key="xuiStart" sound="[sfx_btn_start]"/>
+	<background size="1350,1000"/>
+    <rect depth="1" name="content" pos="4,14">
+        <label style="ulmHeaderNoIcon" name="windowheader" text_key="xuiOptionsControls"/>
+    </rect>
+
+    <rect depth="2" name="newContent" size="477,917" visible="{isnewgame}">
+		<sprite style="background" pos="6,-47" sprite="ui_new_game" atlas="UIBackground"/>
+        <grid depth="10" pos="23,-67" rows="13" cell_width="476" cell_height="45" repeat_content="false" arrangement="vertical">
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="goGameName" tooltip_key="goGameNameDesc"/>
+                <ulmTextField name="txtGameName" pos="160,0" on_hover="true" character_limit="28"/>
+			</rect>
+			<rect visible="{false}">
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="goGameMode" tooltip_key="goGameModeDesc"/>
+                <ulmComboBox name="cbxGameMode" pos="160,0" type="ComboBoxList`1[GameMode]" value_wrap="false"/>
+			</rect>
+			<rect>
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="goGameWorld" tooltip_key="goGameWorldDesc"/>
+                <ulmComboBox name="cbxWorldName" pos="160,0" type="ComboBoxList`1[XUiC_NewContinueGame+LevelInfo]" value_wrap="false"/>
+			</rect>
+            <rect visible="{isnotgenerateworld}">
+				<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+				<label depth="1" size="142,30" font_size="28" style="hover" text_key="goMapSize"/>
+				<sprite style="inputOption" pos="160,10"/>
+				<label depth="2" name="countyName" style="outline" pos="160,-3" size="300,26" font_size="26" justify="center" text="{mapsize}"/>
+            </rect>
+        </grid>
+
+        <rect depth="10" pos="23,-157" controller="WorldGenerationWindowGroup" visible="{isgenerateworld}">
+            <grid rows="13" cell_width="476" cell_height="45" repeat_content="false" arrangement="vertical">
+				<rect>
+					<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+					<label depth="1" size="142,30" font_size="28" style="hover" text_key="goWorldSeed" tooltip_key="xuiRwgWorldSeedDesc"/>
+					<ulmTextField name="seedInput" pos="160,0" on_hover="true" character_limit="28"/>
+				</rect>
+				<rect>
+					<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+					<label depth="1" size="142,30" font_size="28" style="hover" text_key="goWorldSize" tooltip_key="xuiRwgWorldSizeDesc"/>
+					<ulmComboBox depth="108" pos="160,0" name="WorldSize" type="ComboBoxList`1[System.String]" values="6144,8192,10240,12288,14336" localization_prefix="goMapSize" value_wrap="false"/>
+				</rect>
+				<rect>
+					<sprite style="inputOptionLabel" sprite="ui_option_label_world"/>
+					<label depth="1" size="142,30" font_size="28" style="hover" text_key="xuiRwgCountyName" tooltip_key="xuiRwgCountyNameDesc"/>
+					<sprite style="inputOption" pos="160,10"/>
+					<label depth="2" name="countyName" pos="160,-3" size="300,26" font_size="26" justify="center" style="outline"/>
+				</rect>
+            </grid>
+        </rect>
+		<ulmButtonOption pos="245,-915" name="btnGenerateWorld" caption_key="goAdvanced" visible="{isgenerateworld}"/>
+		<ulmButtonOption pos="626,-915" name="btnDefaults" caption_key="xuiDefaults"/>
+    </rect>
+
+    <rect name="continueContent" visible="{iscontinuegame}">
+        <rect name="saves" controller="SavegamesList" matching_version_color="60,255,60,128" compatible_version_color="255,216,0" incompatible_version_color="255,0,0" clear_selection_on_open="false">
+            <searchField pos="1087,16"/>
+            <grid depth="2" name="list" pos="6,-47" size="476,848" rows="9" cols="1" cell_width="476" cell_height="96" repeat_content="true" arrangement="vertical">
+                <ulmSaveEntry width="476" height="94"/>
+            </grid>
+            <pager name="pager" pos="189,-924"/>
+            <ulmButtonOption pos="626,-915" name="btnDeleteSave" caption_key="btnDelete"/>
+        </rect>
+    </rect>
+
+    <rect name="tabs" controller="TabSelector" pos="494,-42" size="838,820">
+		<sprite style="background" pos="0,-60" size="838,862" sprite="ui_load_save_options_bg" atlas="UIBackground"/>
+        <panel name="disableOptions" pos="0,-4" depth="100" createuipanel="true" on_hover="true" disableautobackground="true">
+            <sprite depth="0" name="backgroundMain" sprite="ui_load_save_options_disabled_bg" atlas="UIBackground" color="32,32,32,235" type="sliced" fillcenter="true"/>
+        </panel>
+
+        <rect name="tabsHeader" depth="0">
+            <grid name="tabButtons" rows="1" cols="4" size="800,50" cell_width="210" cell_height="50" repeat_content="true" arrangement="horizontal">
+                <ulmButtonTab name="tabButton" text="xuiBack" width="208" sprite="ui_btn_tab_208" sprite_s="ui_btn_tab_208_s" sprite_h="ui_btn_tab_208_h"/>
+            </grid>
+        </rect>
+
+        <rect name="tabsContents" depth="2" pos="110,-60">
+            <rect tab_key="uiGameSettingsBasic">
+                <grid pos="6,-40" rows="20" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical">
+                    <ulmOptionGame name="GameDifficulty" title="goDifficulty" value_wrap="false" value_type="int" values="" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" value_localization_prefix=""/>
+					<ulmOptionGame name="ZombieMove" title="goZombieMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix=""/>
+					<ulmOptionGame name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix=""/>
+					<ulmOptionGame name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix=""/>
+					<ulmOptionGame name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix=""/>
+					<ulmOptionGame name="ZombieFeralSense" title="goZombieFeralSense" value_wrap="false" value_type="int" values="" display_names="goOff,goZMDay,goZMNight,goZMAll" value_localization_prefix=""/>
+					<ulmOptionGame name="DayNightLength" title="goDayLength" value_wrap="false" value_type="int" values="10, 15, 20, 24, 30, 40, 48, 50, 60, 72, 90, 96, 120, 144, 150, 168, 180, 192, 210, 216, 240, 264, 270, 288, 300, 312, 330, 336, 360" display_names="" value_localization_prefix="goMinute"/>
+					<ulmOptionGame name="DayLightLength" title="goDayLightLength" value_wrap="false" value_type="int" values="0,2,4,6,8,10,12,14,16,18,20,22,24" display_names="" value_localization_prefix="goDayLightLengthValue"/>
+					<ulmOptionGame name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" value_type="int" values="0, 1, 3, 5, 7, 10, 14, 15, 20, 21, 25, 28, 30, 35, 40, 42, 45, 49, 50, 56, 60, 75, 90, 100" display_names="goDisabled" value_localization_prefix="goDay"/>
+					<ulmOptionGame name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30" display_names="" value_localization_prefix="goDay"/>
+					<ulmOptionGame name="BloodMoonWarning" title="goBloodMoonWarning" value_wrap="false" value_type="int" values="-1, 8, 18" display_names="goDisabled,goMorning,goEvening" value_localization_prefix=""/>
+					<ulmOptionGame name="BloodMoonEnemyCount" title="goBloodMoonEnemyCount" value_wrap="false" value_type="int" values="4, 8, 12, 16, 24, 32, 64, 80, 96, 112, 128" display_names="" value_localization_prefix="goEnemie"/>
+				</grid>
+            </rect>
+
+            <rect tab_key="uiGameSettingsAdvanced">
+                <grid pos="6,-40" rows="20" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical">
+					<ulmOptionGame name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goXPMultiplierValue"/>
+                    <!--<ulmOptionGame name="BlockDurabilityModifier" title="goBlockDurability" value_wrap="false" value_type="int" values="25, 50, 100, 200" display_names="" value_localization_prefix="goBlockDurabilityValue"/>-->
+					<ulmOptionGame name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+					<ulmOptionGame name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+					<ulmOptionGame name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+					<ulmOptionGame name="LootAbundance" title="goLootAbundance" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 250, 300" display_names="" value_localization_prefix="goLootAbundanceValue"/>
+					<ulmOptionGame name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" value_type="int" values="-1, 5, 7, 10, 15, 20, 21, 25, 28, 30, 40, 50, 60, 90" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue"/>
+					<ulmOptionGame name="DropOnDeath" title="goDropOnDeath" value_wrap="false" value_type="int" values="" display_names="goNone,goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix=""/>
+					<ulmOptionGame name="DropOnQuit" title="goDropOnQuit" value_wrap="false" value_type="int" values="" display_names="goNone,goAll,goToolbelt,goBackpack" value_localization_prefix=""/>
+					<ulmOptionGame name="AirDropFrequency" title="goAirDropFrequency" value_wrap="false" value_type="int" values="0, 24, 72, 120, 168, 240, 336, 360, 504, 672, 720, 1440, 2160" display_names="goDisabled" value_localization_prefix="goAirDropValue"/>
+					<ulmOptionGame name="AirDropMarker" title="goMarkAirDrops" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""/>
+					<ulmOptionGame name="EnemySpawnMode" title="goEnemySpawn" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""/>
+				</grid>
+            </rect>
+            <rect tab_key="uiGameSettingsExpert">
+                <grid pos="6,-40" rows="20" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical">
+					<ulmOptionGame name="PersistentPlayerProfiles" title="goPersistentCharacters" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""/>
+					<ulmOptionGame name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""/>
+					<ulmOptionGame name="MaxSpawnedZombies" title="goMaxSpawnedZombies" value_wrap="false" value_type="int" values="0, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208" display_names="" value_localization_prefix="goZombie"/>
+                    <ulmOptionGame name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals" value_wrap="false" value_type="int" values="0, 16, 32, 50, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208" display_names="" value_localization_prefix="goAnimal"/>
+                    <ulmOptionGame name="LandClaimCount" title="goLandClaimCount" value_wrap="false" value_type="int" values="1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16" display_names="" value_localization_prefix="goLandClaimCountValue"/>
+					<!--
+					<ulmOptionGame name="ItemWeightMultiplier" title="optItemWeightMult" value_wrap="false" value_type="int" values="0, 25, 50, 75, 100, 125, 150, 175, 200" display_names="opt0P,opt25P,opt50P,opt75P,opt100P,opt125P,opt150P,opt175P,opt200P"/>
+                    <ulmOptionGame name="BlockWeightMultiplier" title="optBlockWeightMult" value_wrap="false" value_type="int" values="0, 25, 50, 75, 100, 125, 150, 175, 200" display_names="opt0P,opt25P,opt50P,opt75P,opt100P,opt125P,opt150P,opt175P,opt200P"/>
+                    -->
+					<ulmOptionGame name="RecipeFilter" title="optShowUnknownRecipes" value_wrap="false" value_type="int" values="0, 1, 2" display_names="optRecipeFilter1,optRecipeFilter2,optRecipeFilter3"/>
+					<ulmOptionGame name="StarterQuestEnabled" title="optStarterQuestEnabled" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""/>
+					<ulmOptionGame name="DeathPenalty" title="optDeathPenalty" value_wrap="false" value_type="int" values="0, 1, 2, 3" display_names="optDeathPenalty0,optDeathPenalty1,optDeathPenalty2,optDeathPenalty3"/>
+					<ulmOptionGame name="POITierLootScale" title="optPOITierLootScale" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100" display_names="" value_localization_prefix="optPercent"/>
+					<rect size="570,32">
+						<label depth="1" pos="0,-1" height="30" font_size="28" text_key="optWanderingHordes" justify="center"/>
+					</rect>
+					<ulmOptionGame name="WanderingHordeFrequency" title="optWanderingHordeFrequency" value_wrap="false" value_type="int" values="1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24" value_localization_prefix="optHour"/>
+					<ulmOptionGame name="WanderingHordeRange" title="optWanderingHordeRange" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 28, 32, 48" value_localization_prefix="optHour"/>
+					<ulmOptionGame name="WanderingHordeEnemyCount" title="optWanderingHordeEnemyCount" value_wrap="false" value_type="int" values="2, 3, 4, 5, 10, 15, 20, 25, 30" display_names="" value_localization_prefix="goZombie"/>
+					<ulmOptionGame name="WanderingHordeEnemyRange" title="optWanderingHordeEnemyRange" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 35, 40, 45, 50" display_names="" value_localization_prefix="goZombie"/>
+					<!--
+					<ulmOptionGameInProgress name="BlockRespawnRate" title="optBlockRespawnRate" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue"/>
+                    
+					<ulmOptionGameInProgress name="FoodBurnRateMultiplier" title="optFoodBurnRate" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200" display_names="opt25P,opt50P,opt75P,opt100P,opt125P,opt150P,opt175P,opt200P"/>
+                    <ulmOptionGameInProgress name="WaterBurnRateMultiplier" title="optWaterBurnRate" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200" display_names="opt25P,opt50P,opt75P,opt100P,opt125P,opt150P,opt175P,opt200P"/>
+                    <ulmOptionGameInProgress name="DroppedLootDecay" title="optDroppedLootDecay" value_wrap="false" value_type="int" values="5, 10, 15, 20, 30, 60, 120, 180, 240, 300, 360" display_names="opt5m,opt10m,opt15m,opt20m,opt30m,opt1h,opt2h,opt3h,opt4h,opt5h,opt6h"/>
+					-->
+				</grid>
+            </rect>
+
+            <rect tab_key="uiGameSettingsMultiplayer">
+                <grid pos="6,-40" rows="20" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical">
+                    <ulmOptionGame name="ServerVisibility" title="goServerVisibility" value_wrap="false" value_type="int" values="" display_names="goServerVisibility0,goServerVisibility1,goServerVisibility2" value_localization_prefix=""/>
+					<ulmOptionGame name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="1, 2, 4, 8, 16" display_names="" value_localization_prefix="goPlayer"/>
+					<ulmOptionGame name="ServerPassword" title="goPassword" value_wrap="false" value_type="string" character_limit="20" values="" display_names="" value_localization_prefix="" is_textinput="true" password_field="true"/>
+					<ulmOptionGame name="ServerPort" title="goPort" value_wrap="false" value_type="int" values="" display_names="" value_localization_prefix="" is_textinput="true"/>
+                    <ulmOptionGame name="PlayerKillingMode" title="goPlayerKillingMode" value_wrap="false" value_type="int" values="" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" value_localization_prefix=""/>
+					<ulmOptionGame name="LandClaimSize" title="goLandClaimSize" value_wrap="false" value_type="int" values="21, 31, 41, 51, 71" display_names="" value_localization_prefix="goLandClaimSizeValue"/>
+					<ulmOptionGame name="LandClaimDeadZone" title="goLandClaimDeadZone" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 30, 40, 50" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue"/>
+					<ulmOptionGame name="LandClaimExpiryTime" title="goLandClaimExpiryTime" value_wrap="false" value_type="int" values="1, 2, 3, 4, 5, 7, 10, 30" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue"/>
+					<ulmOptionGame name="LandClaimDecayMode" title="goLandClaimDecayMode" value_wrap="false" value_type="int" values="" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone" value_localization_prefix=""/>
+					<ulmOptionGame name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" value_wrap="false" value_type="int" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue"/>
+					<ulmOptionGame name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" value_wrap="false" value_type="int" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue"/>
+					<ulmOptionGame name="BedrollDeadZoneSize" title="goBedrollDeadZoneSize" value_wrap="false" value_type="int" values="0, 5, 15, 30" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue"/>
+					<ulmOptionGame name="BedrollExpiryTime" title="goBedrollExpiryTime" value_wrap="false" value_type="int" values="3, 7, 15, 30, 45, 60" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue"/>
+						
+					<ulmOptionGame name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" value_type="int" values="0, 100, 500, 1000, 5000, 10000" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue"/>
+					
+					<ulmOptionGame name="DayCount" title="goDayCount" value_wrap="false" value_type="int" values="0, 1, 3, 5, 7, 9" display_names="goUnlimited" value_localization_prefix="goDay"/>
+					<ulmOptionGame name="FragLimit" title="goFragLimit" value_wrap="false" value_type="int" values="0, 1, 5, 10, 15, 20, 25, 50" display_names="goUnlimited" value_localization_prefix="goFrag"/>
+					<ulmOptionGame name="MatchLength" title="goMatchLength" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 30, 60" display_names="goUnlimited" value_localization_prefix="goMinute"/>
+					<ulmOptionGame name="RebuildMap" title="goRebuildMap" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""/>
+					<ulmOptionGame name="ZombiePlayers" title="goZombiePlayers" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""/>
+				</grid>
+            </rect>
+        </rect>
+    </rect>
+	
+	<panel depth="10000" pos="400,-340" name="deleteSavePanel" createuipanel="true" disableautobackground="true" on_hover="true">
+		<sprite style="background" pos="-404,364" size="1350,1000" color="32,32,32,235"/>
+		<rect depth="10000">
+			<background size="550,280"/>
+			<rect depth="1" name="content" pos="4,14">
+				<label style="ulmHeaderNoIcon" text_key="xuiDeleteSaveGame"/>
+				<rect depth="2" pos="10,-70" size="510,100">
+					<label depth="2" name="deleteText" justify="center"/>
+				</rect>
+			</rect>
+			<ulmButtonOption pos="132,-200" name="btnCancel" caption_key="xuiCancel" sound="[sfx_btn_menu_back]"/>
+			<ulmButtonOption pos="407,-200" name="btnConfirm" caption_key="btnConfirm" sound="[sfx_btn_start]"/>
+		</rect>
+	</panel>
+	
+</window>
+	
+<window name="optionsControls" pos="510,480" anchor="LeftCenter" size="1500,1000" controller="OptionsControls" cursor_area="true">
+	<mainMenu pos="-360,-480"/>
+	<ulmMenuButton pos="-360,-823" name="btnBack" text="xuiBack" sound="[sfx_btn_menu_back]"/>
+    <ulmButtonOption pos="335,-915" name="btnDefaults" caption_key="xuiDefaults" visible="{isTabUi}" sound="[sfx_btn_tab]"/>
+    <ulmButtonOption pos="1204,-915" name="btnApply" caption_key="xuiApply" sound="[sfx_btn_start]"/>
+	<background size="1350,1000"/>
+    <rect depth="1" name="content" pos="4,14">
+        <label style="ulmHeaderNoIcon" text_key="xuiOptionsControls"/>
+    </rect>
+	
+    <rect name="tabs" controller="TabSelector" pos="6,-43">
+		<sprite style="background" pos="200,-4" size="1126,915"/>
+        <rect name="tabsHeader" height="39" depth="0">
+            <grid name="tabButtons" rows="10" cols="1" cell_width="200" cell_height="60" repeat_content="true" arrangement="horizontal">
+                <rect>
+                    <controlsTab name="tabButton" caption_key="xuiBack"/>
+                </rect>
+            </grid>
+        </rect>
+
+        <rect name="headerTemplate" width="560" height="32">
+            <label pos="20,0" font_size="32" name="caption" style="hover" text=""/>
+        </rect>
+
+        <rect name="controlTemplate">
+            <label name="label" depth="1" size="250,30" font_size="28" style="hover"/>
+            <sprite name="background" depth="0" pos="262,-2" size="240,28" on_press="true" color="0,0,0,1" type="sliced" foregroundlayer="true"/>
+            <label name="value" depth="1" pos="262,-3" size="220,26" font_size="26" justify="center" style="outline"/>
+        	<button name="unbind" style="inputUnbind" pos="496,-13"/>
+        </rect>
+
+        <rect name="tabsContents" depth="2" pos="230,0" height="611">
+            <rect tab_key="xuiOptionsControlsGeneric">
+                <grid pos="8,-40" rows="13" cell_width="600" cell_height="45" repeat_content="false" arrangement="vertical">
+                    <optionControl name="LookSensitivity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0.00"/>
+                    <optionControl name="ZoomSensitivity" type="ComboBoxFloat" value_increment="0.01" value_wrap="false" format_string="0.00"/>
+                    <optionControl name="VehicleSensitivity" type="ComboBoxFloat" value_increment="0.01" value_wrap="false" format_string="0.00"/>
+					<optionControl name="WeaponAiming" type="ComboBoxBool" localization_prefix="xuiWeaponAimingCombo"/>
+					<optionControl name="InvertMouseLookY" type="ComboBoxBool"/>
+                    <optionControl name="AllowController" type="ComboBoxBool"/>
+                    <optionControl name="ControllerInterfaceSensitivity" type="ComboBoxFloat" value_increment="0.1" value_wrap="false" format_string="0.00"/>
+                    <optionControl name="ControllerVibration" type="ComboBoxBool"/>
+                </grid>
+            </rect>
+
+            <rect name="controls_movement">
+                <grid pos="8,-40" name="controlsGrid" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal"/>
+                <grid depth="0" pos="8,-40" rows="16" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+                    <controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+                </grid>
+            </rect>
+
+            <rect name="controls_toolbelt">
+                <grid pos="8,-40" name="controlsGrid" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal"/>
+                <grid depth="0" pos="8,-40" rows="14" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+                    <controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+                </grid>
+            </rect>
+
+            <rect name="controls_vehicle">
+                <grid pos="8,-40" name="controlsGrid" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal"/>
+                <grid depth="0" pos="8,-40" rows="13" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+                    <controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+                </grid>
+            </rect>
+
+            <rect name="controls_menu">
+                <grid pos="8,-40" name="controlsGrid" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal"/>
+                <grid depth="0" pos="8,-40" rows="13" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+                    <controlTemplate/><rect/>
+                    <rect/><rect/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                </grid>
+            </rect>
+
+            <rect name="controls_ui">
+                <grid pos="8,-40" name="controlsGrid" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal"/>
+                <grid depth="0" pos="8,-40" rows="13" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+                    <controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                </grid>
+            </rect>
+
+            <rect name="controls_misc">
+                <grid pos="8,-40" name="controlsGrid" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal"/>
+                <grid depth="0" pos="8,-40" rows="13" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+                    <controlTemplate/><controlTemplate/>
+                    <rect/>
+                    <rect/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/>
+                </grid>
+            </rect>
+
+            <rect name="controls_edit_mode">
+                <grid pos="8,-40" name="controlsGrid" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal"/>
+                <grid depth="0" pos="8,-40" rows="13" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+                    <rect/><rect/>
+                    <controlTemplate/><controlTemplate/>
+                    <controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+                    <rect/><rect/>
+                    <controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+					<controlTemplate/><controlTemplate/>
+                </grid>
+            </rect>
+			
+			<rect name="controls_general">
+				<grid pos="8,-40" name="controlsGrid" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal"/>
+                <grid depth="0" pos="8,-40" rows="5" cols="2" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+                    <controlTemplateViewOnly/><controlTemplateViewOnly/>
+					<controlTemplateViewOnly/><controlTemplateViewOnly/>
+					<controlTemplateViewOnly/><controlTemplateViewOnly/>
+					<controlTemplateViewOnly/><controlTemplateViewOnly/>
+					<controlTemplateViewOnly/><controlTemplateViewOnly/>
+                </grid>
+			</rect>
+			
+			<!-- Controller -->
+			<rect tab_key="xuiOptionsControlsController">
+				<grid pos="8,-40" name="controlsGrid" rows="2" cols="1" cell_width="550" cell_height="45" repeat_content="false" arrangement="horizontal">
+					<optionControl name="ShowDS4" type="ComboBoxBool" localization_prefix="xuiBoolDualShock4"/>
+					<optionControl name="ShowBindingsFor" type="ComboBoxList`1[System.String]" values="Player, Vehicles, UI" localization_prefix="xuiControlBindingsFor"/>
+				</grid>
+					
+				<rect name="controllerlayout" pos="-59,-100">
+					<sprite pos="600,-346" width="750" height="500" depth="2" pivot="center" atlas="{controller_atlas}" sprite="Controller_Art_PC" color="[white]"/>
+					<sprite pos="600,-346" width="750" height="500" depth="3" pivot="center" atlas="UIBackground" sprite="{controller_atlas}" color="100,100,250"/>
+					
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-100" name="Menu"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-150" name="RightTrigger"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-200" name="RightBumper"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-250" name="Action4"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-300" name="Action2"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-350" name="Action3"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-400" name="Action1"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-450" name="RightStick"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="left" justify="left" pos="926,-500" name="RightStickButton"/>
+						
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-100" name="View"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-150" name="LeftTrigger"/>
+					<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-200" name="LeftBumper"/>
+
+					<rect name="xb1" visible="{isxb1}">
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-250" name="LeftStick"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-300" name="LeftStickButton"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-350" name="DPadUp"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-400" name="DPadLeft"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-450" name="DPadDown"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-500" name="DPadRight"/>
+					</rect>
+
+					<rect name="ds4" visible="{isds4}">
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-250" name="DPadUp"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-300" name="DPadLeft"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-350" name="DPadDown"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-400" name="DPadRight"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-450" name="LeftStick"/>
+						<label depth="4" text="" size="200,50" on_hover="true" pivot="right" justify="right" pos="258,-500" name="LeftStickButton"/>
+					</rect>
+				</rect>
+            </rect>
+        </rect>
+	</rect>
+</window>
+
+<window name="optionsProfiles" pos="510,480" anchor="LeftCenter" size="1500,1000" controller="ULM_OptionsProfiles,UndeadLegacy" cursor_area="true">
+	<mainMenu pos="-360,-480"/>
+	<ulmMenuButton pos="-360,-823" name="btnBack" text="xuiBack" sound="[sfx_btn_menu_back]"/>
+	<background size="1270,1000"/>
+    <rect depth="1" name="content" pos="4,14">
+        <label style="ulmHeaderNoIcon" text_key="xuiOptionsProfiles"/>
+    </rect>
+	<rect depth="2" pos="9,-50" size="420,58">
+		<sprite style="background"/>
+        <label depth="2" pos="0,-10" text="{profileName}" font_size="40" justify="center"/>
+	</rect>
+
+	<rect depth="2" pos="9,-110" size="420,750" style="hover, scroll, drag" controller="ArchetypePreviewWindow">
+		<sprite style="background" height="850"/>
+		<texture depth="100" pos="20,-20" size="380,730" name="playerPreview" material="Materials/Transparent Colored" globalopacity="false"/>
+	</rect>
+
+	<rect name="profiles" pos="0,-50" height="700" width="600" controller="ProfilesList" cursor_controllable="true" clear_searchtext_on_open="true">
+
+		<rect depth="4" pos="1006,67" name="searchControls">
+			<sprite style="background" depth="2" size="240,40" atlas="UIBackground" sprite="ui_input_240x40" pos="4,-4" color="[bgInput]"/>
+			<sprite depth="3" size="20,20" pos="13,-13" sprite="symbol_search" color="255,255,255,80"/>
+			<panel depth="4" pos="10,-10" width="230" disableautobackground="true" console_enabled="false">
+				<textfield depth="1" pos="0,0" width="230" height="26" character_limit="22" name="searchInput" virtual_keyboard_prompt="vkPromptSearchTerm" search_field="true" close_group_on_tab="true" backgroundcolor="0,0,0,1"/>
+			</panel>
+		</rect>
+		
+		<sprite style="background" pos="442,-720" size="810,190"/>
+		
+		<grid depth="2" pos="442,0" name="list" rows="12" cols="3" cell_width="270" cell_height="60" repeat_content="true" arrangement="vertical">
+			<ulmCharacterProfileEntry width="268"/>
+		</grid>
+		
+		<pager name="pager" pos="794,-736"/>
+
+		<ulmButtonOption pos="219,-858" name="btnOk" caption_key="xuiOk" sound="[sfx_btn_start]"/>
+
+		<grid pos="610,-858" rows="1" cols="4" cell_width="235" cell_height="68" repeat_content="false" arrangement="horizontal">
+			<ulmButtonOption name="btnProfileEdit" caption_key="xuiProfileEdit"/>
+			<ulmButtonOption name="btnProfileCreate" caption_key="xuiProfileCreate"/>
+			<ulmButtonOption name="btnProfileDelete" caption_key="xuiProfileDelete"/>
+		</grid>
+	</rect>
+		
+	<panel depth="10000" pos="360,-340" name="createProfilePanel" createuipanel="true" disableautobackground="true" on_hover="true">
+		<sprite style="background" pos="-364,364" size="1270,1000" color="32,32,32,235"/>
+		<rect depth="10000">
+			<background size="550,280"/>
+			<rect depth="1" name="content" pos="4,14">
+				<label style="ulmHeaderNoIcon" text_key="xuiCreateProfileHeader"/>
+			</rect>
+			<rect depth="2" pos="40,-67" height="60">
+				<sprite style="background" pos="4,-4" size="450,60" atlas="UIBackground" sprite="ui_input_300x40" color="[bgInput]"/>
+				<panel depth="4" pos="20,-15" width="410" disableautobackground="true" console_enabled="false">
+					<textfield depth="1" pos="0,0" width="410" height="40" character_limit="24" name="createProfileName" virtual_keyboard_prompt="vkPromptSearchTerm" search_field="true" close_group_on_tab="true" backgroundcolor="0,0,0,1"/>
+				</panel>
+			</rect>
+			<ulmButtonOption pos="132,-200" name="btnCancel" caption_key="xuiCancel" sound="[sfx_btn_menu_back]"/>
+			<ulmButtonOption pos="407,-200" name="btnConfirm" caption_key="xuiProfileCreate" sound="[sfx_btn_start]"/>
+		</rect>
+	</panel>
+
+	<panel depth="10000" pos="360,-340" name="deleteProfilePanel" createuipanel="true" disableautobackground="true" on_hover="true">
+		<sprite style="background" pos="-364,364" size="1270,1000" color="32,32,32,235"/>
+		<rect depth="10000">
+			<background size="550,280"/>
+			<rect depth="1" name="content" pos="4,14">
+				<label style="ulmHeaderNoIcon" text_key="xuiDeleteProfile"/>
+				<rect depth="2" pos="10,-70" size="510,100">
+					<label depth="2" name="deleteText" justify="center"/>
+				</rect>
+			</rect>
+			<ulmButtonOption pos="132,-200" name="btnCancel" caption_key="xuiCancel" sound="[sfx_btn_menu_back]"/>
+			<ulmButtonOption pos="407,-200" name="btnConfirm" caption_key="btnConfirm" sound="[sfx_btn_start]"/>
+		</rect>
+	</panel>
+</window>
+	
+<window name="optionsMenu" depth="100" pos="150,0" anchor="LeftCenter" size="300,525" controller="OptionsMenu" cursor_area="true">
+    <mainMenu/>
+	<grid pos="0,77" name="optionsButtons" rows="13" cell_width="300" cell_height="70" repeat_content="false" arrangement="vertical">
+		<ulmMenuButton name="btnVideo" text="xuiBtnOptionsVideo"/>
+        <ulmMenuButton name="btnAudio" text="xuiBtnOptionsAudio"/>
+        <ulmMenuButton name="btnControls" text="xuiBtnOptionsControls"/>
+		<rect>
+			<ulmMenuButton name="btnProfiles" text="xuiBtnOptionsProfiles" visible="{notingame}"/>
+		</rect>
+		<rect>
+			<ulmMenuButton name="btnAccount" text="xuiBtnOptionsAccount" visible="{notreleaseingame}"/>
+		</rect>
+		<rect>
+			<ulmMenuButton name="btnTwitch" text="xuiBtnOptionsTwitch" visible="{ingamenoteditor}"/>
+		</rect>
+		<ulmMenuButton pos="0,0" name="btnBack" text="xuiBack" sound="[sfx_btn_menu_back]"/>
+	</grid>
+</window>
+
+<window name="optionsAudio" pos="510,480" anchor="LeftCenter" size="1500,1000" cursor_area="true" controller="OptionsAudio">
+	<mainMenu pos="-360,-480"/>
+	<ulmMenuButton pos="-360,-823" name="btnBack" text="xuiBack" sound="[sfx_btn_menu_back]"/>
+	<background size="660,1000"/>
+    <rect depth="1" name="content" pos="4,14">
+        <label style="ulmHeaderNoIcon" text_key="xuiOptionsAudio"/>
+    </rect>
+	<sprite style="background" pos="6,-47" size="636,916"/>
+	
+    <grid depth="2" pos="43,-88" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical">
+        <optionAudio name="OverallAudioVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+        <rect/>
+        <optionAudio name="AmbientVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+        <optionAudio name="InGameMusicVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+		<optionAudio name="MenuMusicVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+        <rect/>
+        <optionAudio name="DynamicMusicEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo"/>
+		<optionAudio name="DynamicMusicDailyTimeAllotted" type="ComboBoxFloat" value_increment="0.1" value_wrap="false" format_string="0%"/>
+		<rect/>
+		<optionAudio name="VoiceChatEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" visible="{commsallowed}"/>
+		<optionAudio name="VoiceOutputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{commsallowed}"/>
+		<optionAudio name="VoiceInputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{commsallowed}"/>
+		<optionAudio name="VoiceVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" visible="{commsallowed}"/>
+    </grid>
+	<ulmButtonOption pos="140,-912" name="btnDefaults" caption_key="xuiDefaults" sound="[sfx_btn_menu_back]" visible="{isTabUi}"/>
+    <ulmButtonOption pos="506,-912" name="btnApply" caption_key="xuiApply" sound="[sfx_btn_start]"/>
+</window>
+
+<window name="optionsVideo" pos="510,480" anchor="LeftCenter" size="1500,1000" controller="ULM_OptionsVideo,UndeadLegacy" cursor_area="true">
+	<mainMenu pos="-360,-480"/>
+	<ulmMenuButton pos="-360,-823" name="btnBack" text="xuiBack" sound="[sfx_btn_menu_back]"/>
+    <ulmButtonOption pos="1120,-914" name="btnApply" caption_key="xuiApply" sound="[sfx_btn_start]"/>
+	<background size="1270,1000"/>
+    <rect depth="1" name="content" pos="4,14">
+        <label style="ulmHeaderNoIcon" text_key="headerVideo"/>
+    </rect>
+
+    <rect name="tabs" controller="TabSelector" pos="6,-42">
+		<sprite style="background" pos="0,-60" size="1247,862"/>
+        <rect name="tabsHeader" height="50" depth="0">
+            <grid name="tabButtons" rows="1" cols="5" cell_width="250" cell_height="50" repeat_content="true" arrangement="horizontal">
+                <rect>
+                    <ulmButtonTab name="tabButton" text="xuiBack"/>
+                </rect>
+            </grid>
+        </rect>
+
+        <rect depth="2" pos="22,-42" name="tabsContents" height="611">
+            <rect tab_key="headerDisplay">
+                <grid pos="8,-40" rows="13" cell_width="620" cell_height="45" repeat_content="false" arrangement="vertical">
+                    <optionVideo name="Resolution" type="ComboBoxList`1[XUiC_OptionsVideo+ResolutionInfo]" value_wrap="false"/>
+                    <optionVideo name="Fullscreen" type="ComboBoxList`1[System.String]" values="Off,On,Exclusive" localization_prefix="xuiOptionsVideoFullscreen" value_wrap="false"/>
+					<optionVideo name="DyMode" type="ComboBoxList`1[System.String]" values="Off,Auto,Scale" localization_prefix="xuiOptionsVideoDyMode" value_wrap="false"/>
+				    <optionVideo name="DyMinFPS" type="ComboBoxInt" value_increment="5" value_wrap="false"/>
+				    <optionVideo name="DyScale" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+                    <optionVideo name="VSync" type="ComboBoxList`1[System.String]" values="Off,On,Half" value_wrap="false"/>
+                    <rect>
+                        <optionVideo name="Brightness" type="ComboBoxFloat" value_increment="0.1" value_wrap="false" format_string="0%"/>
+						<ulmButtonDefault pos="580,0" name="btnDefaultBrightness" text="xuiDefault"/>
+                    </rect>
+                    <rect>
+						<optionVideo name="FieldOfView" type="ComboBoxInt" value_increment="2" value_wrap="false"/>
+						<ulmButtonDefault pos="580,0" name="btnDefaultFOV" text="xuiDefault"/>
+					</rect>
+                </grid>
+            </rect>
+			<rect tab_key="headerQuality">
+                <optionVideo pos="8,-40" name="QualityPreset" type="ComboBoxList`1[System.String]" values="Low,Medium,High,Ultra,Custom" value_wrap="false"/>
+				<grid pos="8,-130" rows="12" cols="2" cell_width="620" cell_height="45" repeat_content="false" arrangement="vertical">
+					<optionVideo name="StreamingMipmapsEnabled" type="ComboBoxBool" localization_prefix="xuiComboOnOff"/>
+					<optionVideo name="TextureQuality" type="ComboBoxList`1[System.String]" values="Full,Half,Quarter,Eighth" value_wrap="false" reverse_list="true"/>
+					<optionVideo name="UMATextureQuality" type="ComboBoxList`1[System.String]" values="High,Medium,Low,Lowest" localization_prefix="xuiOptionsVideoPresets" value_wrap="false" reverse_list="true"/>
+					<optionVideo name="TextureFilter" type="ComboBoxList`1[System.String]" values="Low,Medium,High,Ultra,Ultra+" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+                    <optionVideo name="ReflectionQuality" type="ComboBoxList`1[System.String]" values="Off,Low,Medium,High,Ultra,Ultra+" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+					<optionVideo name="ReflectedShadows" type="ComboBoxBool" localization_prefix="xuiComboOnOff"/>
+					<optionVideo name="SSReflections" type="ComboBoxList`1[System.String]" values="Off,Low,Medium,High" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+					<optionVideo name="ObjectQuality" type="ComboBoxList`1[System.String]" values="Lowest,Low,Medium,High,Ultra" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+					<optionVideo name="TerrainQuality" type="ComboBoxList`1[System.String]" values="Lowest,Low,Medium,High,Ultra" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+					<optionVideo name="WaterQuality" type="ComboBoxList`1[System.String]" values="Low,High" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+					<optionVideo name="Particles" type="ComboBoxFloat" value_increment="0.10" value_wrap="false" format_string="0%"/>
+					<optionVideo name="SunShafts" type="ComboBoxBool" localization_prefix="xuiComboOnOff"/>
+					<optionVideo name="ViewDistance" type="ComboBoxList`1[System.String]" values="Low,Medium,High" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+					<optionVideo name="ShadowsDistance" type="ComboBoxList`1[System.String]" values="Off,Near,Middle,Far" localization_prefix="xuiOptionsVideoDistance" value_wrap="false"/>
+					<optionVideo name="GrassDistance" type="ComboBoxList`1[System.String]" values="Lowest,Low,Medium,High" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+					<optionVideo name="LODDistance" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+
+                    <optionVideo name="AntiAliasing" type="ComboBoxList`1[System.String]" values="Off,Low,Medium,High,Temporal" localization_prefix="xuiOptionsVideoPresets" value_wrap="false"/>
+					<optionVideo name="AntiAliasingSharp" type="ComboBoxFloat" value_increment="0.10" value_wrap="false" format_string="0%"/>
+					<optionVideo name="DepthOfField" type="ComboBoxBool" localization_prefix="xuiComboOnOff"/>
+					<optionVideo name="Occlusion" type="ComboBoxBool" localization_prefix="xuiComboOnOff"/>
+					<optionVideo name="MotionBlur" type="ComboBoxList`1[System.String]" values="Off,Simple,Normal" localization_prefix="xuiOptionsVideoComplexity" value_wrap="false"/>
+					<optionVideo name="Bloom" type="ComboBoxBool" localization_prefix="xuiComboOnOff"/>
+					<optionVideo name="SSAO" type="ComboBoxBool" localization_prefix="xuiComboOnOff"/>
+				</grid>
+			</rect>
+			<rect tab_key="xuiOptionsDynamicMesh">
+				<grid pos="8,-40" rows="12" cell_width="620" cell_height="45" repeat_content="false" arrangement="vertical">
+					<optionVideo name="DynamicMeshEnabled" type="ComboBoxBool" value_wrap="false" value_type="bool" values="" value_localization_prefix=""/>
+					<optionVideo name="DynamicMeshDistance" type="ComboBoxList`1[System.Int32]" value_wrap="false" value_type="int" values="100,500,1000,1500,2000" value_localization_prefix=""/>
+					<optionVideo name="DynamicMeshHighQualityMesh" type="ComboBoxBool" value_wrap="false" value_type="bool" values="" value_localization_prefix=""/>
+					<optionVideo name="DynamicMeshLandClaimOnly" type="ComboBoxBool" value_wrap="false" value_type="bool" values="" value_localization_prefix=""/>
+					<optionVideo name="DynamicMeshLandClaimBuffer" type="ComboBoxList`1[System.Int32]" value_wrap="false" value_type="int" values="1,2,3,4,5,6" value_localization_prefix=""/>
+					<optionVideo name="DynamicMeshMaxRegionLoads" type="ComboBoxList`1[System.Int32]" value_wrap="false" value_type="int" values="1,2,3" value_localization_prefix=""/>
+					<optionVideo name="DynamicMeshMaxMeshCache" type="ComboBoxList`1[System.Int32]" value_wrap="false" value_type="int" values="1,2,3,4,5,6" value_localization_prefix=""/>
+				</grid>
+			</rect>
+            <rect tab_key="headerUI">
+				<grid pos="8,-40" cols="2" rows="4" cell_width="620" cell_height="45" repeat_content="false" arrangement="vertical">
+					<optionVideo name="Language" type="ComboBoxList`1[XUiC_OptionsVideo+LanguageInfo]" value_wrap="false" width="900"/>
+					<optionVideo name="UIBackgroundOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+					<optionVideo name="UIForegroundOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+					<optionVideo name="UiSize" type="ComboBoxFloat" value_increment="0.02" value_wrap="false" format_string="0%"/>
+				    <optionVideo name="ScreenBounds" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+				 	<optionVideo name="UiFpsScaling" type="ComboBoxFloat" value_min="0.6" value_max="2.0" value_increment="0.2" value_wrap="false" format_string="0%"/>
+					<optionVideo name="TempCelsius" type="ComboBoxBool" localization_prefix="xuiBoolCelsius"/>
+					<optionVideo name="JournalPopup" type="ComboBoxBool" localization_prefix="optCombo"/>
+               </grid>
+				<grid pos="8,-265" cols="2" rows="11" cell_width="620" cell_height="45" repeat_content="false" arrangement="vertical">
+					<optionVideo name="ShowCarryWeight" type="ComboBoxList`1[System.String]" values="Disabled,Auto25,Auto50,Auto75,AlwaysOn" value_wrap="false" localization_prefix="opt"/>
+					<optionVideo name="ShowFood" type="ComboBoxList`1[System.String]" values="Disabled,Auto25,Auto50,Auto75,AlwaysOn" value_wrap="false" localization_prefix="opt"/>
+                    <optionVideo name="ShowWater" type="ComboBoxList`1[System.String]" values="Disabled,Auto25,Auto50,Auto75,AlwaysOn" value_wrap="false" localization_prefix="opt"/>
+					<optionVideo name="ShowStatValues" type="ComboBoxList`1[System.String]" values="Disabled,Inventory,AlwaysOn" value_wrap="false" localization_prefix="opt"/>
+					<rect/>
+                    <optionVideo name="ShowTargetHealth" type="ComboBoxBool" localization_prefix="optCombo"/>
+                    <optionVideo name="ShowTargetBlockHealth" type="ComboBoxBool" localization_prefix="optCombo"/>
+                    <optionVideo name="ShowTacticalHud" type="ComboBoxList`1[System.String]" values="Disabled,Enabled" value_wrap="false" localization_prefix="opt"/>
+					<optionVideo name="ShowMeleeCrosshair" type="ComboBoxList`1[System.String]" values="Disabled,Enabled" value_wrap="false" localization_prefix="opt"/>
+                	<optionVideo name="ShowRangedCrosshair" type="ComboBoxList`1[System.String]" values="Disabled,OnAimOff,Enabled" value_wrap="false" localization_prefix="opt"/>
+                    <optionVideo name="ShowOnScreenIcons" type="ComboBoxBool" localization_prefix="optCombo"/>
+					
+                    <optionVideo name="ShowToolbeltTooltip" type="ComboBoxBool" localization_prefix="optCombo"/>
+                    <optionVideo name="AutoHideToolbelt" type="ComboBoxList`1[System.String]" values="Disabled,After 5s,After 10s,After 15s,After 20s,After 25s,After 30s" value_wrap="false"/>
+                    <optionVideo name="AutoHideExpBar" type="ComboBoxList`1[System.String]" values="Disabled,After 5s,After 10s,After 15s,After 20s,After 25s,After 30s" value_wrap="false"/>
+                    <optionVideo name="ShowPlayerLevelOnHUD" type="ComboBoxBool" localization_prefix="optCombo"/>
+					<rect/>
+                    <optionVideo name="ShowSpeedometer" type="ComboBoxList`1[System.String]" values="Disabled,KPH,MPH" value_wrap="false" localization_prefix="opt"/>
+                	<optionVideo name="CompassInactiveMarkerOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+                    <optionVideo name="ShowDayAndTime" type="ComboBoxBool" localization_prefix="optCombo"/>
+                    <optionVideo name="UnloadUnusedAssets" type="ComboBoxBool" localization_prefix="optCombo"/>
+				    <optionVideo name="ShowDebugValues" type="ComboBoxBool" localization_prefix="optCombo"/>
+				</grid>
+				<!--
+                <rect pos="0,-35" size="578,28">
+                    <label text="GENERAL" justify="center"></label>
+                    <sprite pos="0,-45" type="sliced" height="2" color="255,255,255,128"/>
+                </rect>
+                <grid pos="8,-100" rows="13" cell_width="620" cell_height="45" repeat_content="false" arrangement="vertical">
+					<optionVideo name="UIBackgroundOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+					<optionVideo name="UIForegroundOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+					<optionVideo name="UiSize" type="ComboBoxFloat" value_increment="0.02" value_wrap="false" format_string="0%"/>
+				    <optionVideo name="ScreenBounds" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+					<optionVideo name="TempCelsius" type="ComboBoxBool" localization_prefix="xuiBoolCelsius"/>
+					<optionVideo name="JournalPopup" type="ComboBoxBool"/>
+                	<optionVideo name="UiFpsScaling" type="ComboBoxFloat" value_min="0.6" value_max="2.0" value_increment="0.2" value_wrap="false" format_string="0%"/>
+					<rect/>
+					<optionVideo name="ShowCarryWeight" type="ComboBoxList`1[System.String]" values="Disabled,Auto25,Auto50,Auto75,AlwaysOn" value_wrap="false" localization_prefix="opt"/>
+					<optionVideo name="ShowWater" type="ComboBoxList`1[System.String]" values="Disabled,Auto25,Auto50,Auto75,AlwaysOn" value_wrap="false" localization_prefix="opt"/>
+					<optionVideo name="ShowFood" type="ComboBoxList`1[System.String]" values="Disabled,Auto25,Auto50,Auto75,AlwaysOn" value_wrap="false" localization_prefix="opt"/>
+                    <optionVideo name="ShowStatValues" type="ComboBoxList`1[System.String]" values="Disabled,Inventory,AlwaysOn" value_wrap="false" localization_prefix="opt"/>
+				</grid>
+                <rect pos="610,-35" size="578,28">
+                    <label text="UNDEAD LEGACY" justify="center"></label>
+                    <sprite pos="0,-45" type="sliced" height="2" color="255,255,255,128"/>
+                </rect>
+                <grid pos="618,-100" rows="13" cell_width="600" cell_height="45" repeat_content="false" arrangement="vertical">
+                    <optionVideo name="AutoHideToolbelt" type="ComboBoxList`1[System.String]" values="Disabled,After 5s,After 10s,After 15s,After 20s,After 25s,After 30s" value_wrap="false"/>
+                    <optionVideo name="AutoHideExpBar" type="ComboBoxList`1[System.String]" values="Disabled,After 5s,After 10s,After 15s,After 20s,After 25s,After 30s" value_wrap="false"/>
+                    <optionVideo name="ShowPlayerLevelOnHUD" type="ComboBoxBool"/>
+                    <optionVideo name="ShowSpeedometer" type="ComboBoxList`1[System.String]" values="Disabled,kmh,mph" value_wrap="false" localization_prefix="opt"/>
+                    <optionVideo name="ShowTacticalHud" type="ComboBoxList`1[System.String]" values="Disabled,Enabled" value_wrap="false" localization_prefix="opt"/>
+                    <optionVideo name="ShowTargetBlockHealth" type="ComboBoxBool"/>
+                    <optionVideo name="ShowTargetHealth" type="ComboBoxBool"/>
+                    <optionVideo name="ShowDayAndTime" type="ComboBoxBool"/>
+                    <optionVideo name="ShowToolbeltTooltip" type="ComboBoxBool"/>
+                    <optionVideo name="ShowDebugValues" type="ComboBoxBool"/>
+                    <optionVideoInProgress name="ShowMeleeIcon" type="ComboBoxBool"/>
+                </grid>
+				-->
+				<ulmButtonOption pos="106,-834" name="btnDefaults" caption_key="xuiDefaults" sound="[sfx_btn_menu_back]"/>
+            </rect>
+        </rect>
+    </rect>
+</window>
+
+<window name="toolTip" depth="500" size="100,25" controller="ToolTip" above_soft_cursor="true">
+	<rect pos="-10,0">
+		<sprite depth="0" name="sprBackgroundBorder" type="sliced" sprite="ui_fill" color="90,90,90,240" foregroundlayer="true"/>
+		<sprite depth="1" name="sprBackground" type="sliced" sprite="ui_fill" pos="3,-3" color="[ulmWindowBackground]"/>
+		<label depth="3" name="lblText" text="" pos="10,-6" font_size="30" overflow="resizefreely" style="outline"/>
+	</rect>
+</window>
+
+<window name="serverBrowser" anchor="CenterCenter" pos="-750,480" size="1500,1000" controller="ULM_ServerBrowser,UndeadLegacy" cursor_area="true">
+	<rect name="browser">
+		<background size="1500,1000"/>
+		<panel name="header" depth="1" pos="4,14" size="649,629" on_scroll="true" disableautobackground="true">
+			<label style="ulmHeaderNoIcon" text_key="{browserTitle}" width="500"/>
+		</panel>
+
+		<rect pos="0,-920">
+			<grid depth="3" pos="132,0" rows="1" cols="4" cell_width="240" cell_height="100" repeat_content="false" arrangement="horizontal">
+				<ulmButtonOption name="btnBackToMainMenu" caption_key="xuiBack"/>
+				<ulmButtonOption name="btnBack" caption_key="uiServerFilters"/>
+				<ulmButtonOption name="btnRefreshList" caption_key="uiRefreshServerList"/>
+				<ulmButtonOption name="btnDirectConnect" caption_key="xuiServerBrowserDirectConnect"/>
+			</grid>
+			<ulmButtonOption pos="1360,0" name="btnConnect" caption_key="xuiServerBrowserConnect" sound="[sfx_btn_start]"/>
+		</rect>
+			
+		<rect name="servers" pos="6,-50" size="770,816" controller="ServersList" matching_version_color="60,255,60,128" compatible_version_color="255,216,0" incompatible_version_color="255,0,0" clear_selection_on_open="false" clear_searchtext_on_open="true">
+			<sprite style="background" pos="0,4" atlas="UIBackground" sprite="ui_server_list_bg" size="770,816"/>
+			<grid pos="5,-2" rows="1" cols="5" depth="3" cell_width="154" cell_height="36" repeat_content="false" arrangement="horizontal" >
+				<rect name="typeDedicated">
+					<button name="button" pos="25,-22" width="36" height="36" sprite="server_stock" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeDedicatedTooltip" selected="{typededicatedselected}"/>
+					<label name="label" pos="48,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typededicatedcount}"/>
+				</rect>
+				<rect name="typePeer">
+					<button name="button" pos="22,-22" width="36" height="36" sprite="server_peer" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypePeerTooltip" selected="{typepeerselected}"/>
+					<label name="label" pos="45,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typepeercount}"/>
+				</rect>
+				<rect name="typeFriends">
+					<button name="button" pos="22,-22" width="36" height="36" sprite="server_friends" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeFriendsTooltip" selected="{typefriendsselected}"/>
+					<label name="label" pos="45,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typefriendscount}"/>
+				</rect>
+				<rect name="typeHistory">
+					<button name="button" pos="22,-22" width="36" height="36" sprite="server_history" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeHistoryTooltip" selected="{typehistoryselected}"/>
+					<label name="label" pos="45,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typehistorycount}"/>
+				</rect>
+				<rect name="typeLAN">
+					<button name="button" pos="22,-22" width="36" height="36" sprite="server_lan" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeLANTooltip" selected="{typelanselected}"/>
+					<label name="label" pos="45,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typelancount}"/>
+				</rect>
+			</grid>
+			
+			<rect visible="{# alwaysHidden}">
+				<searchField pos="1190,67"/>
+				<button name="btnShowFilters" pos="1443,44" width="30" height="30" sprite="server_filter" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="left" tooltip_key="xuiServerBrowserShowFiltersTooltip"/>
+			</rect>
+			
+			<label name="limitWarning" pos="220,-66" width="400" height="34" pivot="Center" justify="Center" font_size="32" color="[red]" text="{limitwarningtext}" tooltip="{limitwarningtooltip}" on_hover="true" visible="{limitwarningvisible}"/>
+				
+			<ulmServerListHeader pos="8,-60" name="serverlistheader" depth="2" width="750" height="40"/>
+			<grid depth="2" pos="8,-102" name="list" rows="16" cols="1" height="490" cell_width="750" cell_height="40" repeat_content="true" arrangement="vertical" >
+				<ulmServerListEntry width="750" height="33"/>
+			</grid>
+			<pager name="pager" pos="334,-757"/>
+		</rect>
+			
+		<rect name="serverinfo" controller="ServerInfo" pos="784,-42" size="698,760">
+			<sprite style="background" pos="0,-60" atlas="UIBackground" sprite="ui_server_info_bg" size="698,760"/>
+			<panel controller="TabSelector" disableautobackground="true">
+				<rect name="tabsHeader" depth="0">
+					<grid name="tabButtons" rows="1" cols="4" size="700,50" cell_width="175" cell_height="50" repeat_content="true" arrangement="horizontal">
+						<ulmButtonTab name="tabButton" text="xuiBack" width="173" sprite="ui_btn_tab_173" sprite_s="ui_btn_tab_173_s" sprite_h="ui_btn_tab_173_h"/>
+					</grid>
+				</rect>
+				<rect name="tabsContents" depth="2" pos="5,-60" is_serverbrowser="true">
+					<rect tab_key="xuiGameSettingsGeneral">
+						<rect pos="19,-35">
+							<sprite depth="5" pos="0,0" style="inputOption" size="642,250" sprite="ui_server_info_desc"/>
+							<label depth="6" pos="10,-10" width="622" height="200" font_size="30" name="ServerDescription" justify="center" pivot="topleft" upper_case="false"/>
+							<label depth="6" pos="10,-210" width="622" height="30" font_size="30" name="ServerWebsiteURL" justify="center" style="press, hover" pivot="topleft" upper_case="false"/>
+						</rect>
+						<grid pos="15,-300" rows="15" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical">
+							<ulmServerListOptionInfo name="CurrentServerTime" title="goServerTime"/>
+							<ulmServerListOptionInfo name="Region" title="goRegion" value_localization_prefix="goRegionName"/>
+							<ulmServerListOptionInfo name="Language" title="goLanguage"/>
+							<ulmServerListOptionInfo name="WorldSize" title="goGameWorldSize"/>
+							<!-- On table: <browsergameoptioninfo name="EACEnabled" title="goEacEnabled"/> -->
+							<!-- On table: <browsergameoptioninfo name="IsPasswordProtected" title="goPasswordProtected"/> -->
+							<!-- On table: <browsergameoptioninfo name="CurrentPlayers" title="goCurrentPlayers" value_localization_prefix="goPlayer"/> -->
+							<!-- On table: <browsergameoptioninfo name="MaxPlayers" title="goMaxPlayers" value_localization_prefix="goPlayer"/> -->
+							<!-- On table: <browsergameoptioninfo name="Ping" title="goPing" value_localization_prefix="goPingVal"/> -->
+							<!-- On table: <browsergameoptioninfo name="LevelName" title="goGameWorld"/> -->
+							<!-- GameMode basically unused (only creative + prefab editor): <browsergameoptioninfo name="GameMode" title="goGameMode" value_localization_prefix="gm"/> -->
+							<!-- Currently not used: <browsergameoptioninfo name="RequiresMod" title="goRequiresMod"/> -->
+							<ulmServerListOptionInfo name="StockSettings" title="goStockSettings"/>
+							<ulmServerListOptionInfo name="StockFiles" title="goStockFiles"/>
+							<ulmServerListOptionInfo name="IP" title="goIp"/>
+							<ulmServerListOptionInfo name="Port" title="goPort"/>
+							<ulmServerListOptionInfo name="Version" title="goVersion"/>
+							<ulmServerListOptionInfo name="UndeadLegacyVersion" title="optUndeadLegacyVersion"/>
+						</grid>
+					</rect>
+					<rect tab_key="xuiGameSettingsBasic">
+						<grid pos="15,-40" rows="15" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<!--<ulmServerListOptionInfo name="PersistentPlayerProfiles" title="goPersistentCharacters"/>-->
+							<ulmServerListOptionInfo name="GameDifficulty" title="goDifficulty" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6"/>
+							<ulmServerListOptionInfo name="DayNightLength" title="goDayLength" value_localization_prefix="goMinute"/>
+							<ulmServerListOptionInfo name="DayLightLength" title="goDayLightLength" value_localization_prefix="goDayLightLengthValue"/>
+							<ulmServerListOptionInfo name="ZombieMove" title="goZombieMove" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare"/>
+							<ulmServerListOptionInfo name="ZombieMoveNight" title="goZombieMoveNight" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare"/>
+							<ulmServerListOptionInfo name="ZombieFeralMove" title="goZombieFeralMove" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare"/>
+							<ulmServerListOptionInfo name="ZombieBMMove" title="goZombieBMMove" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare"/>
+							<ulmServerListOptionInfo name="ZombieFeralSense" title="goZombieFeralSense" display_names="goOff,goZMDay,goZMNight,goZMAll"/>
+							<ulmServerListOptionInfo name="MaxSpawnedZombies" title="goMaxSpawnedZombies"/>
+							<ulmServerListOptionInfo name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals"/>
+							<ulmServerListOptionInfo name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goXPMultiplierValue"/>
+						</grid>
+					</rect>
+					<rect tab_key="xuiGameSettingsAdvanced">
+						<grid pos="15,-40" rows="15" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<ulmServerListOptionInfo name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+							<ulmServerListOptionInfo name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+							<ulmServerListOptionInfo name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+							<ulmServerListOptionInfo name="LootAbundance" title="goLootAbundance" value_localization_prefix="goLootAbundanceValue"/>
+							<ulmServerListOptionInfo name="LootRespawnDays" title="goLootRespawnDays" display_names="-1=goDisabled" value_localization_prefix="goLootRespawnDaysValue"/>
+							<ulmServerListOptionInfo name="DropOnDeath" title="goDropOnDeath" display_names="goNone,goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix=""/>
+							<ulmServerListOptionInfo name="DropOnQuit" title="goDropOnQuit" display_names="goNone,goAll,goToolbelt,goBackpack" value_localization_prefix=""/>
+							<ulmServerListOptionInfo name="BloodMoonEnemyCount" title="goBloodMoonEnemyCount" value_localization_prefix="goEnemie"/>
+							<ulmServerListOptionInfo name="EnemySpawnMode" title="goEnemySpawn" value_localization_prefix=""/>
+							<ulmServerListOptionInfo name="AirDropFrequency" title="goAirDropFrequency" display_names="goDisabled"/>
+							<ulmServerListOptionInfo name="BuildCreate" title="goBuildCreate"/>
+							<ulmServerListOptionInfo name="AirDropMarker" title="goMarkAirDrops"/>
+						</grid>
+					</rect>
+					<rect tab_key="xuiGameSettingsMultiplayer">
+						<grid pos="15,-40" rows="15" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<ulmServerListOptionInfo name="PlayerKillingMode" title="goPlayerKillingMode" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone"/>
+							<ulmServerListOptionInfo name="LandClaimSize" title="goLandClaimSize" value_localization_prefix="goLandClaimSizeValue"/>
+							<ulmServerListOptionInfo name="LandClaimDeadZone" title="goLandClaimDeadZone" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue"/>
+							<ulmServerListOptionInfo name="LandClaimExpiryTime" title="goLandClaimExpiryTime" value_localization_prefix="goLandClaimExpiryTimeValue"/>
+							<ulmServerListOptionInfo name="LandClaimDecayMode" title="goLandClaimDecayMode" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone"/>
+							<ulmServerListOptionInfo name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue"/>
+							<ulmServerListOptionInfo name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue"/>
+							<ulmServerListOptionInfo name="LandClaimOfflineDelay" title="goLandClaimOfflineDelay" display_names="" value_localization_prefix="goMinute"/>
+							<ulmServerListOptionInfo name="BedrollDeadZoneSize" title="goBedrollDeadZoneSize" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue"/>
+							<ulmServerListOptionInfo name="BedrollExpiryTime" title="goBedrollExpiryTime" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue"/>
+							<ulmServerListOptionInfo name="PartySharedKillRange" title="goPartySharedKillRange" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue"/>
+							<ulmServerListOptionInfo name="ShowFriendPlayerOnMap" title="goShowFriendPlayerOnMap"/>
+						</grid>
+					</rect>
+				</rect>
+			</panel>
+		</rect>
+	</rect>
+		
+	<panel name="serverfilters" pos="300,-60" depth="100" createuipanel="true" on_press="true" disableautobackground="true" controller="ServerFilters" visible="{filtersvisible}">
+		<panel name="outclick" pos="-3300,3100" width="10000" height="10000" depth="1" createuipanel="true" on_press="true" disableautobackground="true">
+			<sprite name="backgroundMain" style="background" color="32,32,32,235" globalopacity="false"/>
+		</panel>
+			
+		<panel name="noclick" depth="2" createuipanel="true" on_press="true" pos="-20,20" width="770" height="840" clipping="softclip" clippingsoftness="20,20" disableautobackground="true">
+			<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,50" type="sliced" fillcenter="true"/>
+		</panel>
+			
+		<panel controller="TabSelector" pos="0,-50" depth="10" width="730" height="750" createuipanel="true" disableautobackground="true">
+			<background size="890,780"/>
+			<panel name="header" depth="1" pos="4,14" size="649,629" on_scroll="true" disableautobackground="true">
+				<label style="ulmHeaderNoIcon" text_key="xuiServerFilters"/>
+				<button name="btnCloseFilters" pos="870,-20" width="26" height="26" sprite="symbol_x" defaultcolor="180,180,180" hovercolor="[white]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="right"/>
+			</panel>
+			<rect pos="0,-710">
+				<ulmButtonOption pos="0,10000" name="btnBack" caption_key="xuiBack"/>
+				<ulmButtonOption pos="132,0" name="btnResetFilters" caption_key="xuiServerFiltersReset"/>
+				<ulmButtonOption pos="748,0" name="btnStartSearch" caption_key="xuiServerStartSearch"/>
+			</rect>
+			<rect name="tabsHeader" pos="0,-40" depth="0">
+				<grid name="tabButtons" rows="1" cols="5" size="700,50" cell_width="175" cell_height="50" repeat_content="true" arrangement="horizontal">
+					<ulmButtonTab name="tabButton" text="xuiBack" width="173" sprite="ui_btn_tab_173" sprite_s="ui_btn_tab_173_s" sprite_h="ui_btn_tab_173_h"/>
+				</grid>
+			</rect>
+			<rect name="tabsContents" depth="2" pos="0,-87" size="726,711" is_serverbrowser="true">
+				<sprite style="background" pos="0,-13" atlas="UIBackground" sprite="ui_server_filters_bg" size="873,560"/>
+				<rect tab_key="xuiGameSettingsServer">
+					<grid pos="8,-40" rows="14" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<browsergameoptionstring name="GameHost" title="goGameHost" visible="{isprefilteredsearch}"/>
+						<browsergameoptioncombined name="Region" title="goRegion" value_wrap="false" values="NorthAmericaEast,NorthAmericaWest,CentralAmerica,SouthAmerica,Europe,Russia,Asia,MiddleEast,Africa,Oceania" display_names="" value_localization_prefix="goRegionName" allow_custom="false" allow_any="{# !isprefilteredsearch}"/>
+						<browsergameoptionstring name="Language" title="goLanguage"/>
+						<rect/>
+						<browsergameoptioncombined name="EACEnabled" title="goEacEnabled" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="IsPasswordProtected" title="goPasswordProtected" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+						<rect/>
+						<browsergameoptioncombined name="FreePlayerSlots" title="goFreePlayerSlots" value_wrap="false" values="" display_names="" value_localization_prefix="goPlayer" allow_custom="true" force_custom="true" default_min="1"/>
+						<browsergameoptioncombined name="CurrentPlayers" title="goCurrentPlayers" value_wrap="false" values="" display_names="" value_localization_prefix="goPlayer" allow_custom="true" force_custom="true"/>
+						<browsergameoptioncombined name="MaxPlayers" title="goMaxPlayers" value_wrap="false" values="" display_names="" value_localization_prefix="goPlayer" allow_custom="true" force_custom="true"/>
+						<browsergameoptioncombined name="Ping" title="goPing" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true" visible="{# !isprefilteredsearch}"/>
+						<rect/>
+					</grid>
+				</rect>
+
+				<rect tab_key="xuiGameSettingsGeneral">
+					<grid pos="8,-40" rows="14" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<browsergameoptionstring name="LevelName" title="goGameWorld"/>
+						<browsergameoptioncombined name="WorldSize" title="goGameWorldSize" value_wrap="false" values="6144,8192,10240" display_names="" value_localization_prefix="" allow_custom="true"/>
+						<browsergameoptioncombined name="CurrentServerTime" title="goServerTimeDays" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true"/>
+						<rect/>
+						<browsergameoptioncombined name="StockSettings" title="goStockSettings" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="StockFiles" title="goStockFiles" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="RequiresMod" title="goRequiresMod" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+					</grid>
+				</rect>
+
+				<rect tab_key="xuiGameSettingsBasic">
+					<grid pos="8,-40" rows="13" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<browsergameoptioncombined name="GameDifficulty" title="goDifficulty" value_wrap="false" values="" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="DayNightLength" title="goDayLength" value_wrap="false" values="10, 20, 30, 40, 50, 60, 90, 120" display_names="" value_localization_prefix="goMinute"/>
+						<browsergameoptioncombined name="DayLightLength" title="goDayLightLength" value_wrap="false" values="12, 14, 16, 18" display_names="" value_localization_prefix="goDayLightLengthValue"/>
+						<browsergameoptioncombined name="ZombieMove" title="goZombieMove" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false"  />
+						<browsergameoptioncombined name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false"/>
+						<browsergameoptioncombined name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false"/>
+						<browsergameoptioncombined name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false"/>
+						<browsergameoptioncombined name="ZombieFeralSense" title="goZombieFeralSense" value_wrap="false" value_type="int" values="" display_names="goOff,goZMDay,goZMNight,goZMAll" value_localization_prefix="" allow_custom="false"/>
+						<!--<gameoption name="PersistentPlayerProfiles" title="goPersistentCharacters" value_wrap="false" values="" display_names="" value_localization_prefix=""/>-->
+						<browsergameoptioncombined name="MaxSpawnedZombies" title="goMaxSpawnedZombies" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true"/>
+						<browsergameoptioncombined name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true"/>
+						<browsergameoptioncombined name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goXPMultiplierValue"/>
+					</grid>
+				</rect>
+
+				<rect tab_key="xuiGameSettingsAdvanced">
+					<grid pos="8,-40" rows="13" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<browsergameoptioncombined name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+						<browsergameoptioncombined name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+						<browsergameoptioncombined name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue"/>
+						<browsergameoptioncombined name="LootAbundance" title="goLootAbundance" value_wrap="false" values="25, 33, 50, 67, 75, 100, 150, 200" display_names="" value_localization_prefix="goLootAbundanceValue"/>
+						<browsergameoptioncombined name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" values="-1, 5, 7, 10, 15, 20, 30, 40, 50" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue"/>
+						<browsergameoptioncombined name="DropOnDeath" title="goDropOnDeath" value_wrap="false" values="" display_names="goNone,goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="DropOnQuit" title="goDropOnQuit" value_wrap="false" values="" display_names="goNone,goAll,goToolbelt,goBackpack" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="BloodMoonEnemyCount" title="goBloodMoonEnemyCount" value_wrap="false" values="4, 6, 8, 10, 12, 16, 24, 32, 64" display_names="" value_localization_prefix="goEnemie"/>
+						<browsergameoptioncombined name="EnemySpawnMode" title="goEnemySpawn" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="AirDropFrequency" title="goAirDropFrequency" value_wrap="false" values="0, 24, 72, 168" display_names="goDisabled" value_localization_prefix="goAirDropValue"/>
+						<browsergameoptioncombined name="BuildCreate" title="goBuildCreate" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="AirDropMarker" title="goMarkAirDrops" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+					</grid>
+				</rect>
+					
+				<rect tab_key="xuiGameSettingsMultiplayer">
+					<grid pos="8,-40" rows="13" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<browsergameoptioncombined name="PlayerKillingMode" title="goPlayerKillingMode" value_wrap="false" values="" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="LandClaimSize" title="goLandClaimSize" value_wrap="false" values="21, 31, 41, 51, 71" display_names="" value_localization_prefix="goLandClaimSizeValue"/>
+						<browsergameoptioncombined name="LandClaimDeadZone" title="goLandClaimDeadZone" value_wrap="false" values="0, 5, 10, 15, 20, 30, 40, 50" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue"/>
+						<browsergameoptioncombined name="LandClaimExpiryTime" title="goLandClaimExpiryTime" value_wrap="false" values="1, 2, 3, 4, 5, 7, 10, 30" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue"/>
+						<browsergameoptioncombined name="LandClaimDecayMode" title="goLandClaimDecayMode" value_wrap="false" values="" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone" value_localization_prefix="" allow_custom="false"/>
+						<browsergameoptioncombined name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" value_wrap="false" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue"/>
+						<browsergameoptioncombined name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" value_wrap="false" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue"/>
+						<browsergameoptioncombined name="LandClaimOfflineDelay" title="goLandClaimOfflineDelay" value_wrap="false" values="0, 1, 5, 10, 20, 30, 60" display_names="" value_localization_prefix="goMinute"/>
+						<browsergameoptioncombined name="BedrollDeadZoneSize" title="goBedrollDeadZoneSize" value_wrap="false" values="0, 5, 15, 30" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue"/>
+						<browsergameoptioncombined name="BedrollExpiryTime" title="goBedrollExpiryTime" value_wrap="false" values="3, 7, 15, 30, 45, 60" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue"/>
+						<browsergameoptioncombined name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" values="0, 100, 500, 1000, 5000, 10000" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue"/>
+						<browsergameoptioncombined name="ShowFriendPlayerOnMap" title="goShowFriendPlayerOnMap" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false"/>
+					</grid>
+				</rect>
+
+			</rect>
+		</panel>
+	</panel>
+
+	<panel name="pnlEacNeeded" depth="12000" createuipanel="true" disableautobackground="true" visible="{eacneededvisible}">
+		<panel name="outclick" pos="-3300,3100" width="10000" height="10000" depth="1" createuipanel="true" on_press="true" disableautobackground="true">
+			<sprite name="backgroundMain" style="background" color="32,32,32,235" globalopacity="false"/>
+		</panel>
+			
+		<panel name="noclick" depth="2" createuipanel="true" on_press="true" pos="430,-280" width="440" height="290" clipping="softclip" clippingsoftness="20,20" disableautobackground="true">
+			<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,190" type="sliced" fillcenter="true"/>
+		</panel>
+
+		<panel name="header" pos="450,-300" width="400" height="43" depth="3" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" createuipanel="true" >
+			<label style="header.name" pos="6,-6" text_key="xuiServerEacNeeded"/>
+		</panel>
+		<panel name="content" pos="450,-346" width="400" height="160" depth="3" backgroundcolor="[darkGrey]" bordercolor="[black]" borderthickness="3" pivot="center" createuipanel="true" >
+			<label depth="3" name="lbl" pos="10,-6" width="380" height="155" text_key="xuiServerEacNeededText" font_size="28" overflow="resizeheight" upper_case="false"/>
+		</panel>
+			
+		<panel name="buttons" pos="450,-510" height="32" depth="3" borderthickness="3" createuipanel="true" disableautobackground="true" >
+			<simplebutton name="btnOk" depth="3" pos="400, 0" pivot="right" width="180" height="36" font_size="32" caption_key="xuiOk" upper_case="true"/>
+		</panel>
+	</panel>
+
+	<panel name="pnlDirectConnect" depth="12000" createuipanel="true" disableautobackground="true" controller="ServerBrowserDirectConnect">
+		<panel name="outclick" pos="-3300,3100" width="10000" height="10000" depth="1" createuipanel="true" on_press="true" disableautobackground="true">
+			<sprite name="backgroundMain" style="background" color="32,32,32,235" globalopacity="false"/>
+		</panel>
+		<panel depth="2" createuipanel="true" pos="430,-280" size="550,340" disableautobackground="true">
+			<background size="550,340"/>
+			<rect depth="1" pos="4,14">
+				<label style="ulmHeaderNoIcon" text_key="xuiServerBrowserDirectConnectTitle"/>
+				<rect depth="5" pos="22,-90">
+					<sprite depth="1" pos="0,10" width="200" style="inputOptionLabel" sprite="ui_server_direct_connect"/>
+					<label depth="2" pos="16,-1" size="262,30" font_size="28" style="hover" text_key="xuiServerBrowserIp"/>
+					<ulmTextField depth="5" name="txtIp" pos="190,0" width="320" height="32" pivot="left"/>
+				</rect>
+				<rect depth="5" pos="22,-140">
+					<sprite depth="1" pos="0,10" width="200" style="inputOptionLabel" sprite="ui_server_direct_connect"/>
+					<label depth="2" pos="16,-1" size="262,30" font_size="28" style="hover" text_key="xuiServerBrowserPort"/>
+					<ulmTextField depth="5" name="txtPort" pos="190,0" width="320" height="32" pivot="left" validation="integer"/>
+				</rect>
+				<ulmButtonOption depth="5" pos="140,-250" name="btnCancel" caption_key="xuiCancel"/>
+				<ulmButtonOption depth="5" pos="390,-250" name="btnDirectConnectConnect" caption_key="xuiServerBrowserConnect"/>
+			</rect>
+		</panel>
+	</panel>
+
+</window>
+	
+<window name="serverPassword" anchor="CenterCenter" pos="-200,100" width="400" height="200" controller="ServerPasswordWindow" cursor_area="true">
+	<panel depth="20000" createuipanel="true" disableautobackground="true">
+		<panel name="outclick" pos="-2000,2000" width="8000" height="8000" depth="1" createuipanel="true" on_press="true" disableautobackground="true">
+			<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="30,30,30,160" type="sliced" fillcenter="true" />
+		</panel>
+			
+		<panel name="noclick" depth="2" createuipanel="true" on_press="true" pos="-20,20" width="440" height="240" clipping="softclip" clippingsoftness="20,20" disableautobackground="true">
+			<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,50" type="sliced" fillcenter="true" />
+		</panel>
+
+		<panel name="header" pos="0,0" height="43" depth="3" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" createuipanel="true" >
+			<label style="header.name" pos="6,-6" width="550" text_key="xuiServerPassword" />
+		</panel>
+		<panel name="content" pos="0,-46" height="94" depth="3" backgroundcolor="[darkGrey]" bordercolor="[black]" borderthickness="3" pivot="center" createuipanel="true" >
+			<label depth="3" name="lblPassNormal" pos="10,-6" width="380" text_key="xuiServerPasswordNormal" font_size="28" overflow="resizeheight" upper_case="false" />
+			<label depth="3" name="lblPassIncorrect" pos="10,-6" width="380" text_key="xuiServerPasswordIncorrect" font_size="28" overflow="resizeheight" upper_case="false" />
+			<ulmTextField name="txtPassword" depth="5" pos="50,-45" width="295" height="30" pivot="topLeft" password_field="true" open_vk_on_open="true" />
+		</panel>
+			
+		<panel name="buttons" pos="0,-147" height="32" depth="3" borderthickness="3" createuipanel="true" disableautobackground="true" >
+			<simplebutton name="btnCancel" depth="3" pos="0, 0" pivot="left" width="180" height="36" font_size="32" caption_key="xuiCancel" upper_case="true" />
+			<simplebutton name="btnSubmit" depth="3" pos="400, 0" pivot="right" width="180" height="36" font_size="32" caption_key="xuiSubmit" upper_case="true" />
+		</panel>
+	</panel>
+</window>
+	
+</append>
+
+</Subquake>

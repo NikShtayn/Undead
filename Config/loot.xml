@@ -1,0 +1,18 @@
+<Subquake>
+
+<set xpath="/lootcontainers/lootcontainer[@name='garbage']/@size">5,2</set>
+
+<append xpath="/lootcontainers">
+
+<!-- cntStorageGeneric, cntStorageGenericInsecure -->
+<lootcontainer name="default" count="0" size="7,7" sound_open="UseActions/open_chest" sound_close="UseActions/close_chest" loot_quality_template="qualBaseTemplate"><item name="cobweb" count="1,2"/></lootcontainer>
+    
+<!-- ulmContainerHardenedChestSecurePlayer -->
+<lootcontainer name="hardenedChestPlayer" count="0" size="8,20" sound_open="UseActions/open_safe" sound_close="UseActions/close_safe" loot_quality_template="qualBaseTemplate"><item name="cobweb" count="1,2"/></lootcontainer>
+    
+<!-- ulmContainerGunSafePlayer, ulmContainerGunSafeInsecurePlayer -->
+<lootcontainer name="gunSafePlayer" count="0" size="7,14" sound_open="UseActions/open_safe" sound_close="UseActions/close_safe" loot_quality_template="qualBaseTemplate"><item name="cobweb" count="1,2"/></lootcontainer>
+
+</append>
+    
+</Subquake>

@@ -1,0 +1,14 @@
+<Subquake>
+
+<append xpath="//Sounds">
+	
+<SoundDataNode name="ulmWindowOpen"><AudioSource name="Sounds/AudioSource_UI"/><Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="#Mods/UndeadLegacy/Resources/Subquake_SFX.ulm?UI_Confirm_Basic_07"/>
+	<LocalCrouchVolumeScale value="0.5"/><CrouchNoiseScale value="0.5"/><NoiseScale value="1"/><MaxVoices value="3"/><MaxRepeatRate value="0.01"/></SoundDataNode>
+
+<SoundDataNode name="ulmWindowClose"><AudioSource name="Sounds/AudioSource_UI"/><Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="#Mods/UndeadLegacy/Resources/Subquake_SFX.ulm?UI_Confirm_Basic_08"/>
+	<LocalCrouchVolumeScale value="0.5"/><CrouchNoiseScale value="0.5"/><NoiseScale value="1"/><MaxVoices value="3"/><MaxRepeatRate value="0.01"/></SoundDataNode>
+
+</append>
+</Subquake>
