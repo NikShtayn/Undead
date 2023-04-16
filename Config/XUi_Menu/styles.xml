@@ -58,21 +58,53 @@
 	amount of time allotted to development is made possible through the generous support given by our Supporters.
 	Disclaimer subject to ongoing changes.
 	_____________________________________________________________________________________________________________________-->
-		
-	<!-- mainmenubutton -->
-	<!-- UI: MAINMENUBUTTON -->
-	<append xpath="/controls">
-		<mainmenubutton_sorcery depth="3" pos="0,0" width="200" height="32"
-				enabled_font_color="[labelColor]" disabled_font_color="[disabledLabelColor]" visible="true" enabled="true" pivot="left" tooltip_key="" sound="[default_click]" caption="" caption_key="" >
-			<rect name="${name}" depth="${depth}" pos="${pos}" width="${width}" height="${height}" enabled_font_color="240,240,240,255" disabled_font_color="140,140,140,255" controller="SimpleButton" visible="${visible}" button_enabled="${enabled}" font_size_default="${height-16}" font_size_hover="${height-12}">		
-				<button name="clickable" sprite="ui_game_popup" flip="horizontally" pos="0,${Round(-height/2,0)}" disabledcolor="50,50,50,50" defaultcolor="240,240,240,100" hovercolor="255,255,255,255" type="sliced" hoverscale="1.2" pivot="${pivot}" tooltip_key="${tooltip_key}" sound_play_on_hover="[default_hover]" sound="${sound}">
-					<!-- Sorcery: Add -->
-					<sprite name="SORCERY" size="40,40" pos="-45,25" atlas="UIAtlas" sprite="uic_symbol_pentagram"/>
-				</button>
-				<label depth="2" name="btnLabel" width="${width-20}" pos="10,${Round(-height/2,0)}" justify="left" text="${caption}" text_key="${caption_key}" effect="outline" pivot="${pivot}" font_size="${height-16}" upper_case="true" />
 
-			</rect>
-		</mainmenubutton_sorcery>
+	<!-- XUI Styles -->	
+	<append xpath="/styles">
+	
+<!-- DIFFICULTY MODES -->
+	<!-- LOGO -->
+	<!-- Easy -->
+		<style name="sorcery.window.mainmenu.logo.easy.texture" type="texture">
+			<style_entry name="texture" value="@modfolder:Textures/SorceryLogo0.png"/>
+			<style_entry name="tooltip_key" value="sorceryUI_difficulty0"/>
+		</style>
+		<style name="sorcery.window.mainmenu.logo.easy.label" type="label">
+			<style_entry name="text" value="Easy Mode"/>
+			<style_entry name="color" value="200,180,140"/>
+			<style_entry name="tooltip_key" value="sorceryUI_difficulty0"/>
+		</style>
+	<!-- Normal -->
+		<style name="sorcery.window.mainmenu.logo.normal.texture" type="texture">
+			<style_entry name="texture" value="@modfolder:Textures/SorceryLogo.png"/>
+			<style_entry name="tooltip_key" value="sorceryUI_difficulty1"/>
+		</style>
+		<style name="sorcery.window.mainmenu.logo.normal.label" type="label">
+			<style_entry name="text" value="Normal Mode"/>
+			<style_entry name="color" value="140,30,255"/>
+			<style_entry name="tooltip_key" value="sorceryUI_difficulty1"/>
+		</style>
+	<!-- Hard -->
+		<style name="sorcery.window.mainmenu.logo.hard.texture" type="texture">
+			<style_entry name="texture" value="@modfolder:Textures/SorceryLogo2.png"/>
+			<style_entry name="tooltip_key" value="sorceryUI_difficulty2"/>
+		</style>
+		<style name="sorcery.window.mainmenu.logo.hard.label" type="label">
+			<style_entry name="text" value="Hard Mode"/>
+			<style_entry name="color" value="255,144,0"/>
+			<style_entry name="tooltip_key" value="sorceryUI_difficulty2"/>
+		</style>
+	<!-- Apocalyptic -->
+		<style name="sorcery.window.mainmenu.logo.apocalyptic.texture" type="texture">
+			<style_entry name="texture" value="@modfolder:Textures/SorceryLogo3.png"/>
+			<style_entry name="tooltip_key" value="sorceryUI_difficulty3"/>
+		</style>
+		<style name="sorcery.window.mainmenu.logo.apocalyptic.label" type="label">
+			<style_entry name="text" value="Apocalyptic Mode"/>
+			<style_entry name="color" value="160,0,0"/>
+			<style_entry name="tooltip_key" value="sorceryUI_difficulty3"/>
+		</style>
+<!-- END - DIFFICULTY MODES -->
+	
 	</append>
-
 </Sorcery>

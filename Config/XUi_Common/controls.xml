@@ -1,191 +1,78 @@
-<Subquake>
-	
-<remove xpath="/controls/pager"/>
-<remove xpath="/controls/togglebutton"/>
+<Sorcery>
+ <!--_____________________________________________________________________________________________________________________
+	TERMS OF USE: YOU AGREE TO THESE TERMS BY USING SORCERY MOD.
+	_____________________________________________________________________________________________________________________
+	2023 "DEVRIX", SORCERY MOD
+	All Rights Reserved.
+	_____________________________________________________________________________________________________________________
+	HOME: http://sorcerymod.com
+	AUTHOR: http://author.sorcerymod.com
+	FORUM: http://forum.sorcerymod.com
+	DISCORD: http://discord.sorcerymod.com
+	YOUTUBE: http://youtube.sorcerymod.com
+	DOWNLOAD: http://download.sorcerymod.com
+	TFP POLICY: http://tfpmodforumpolicy.sorcerymod.com
+	_____________________________________________________________________________________________________________________
+	NOTICE: All digital assets and ideas contained herein, and made possible by the "Sorcery Mod", is 
+	the sole digital proprietary property of mod Author Devrix. Ownership and equal rights are hereby, 
+	irrefutably and solely, extended and granted to The Fun Pimps legal entity in good faith.
 
+	USAGE: The Sorcery Mod may be downloaded and used by players of the 7 Days to Die community, 
+	with no required royalties. Other than the XML Code itself, digital assets and works of the Sorcery Mod 
+	may not be used outside of the Sorcery Mod. By downloading and using the Sorcery Mod, users of the 
+	mod understand and accept full and sole responsibility and liability of using the mod. Author, nor The 
+	Fun Pimps, shall be held responsible or liable for any possible conflict(s) as a direct or indirect result 
+	of using this mod.
 
+	REDISTRIBUTION: The XML code of the Sorcery Mod may solely be redistributed within the 7 Days 
+	to Die community. Conditions of redistribution require this notice to remain in full, unmodified, and a 
+	direct link, with credit stated, to the original Mod and Author. You may not redistribute the digital 
+	Assets or works, aside from XML Code, of the Sorcery Mod. The Sorcery Mod itself should not be 
+	redistributed outside of its original distribution channels.
 
-	
-<append xpath="/controls">
-	
-<togglebutton depth="3" pos="0,0" width="200" height="32" enabled_font_color="[labelColor]" disabled_font_color="[disabledLabelColor]" visible="true" tooltip_key="" caption="" caption_key="" font_size="28" parse_actions="false">
-	<rect name="${name}" depth="${depth}" pos="${pos}" width="${width}" height="${height}" enabled_font_color="${enabled_font_color}" disabled_font_color="${disabled_font_color}" controller="ToggleButton" visible="${visible}">
-		<button name="clickable" sprite="ui_empty" defaultcolor="0,0,0,1" disabledcolor="[darkGrey]" hoversprite="ui_game_select_row" hovercolor="[white]" type="sliced" hoverscale="1.0" tooltip_key="${tooltip_key}" />
-		<sprite depth="2" name="tickbox" width="${height-6}" height="${height-6}" pos="7,-4" color="[darkGrey]" sprite="Highlight - Shadowed" type="sliced" />
-		<sprite depth="3" name="tickmark" width="${height-12}" height="${height-12}" pos="10,-7" color="[iconColor]" sprite="ui_game_symbol_check" visible="{value}" />
-		<label depth="2" name="btnLabel" width="${width-height-8}" height="${height-2}" pos="${6+height},${Round(-height/2,0)}" justify="left" text="${caption}" text_key="${caption_key}" effect="outline" pivot="left" font_size="${font_size}" parse_actions="${parse_actions}" />
-	</rect>
-</togglebutton>
-	
-<pager depth="3" pos="0,0" width="100" height="32" show_max_page="false" separator="/" primary_pager="true" name="pager">
-	<rect name="${name}" depth="${depth}" pos="${pos}" disableautobackground="true" controller="ULM_Paging,UndeadLegacy" visible="{paging_visible}" show_max_page="${show_max_page}" separator="${separator}" primary_pager="${primary_pager}"> <!-- default size: 100x32 -->
-		<rect name="pagerContaiener" visible="{showPager}">
-			<button depth="4" name="pageDown" style="icon30px, press2" pos="${Round(height/2 - 8, 0)},${Round(-height/2, 0)}" enabled="{# int(pagenumber) &gt; 1}" sprite="ui_page_prev" disabledcolor="[bgDefault]" pivot="center"/>
-			<rect depth="4" pos="${height},${Round(-height/2, 0)}">
-				<sprite pos="20,0" style="background" size="80,36" sprite="ui_page" pivot="center"/>
-				<!--<sprite depth="1" pos="20,0" name="background" size="70,30" color="[darkestGrey]" sprite="ui_page" type="sliced" pivot="center"/>-->
-				<label depth="5" pos="20,-2" size="80,32" font_size="28" text="{#showmaxpage ? pagenumber + separator + maxpagenumber : pagenumber}" pivot="center" justify="center"/>
+	PROHIBITED USE: Users are not permitted to modify, or bypass, Supporter Exclusive perks or items in any way.
+	The free in-game "Supporter Key Item" can be obtained through normal game means (loot, trader) and will unlock all 
+	supporter exclusive perks and items. Modifying or bypassing Supporter Exclusive perks or items is a violation of the 
+	Sorcery Terms of Use.
+
+	CREDIT: This mod is made possible through the framework provided by The Fun Pimps. It is their 
+	hard work and ongoing dedication to building and improving an awesome game that fuels the passion 
+	and drives the creation of this mod. Supporters of the Sorcery Mod make ongoing development 
+	possible. Without their support, it is not possible to put in the enormous amount of time required to 
+	create the plethora of unique assets that make Sorcery.
+
+	MODIFICATION: The Terms of Use and Disclaimer herein are subject to changes and modifications.
+	_____________________________________________________________________________________________________________________
+
+	DISCLAIMER
+	_____________________________________________________________________________________________________________________
+	Sorcery is and will always be 100% FREE. When you choose to Support Development, you are supporting the
+	unique individual work I personally do outside of the game: The creation of unique VFX, SFX, Art, Time creating
+	content and the services/interaction I provide here on Discord. You are not supporting "derivative work of 
+	7 Days to Die" (AKA modding code/changing skins/etc). That is against TFP policy.
+
+	Support Not Required: Those unwilling, or unable, to support development can obtain in-game items 100% FREE.
+	You are not required to support in order to obtain in-game items. Non-supporters are able to obtain any
+	"In-Game Supporter Exclusives" 100% FREE, without supporting development. However, I cannot continue development
+	of Sorcery at this level without Ongoing Support. If support drops below a threshold, development halts. The large
+	amount of time allotted to development is made possible through the generous support given by our Supporters.
+	Disclaimer subject to ongoing changes.
+	_____________________________________________________________________________________________________________________-->
+		
+
+	<!-- UI: INGAMEMENUBUTTON -->
+	<append xpath="/controls">
+		<simplebutton_sorcery depth="3" pos="0,0" width="200" height="32"
+				enabled_font_color="[labelColor]" disabled_font_color="[disabledLabelColor]" visible="true" enabled="true" pivot="left" tooltip_key="" sound="[default_click]" caption="" caption_key="" >
+			<rect name="${name}" depth="${depth}" pos="${pos}" width="${width}" height="${height}" enabled_font_color="240,240,240,255" disabled_font_color="140,140,140,255" controller="SimpleButton" visible="${visible}" button_enabled="${enabled}" font_size_default="${height-16}" font_size_hover="${height-12}">		
+				<button name="clickable" sprite="ui_game_popup" flip="horizontally" pos="0,${Round(-height/2,0)}" disabledcolor="50,50,50,50" defaultcolor="240,240,240,100" hovercolor="255,255,255,255" type="sliced" hoverscale="1.2" pivot="${pivot}" tooltip_key="${tooltip_key}" sound_play_on_hover="[default_hover]" sound="${sound}" style="sorceryButton">
+					<!-- Sorcery: Add -->
+					<sprite name="SORCERY" size="40,40" pos="-45,25" atlas="UIAtlas" sprite="uic_symbol_pentagram"/>
+				</button>
+				<label depth="2" name="btnLabel" width="${width-20}" pos="10,${Round(-height/2,0)}" justify="left" text="${caption}" text_key="${caption_key}" effect="outline" pivot="${pivot}" font_size="${height-16}" upper_case="true" />
+
 			</rect>
-			<button depth="4" name="pageUp"   style="icon30px, press2" pos="${Round(width - height/2 + 12, 0)},${Round(-height/2, 0)}" enabled="{# int(pagenumber) &lt; int(maxpagenumber)}" sprite="ui_page_next" disabledcolor="[bgDefault]" pivot="center"/>
-		</rect>
-	</rect>
-</pager>
+		</simplebutton_sorcery>
+	</append>
 
-<ulmDivider depth="3" pos="0,0" width="100">
-	<rect depth="${depth}" pos="${pos}">
-		<sprite depth="1" pos="0,-1" width="${width}" height="2" color="83,89,87" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-		<sprite depth="2" pos="0,-3" width="${width}" height="4" color="75,81,79" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-	</rect>
-</ulmDivider>
-	
-<ulmBackground pos="-6,25" size="100,100" bg_color="[ulmWindowBackground]" visible="true">
-	<rect depth="-10" pos="${pos}" size="${size}" controller="ULM_DynamicBG,UndeadLegacy" visible="${visible}">
-		<sprite style="ulmWindowBG" name="BGSP1" color="${bg_color}"/>
-		<sprite sprite="ui_empty">
-			<texture style="ulmWindowTL"/><texture style="ulmWindowTM"/><texture style="ulmWindowTR"/>
-			<texture style="ulmWindowBR"/><texture style="ulmWindowBM"/><texture style="ulmWindowBL"/>
-		</sprite>
-	</rect>
-</ulmBackground>
-	
-<backgroundWA pos="-6,25" size="100,100" bg_color="[ulmWindowBackground]" bg_alpha="255" visible="true">
-	<sprite depth="-10" pos="${pos}" size="${size}" controller="ULM_DynamicBG,UndeadLegacy" sprite="ui_empty" color="255,255,255,${bg_alpha}" visible="${visible}">
-		<sprite style="ulmWindowBG" name="BGSP1" color="${bg_color}"/>
-		<sprite style="ulmWindowBG" depth="-2" color="255,255,255,32" height="60"/>
-		<sprite depth="-1" pos="0,-59" height="1" color="255,255,255,48" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-		<!--<sprite style="ulmWindowBG"/>-->
-		<sprite sprite="ui_empty">
-			<texture style="ulmWindowTL"/><texture style="ulmWindowTM"/><texture style="ulmWindowTR"/>
-			<texture style="ulmWindowBR"/><texture style="ulmWindowBM"/><texture style="ulmWindowBL"/>
-		</sprite>
-	</sprite>
-</backgroundWA>
-	
-<background pos="-6,25" size="100,100" bg_color="[ulmWindowBackground]" visible="true">
-	<rect depth="-10" pos="${pos}" size="${size}" controller="ULM_DynamicBG,UndeadLegacy" visible="${visible}">
-		<sprite style="ulmWindowBG" name="BGSP1" color="${bg_color}"/>
-		<sprite style="ulmWindowBG" depth="-2" color="255,255,255,32" height="60"/>
-		<sprite depth="-1" pos="0,-59" height="1" color="255,255,255,48" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-		<!--<sprite style="ulmWindowBG"/>-->
-		<sprite sprite="ui_empty">
-			<texture style="ulmWindowTL"/><texture style="ulmWindowTM"/><texture style="ulmWindowTR"/>
-			<texture style="ulmWindowBR"/><texture style="ulmWindowBM"/><texture style="ulmWindowBL"/>
-		</sprite>
-	</rect>
-</background>
-	
-<ulmBackgroundDynamic pos="-6,25" size="100,100" dynamic_height="0" default_size="100,100">
-	<rect depth="-10" pos="${pos}" size="${size}" controller="ULM_DynamicBG,UndeadLegacy" dynamic_height="${dynamic_height}">
-		<sprite style="ulmWindowBG" name="BGSP1"/>
-		<!--<sprite style="ulmWindowBG" name="BGSP3"/>-->
-		<texture style="ulmWindowTL"/><texture style="ulmWindowTM"/><texture style="ulmWindowTR"/>
-		<texture style="ulmWindowBR"/><texture style="ulmWindowBM"/><texture style="ulmWindowBL"/>
-	</rect>
-</ulmBackgroundDynamic>
-	
-<ulmBackgroundDynamicWithTitle pos="-6,25" size="100,100" dynamic_height="0" default_size="100,100">
-	<rect depth="-10" pos="${pos}" size="${size}" controller="ULM_DynamicBG,UndeadLegacy" dynamic_height="${dynamic_height}">
-		<sprite style="ulmWindowBG" name="BGSP1"/>
-		<sprite style="ulmWindowBG" depth="-2" color="255,255,255,32" height="60"/>
-		<sprite depth="-1" pos="0,-59" height="1" color="255,255,255,48" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-		<texture style="ulmWindowTL"/><texture style="ulmWindowTM"/><texture style="ulmWindowTR"/>
-		<texture style="ulmWindowBR"/><texture style="ulmWindowBM"/><texture style="ulmWindowBL"/>
-	</rect>
-</ulmBackgroundDynamicWithTitle>
-	
-<backgroundCenter>
-	<rect depth="-6" pos="-6,25" size="340,60">
-		<sprite style="ulmWindowBG" depth="-2" color="255,255,255,32" height="60" atlas="UIBackground" sprite="ui_header_center"/>
-		<sprite depth="-1" pos="0,-59" height="1" color="255,255,255,48" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-	</rect>
-</backgroundCenter>
-	
-<backgroundSkillInfo>
-	<rect depth="-6" pos="-6,25" size="340,60">
-		<sprite style="ulmWindowBG" depth="-2" color="255,255,255,32" height="60" atlas="UIBackground" sprite="ui_header_center"/>
-		<sprite depth="-1" pos="0,-59" height="1" color="255,255,255,48" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-	</rect>
-</backgroundSkillInfo>
-	
-<sectionHeader pos="10,-14" width="630" text_key="uiCraftingQueue" id="sectionHeader">
-	<rect pos="${pos}" width="${width}">
-		<label style="ulmHeaderNoIcon" pos="2,0" text_key="${text_key}" color="160,160,160" name="${id}"/>
-		<sprite depth="-1" pos="0,-32" height="2" color="80,80,80" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-	</rect>
-</sectionHeader>
-	
-<sectionHeaderSmall pos="0,0" width="630" text_key="uiCraftingQueue">
-	<rect pos="${pos}" width="${width}">
-		<label style="ulmHeaderNoIcon" pos="2,0" font_size="20" text_key="${text_key}" color="160,160,160"/>
-		<sprite depth="-1" pos="0,-22" height="3" color="80,80,80" sprite="ui_fill" type="sliced" foregroundlayer="true"/>
-	</rect>
-</sectionHeaderSmall>
-	
-<backgroundNoTitle pos="-6,25" size="100,100" bg_color="[ulmWindowBackground]" visible="true">
-	<rect depth="-10" pos="${pos}" size="${size}" controller="ULM_DynamicBG,UndeadLegacy" visible="${visible}">
-		<sprite style="ulmWindowBG" name="BGSP1" color="${bg_color}"/>
-		<sprite sprite="ui_empty">
-			<texture style="ulmWindowTL"/><texture style="ulmWindowTM"/><texture style="ulmWindowTR"/>
-			<texture style="ulmWindowBR"/><texture style="ulmWindowBM"/><texture style="ulmWindowBL"/>
-		</sprite>
-	</rect>
-</backgroundNoTitle>
-	
-<ulmMenuButton depth="3" pos="0,0" caption="" text="" pivot="left" sound="[sfx_btn_menu_next]" enabled_font_color="[labelColor]" disabled_font_color="[disabledLabelColor]" visible="true">
-    <rect depth="${depth}" pos="${pos}" name="${name}" size="260,80" enabled_font_color="${enabled_font_color}" disabled_font_color="${disabled_font_color}" controller="SimpleButton" visible="${visible}">
-        <texture style="ulmButtonMenu"/>
-		<button style="ulmButtonMenu" sound="${sound}">
-			<texture style="ulmButtonMenuHover"/>
-		</button>
-        <label depth="2" name="btnLabel" pos="0,-41" justify="center" text="${caption}" text_key="${text}" pivot="${pivot}" effect="outline" font_size="30"/>
-    </rect>
-</ulmMenuButton>
-
-<ulmButtonOption depth="1" pos="0,0" sound="[sfx_btn_basic_1]" lbl_name="btnLabel" visible="true" btn_name="clickable" tooltip_key="" caption_key="">
-	<rect depth="${depth}" name="${name}" size="182,48" pos="${pos}" controller="SimpleButton" visible="${visible}" enabled_font_color="[labelColor]" disabled_font_color="128,128,128,256">
-		<sprite style="ulmButton_2x5"/>
-		<label depth="2" size="230,60" name="${lbl_name}" font_size="30" text_key="${caption_key}" pivot="center" justify="center" upper_case="true" style="outline"/>
-		<button style="ulmButton_2x5" name="${btn_name}" tooltip_key="${tooltip_key}" hoverscale="1" sound="${sound}"/>
-	</rect>
-</ulmButtonOption>
-	
-<ulmButtonApply depth="1" pos="0,0" name="" btn_name="clickable" visible="true" sound="[sfx_btn_basic_1]"
-				enabled_font_color="[labelColor]" disabled_font_color="128,128,128"
-				caption="" caption_key="" tooltip_key="" lbl_name="btnLabel" upper_case="true">
-    <rect name="${name}" depth="${depth}" pos="${pos}" size="182,48" visible="${visible}" enabled_font_color="${enabled_font_color}" disabled_font_color="${disabled_font_color}">
-		<sprite style="ulmButton_2x5"/>
-		<label depth="2" size="230,60" name="${lbl_name}" font_size="30" text="${caption}" text_key="${caption_key}" pivot="center" justify="center" upper_case="${upper_case}" style="outline"/>
-		<button style="ulmButton_2x5" name="${btn_name}" tooltip_key="${tooltip_key}" hoverscale="1" sound="${sound}"/>
-    </rect>
-</ulmButtonApply>
-
-<searchField pos="0,0" visible="true">
-	<rect name="searchInput" depth="10" pos="${pos}" size="235,26" controller="TextInput" value="SEARCH"
-		active_text_color="[white]" caret_color="[white]" selection_color="[mediumGrey_half_alpha]" 
-		character_limit="22" validation="none" on_press="true" snapCursor="true" virtual_keyboard_prompt="vkPromptSearchTerm" 
-		search_field="false" type="filled" visible="${visible}">
-		<sprite style="background" depth="2" size="240,40" atlas="UIBackground" sprite="ui_input_240x40" pos="4,-4" color="[bgInput]"/>
-		<sprite depth="3" size="20,20" pos="13,-13" sprite="symbol_search" color="255,255,255,80"/>
-		<label depth="2" name="text" pos="10,-11" size="230,26" justify="center"/>
-	</rect>
-</searchField>
-
-<ulmTextField depth="3" pos="0,0" width="200" height="32"
-		value="" active_text_color="[labelColor]" caret_color="[labelColor]" selection_color="[mediumGrey_half_alpha]" 
-		character_limit="0" validation="none" backgroundcolor="[black]" on_hover="false" on_scroll="false" virtual_keyboard_prompt=""
-		pivot="topleft" visible="true" on_return="submit" tooltip_key="" search_field="false" password_field="false" focus_on_open="false" clear_on_open="false" close_group_on_tab="false" open_vk_on_open="false"
-		foregroundlayer="false" justify="center" overflow="ShrinkContent" max_line_count="0" font_face="ReferenceFont" crispness="Never">
-	<panel name="${name}" depth="${depth}" controller="TextInput" pos="${pos}" width="${width}" height="${height}" value="${value}"
-		active_text_color="${active_text_color}" caret_color="${caret_color}" selection_color="${selection_color}" 
-		character_limit="${character_limit}" validation="${validation}" backgroundcolor="${backgroundcolor}" style="press2, select" on_hover="${on_hover}" on_scroll="${on_scroll}" snapCursor="true" virtual_keyboard_prompt="${virtual_keyboard_prompt}"
-		disableautobackground="true" pivot="${pivot}" visible="${visible}" on_return="${on_return}" tooltip_key="${tooltip_key}"
-		search_field="${search_field}" password_field="${password_field}" focus_on_open="${focus_on_open}" clear_on_open="${clear_on_open}" close_group_on_tab="${close_group_on_tab}" open_vk_on_open="${open_vk_on_open}">
-		<sprite depth="0" name="background" color="${backgroundcolor}" type="sliced" pivot="${pivot}" foregroundlayer="${foregroundlayer}" width="${Defined(password_field) and password_field ? width-height-10 : width}" />
-		<label depth="1" name="text" justify="${justify}" font_size="${Defined(font_size) ? font_size : height}" pivot="${pivot}" overflow="${overflow}" max_line_count="${max_line_count}" font_face="${font_face}" crispness="${crispness}" width="${Defined(password_field) and password_field ? width-height-10 : width}" />
-		<button name="btnShowPassword" pos="${Round(width-height/2-5,0)},-${Round(height/2,0)}" width="${height-2}" height="${height-2}" sprite="ui_game_symbol_stealth" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiShowPassword" selected="{showpassword}" visible="{passwordfield}" />
-	</panel>
-</ulmTextField>
-	
-</append>
-	
-</Subquake>
+</Sorcery>

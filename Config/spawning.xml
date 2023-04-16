@@ -59,20 +59,32 @@
 	Disclaimer subject to ongoing changes.
 	_____________________________________________________________________________________________________________________-->
 		
-	<!-- mainmenubutton -->
-	<!-- UI: MAINMENUBUTTON -->
-	<append xpath="/controls">
-		<mainmenubutton_sorcery depth="3" pos="0,0" width="200" height="32"
-				enabled_font_color="[labelColor]" disabled_font_color="[disabledLabelColor]" visible="true" enabled="true" pivot="left" tooltip_key="" sound="[default_click]" caption="" caption_key="" >
-			<rect name="${name}" depth="${depth}" pos="${pos}" width="${width}" height="${height}" enabled_font_color="240,240,240,255" disabled_font_color="140,140,140,255" controller="SimpleButton" visible="${visible}" button_enabled="${enabled}" font_size_default="${height-16}" font_size_hover="${height-12}">		
-				<button name="clickable" sprite="ui_game_popup" flip="horizontally" pos="0,${Round(-height/2,0)}" disabledcolor="50,50,50,50" defaultcolor="240,240,240,100" hovercolor="255,255,255,255" type="sliced" hoverscale="1.2" pivot="${pivot}" tooltip_key="${tooltip_key}" sound_play_on_hover="[default_hover]" sound="${sound}">
-					<!-- Sorcery: Add -->
-					<sprite name="SORCERY" size="40,40" pos="-45,25" atlas="UIAtlas" sprite="uic_symbol_pentagram"/>
-				</button>
-				<label depth="2" name="btnLabel" width="${width-20}" pos="10,${Round(-height/2,0)}" justify="left" text="${caption}" text_key="${caption_key}" effect="outline" pivot="${pivot}" font_size="${height-16}" upper_case="true" />
 
-			</rect>
-		</mainmenubutton_sorcery>
+	<!-- FALLEN -->
+	<!-- OMNI: Pine Forest -->
+	<append xpath="/spawning/biome[@name='pine_forest']">
+		<spawn maxcount="1" respawndelay="0.2" time="Any" entitygroup="SorceryFallenOmni" />
 	</append>
-
+	<!-- FIRE: Wasteland / Burnt Forest -->
+	<append xpath="/spawning/biome[@name='wasteland' or @name='burnt_forest']">
+		<spawn maxcount="1" respawndelay="0.1" time="Any" entitygroup="SorceryFallenFireT2" />
+		<spawn maxcount="1" respawndelay="0.3" time="Any" entitygroup="SorceryFallenOmni" />
+	</append>	
+	<!-- ICE: Snow -->
+	<append xpath="/spawning/biome[@name='snow']">
+		<spawn maxcount="1" respawndelay="0.1" time="Any" entitygroup="SorceryFallenIceT2" />
+		<spawn maxcount="1" respawndelay="0.3" time="Any" entitygroup="SorceryFallenOmni" />
+	</append>
+	<!-- LIGHTNING: Desert -->
+	<append xpath="/spawning/biome[@name='desert']">
+		<spawn maxcount="1" respawndelay="0.1" time="Any" entitygroup="SorceryFallenLightningT2" />
+		<spawn maxcount="1" respawndelay="0.3" time="Any" entitygroup="SorceryFallenOmni" />
+	</append>
+	<!-- Wasteland -->
+	<!-- <append xpath="/spawning/biome[@name='wasteland']">
+		<spawn maxcount="1" respawndelay="0.2" time="Any" entitygroup="SorceryFallenFire" />
+		<spawn maxcount="1" respawndelay="0.2" time="Any" entitygroup="SorceryFallenIce" />
+		<spawn maxcount="1" respawndelay="0.2" time="Any" entitygroup="SorceryFallenLightning" />
+	</append> -->
+	
 </Sorcery>

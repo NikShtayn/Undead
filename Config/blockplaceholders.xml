@@ -1,0 +1,324 @@
+<Sorcery>
+ <!--_____________________________________________________________________________________________________________________
+	TERMS OF USE: YOU AGREE TO THESE TERMS BY USING SORCERY MOD.
+	_____________________________________________________________________________________________________________________
+	2023 "DEVRIX", SORCERY MOD
+	All Rights Reserved.
+	_____________________________________________________________________________________________________________________
+	HOME: http://sorcerymod.com
+	AUTHOR: http://author.sorcerymod.com
+	FORUM: http://forum.sorcerymod.com
+	DISCORD: http://discord.sorcerymod.com
+	YOUTUBE: http://youtube.sorcerymod.com
+	DOWNLOAD: http://download.sorcerymod.com
+	TFP POLICY: http://tfpmodforumpolicy.sorcerymod.com
+	_____________________________________________________________________________________________________________________
+	NOTICE: All digital assets and ideas contained herein, and made possible by the "Sorcery Mod", is 
+	the sole digital proprietary property of mod Author Devrix. Ownership and equal rights are hereby, 
+	irrefutably and solely, extended and granted to The Fun Pimps legal entity in good faith.
+
+	USAGE: The Sorcery Mod may be downloaded and used by players of the 7 Days to Die community, 
+	with no required royalties. Other than the XML Code itself, digital assets and works of the Sorcery Mod 
+	may not be used outside of the Sorcery Mod. By downloading and using the Sorcery Mod, users of the 
+	mod understand and accept full and sole responsibility and liability of using the mod. Author, nor The 
+	Fun Pimps, shall be held responsible or liable for any possible conflict(s) as a direct or indirect result 
+	of using this mod.
+
+	REDISTRIBUTION: The XML code of the Sorcery Mod may solely be redistributed within the 7 Days 
+	to Die community. Conditions of redistribution require this notice to remain in full, unmodified, and a 
+	direct link, with credit stated, to the original Mod and Author. You may not redistribute the digital 
+	Assets or works, aside from XML Code, of the Sorcery Mod. The Sorcery Mod itself should not be 
+	redistributed outside of its original distribution channels.
+
+	PROHIBITED USE: Users are not permitted to modify, or bypass, Supporter Exclusive perks or items in any way.
+	The free in-game "Supporter Key Item" can be obtained through normal game means (loot, trader) and will unlock all 
+	supporter exclusive perks and items. Modifying or bypassing Supporter Exclusive perks or items is a violation of the 
+	Sorcery Terms of Use.
+
+	CREDIT: This mod is made possible through the framework provided by The Fun Pimps. It is their 
+	hard work and ongoing dedication to building and improving an awesome game that fuels the passion 
+	and drives the creation of this mod. Supporters of the Sorcery Mod make ongoing development 
+	possible. Without their support, it is not possible to put in the enormous amount of time required to 
+	create the plethora of unique assets that make Sorcery.
+
+	MODIFICATION: The Terms of Use and Disclaimer herein are subject to changes and modifications.
+	_____________________________________________________________________________________________________________________
+
+	DISCLAIMER
+	_____________________________________________________________________________________________________________________
+	Sorcery is and will always be 100% FREE. When you choose to Support Development, you are supporting the
+	unique individual work I personally do outside of the game: The creation of unique VFX, SFX, Art, Time creating
+	content and the services/interaction I provide here on Discord. You are not supporting "derivative work of 
+	7 Days to Die" (AKA modding code/changing skins/etc). That is against TFP policy.
+
+	Support Not Required: Those unwilling, or unable, to support development can obtain in-game items 100% FREE.
+	You are not required to support in order to obtain in-game items. Non-supporters are able to obtain any
+	"In-Game Supporter Exclusives" 100% FREE, without supporting development. However, I cannot continue development
+	of Sorcery at this level without Ongoing Support. If support drops below a threshold, development halts. The large
+	amount of time allotted to development is made possible through the generous support given by our Supporters.
+	Disclaimer subject to ongoing changes.
+	_____________________________________________________________________________________________________________________-->
+		
+	<append xpath="/blockplaceholders">
+	
+		<!-- FALLEN CAMP STORM -->
+		<!-- <placeholder name="sorceryBlockStormRandomLootHelper">
+			<block name="sorceryBlockStorm"/>
+		</placeholder> -->
+		
+		<!-- SPELLFORGES -->
+		<placeholder name="sorcerySpellforgeRandomLootHelper">
+			<block name="conjureLoot_Fire"/>
+			<block name="conjureLoot_Ice" />
+			<block name="conjureLoot_Lightning"/>
+			<block name="conjureLoot_Fire" prob=".6" biome="wasteland"/>
+			<block name="conjureLoot_Ice" prob=".6" biome="snow"/>
+			<block name="conjureLoot_Lightning" prob=".6" biome="desert"/>
+			<block name="conjureFire" prob=".3"/>
+			<block name="conjureIce" prob=".3"/>
+			<block name="conjureLightning" prob=".3"/>
+			<block name="conjureFire" prob=".6" biome="wasteland"/>
+			<block name="conjureIce" prob=".6" biome="snow"/>
+			<block name="conjureLightning" prob=".6" biome="desert"/>
+		</placeholder>
+		
+		<!-- ALCHEMY STATION -->
+		<placeholder name="sorceryAlchemyStationRandomLootHelper">
+			<block name="alchemyStationLoot"/>
+			<block name="sorceryAlchemyStation" prob=".33"/>
+		</placeholder>
+		
+		<!-- ENCHANTING STATION -->
+		<placeholder name="sorceryEnchantingStationRandomLootHelper">
+			<block name="enchantingStationLoot"/>
+			<block name="sorceryEnchantingStation" prob=".33"/>
+		</placeholder>
+		
+		<!-- RITUAL STATION -->
+		<placeholder name="sorceryRitualStationRandomLootHelper">
+			<block name="ritualStationLoot"/>
+			<block name="sorceryRitualStation" prob=".05"/>
+		</placeholder>
+		
+		<!-- TAILORING STATION -->
+		<placeholder name="sorceryTailoringStationRandomLootHelper">
+			<block name="arcaneWheelLoot"/>
+			<block name="sorceryArcaneWheel" prob=".33"/>
+		</placeholder>
+		
+		<!-- ESSENCE BUSHES -->
+		<placeholder name="sorceryBushRandomLootHelper">
+			<block name="tree_EssenceFire"/>
+			<block name="tree_EssenceIce"/>
+			<block name="tree_EssenceLightning"/>
+			<block name="tree_EssenceFire" prob="1" biome="burnt_forest"/>
+			<block name="tree_EssenceFire" prob="1" biome="wasteland"/>
+			<block name="tree_EssenceIce" prob="1" biome="snow"/>
+			<block name="tree_EssenceLightning" prob="1" biome="desert"/>
+			<!-- Immortal Seed Loot -->
+			<block name="treeLoot_EssenceFire" prob="0.025"/>
+			<block name="treeLoot_EssenceIce" prob="0.025"/>
+			<block name="treeLoot_EssenceLightning" prob="0.025"/>
+			<block name="treeLoot_EssenceFire" prob="0.1" biome="wasteland"/>
+			<block name="treeLoot_EssenceIce" prob="0.1" biome="snow"/>
+			<block name="treeLoot_EssenceLightning" prob="0.1" biome="desert"/>
+		</placeholder>
+		<placeholder name="sorceryBushFireSeedRandomLootHelper">
+			<block name="tree_EssenceFire"/>
+			<!-- Immortal Seed Loot -->
+			<block name="treeLoot_EssenceFire" prob="0.05"/>
+		</placeholder>
+		<placeholder name="sorceryBushIceSeedRandomLootHelper">
+			<block name="tree_EssenceIce"/>
+			<!-- Immortal Seed Loot -->
+			<block name="treeLoot_EssenceIce" prob="0.05"/>
+		</placeholder>
+		<placeholder name="sorceryBushLightningSeedRandomLootHelper">
+			<block name="tree_EssenceLightning"/>
+			<!-- Immortal Seed Loot -->
+			<block name="treeLoot_EssenceLightning" prob="0.05"/>
+		</placeholder>
+		
+		<!-- ESSENCE TREES - LARGE -->
+		<placeholder name="sorceryTreeLrgRandomLootHelper">
+			<block name="treeFireLrg"/>
+			<block name="treeIceLrg"/>
+			<block name="treeLightningLrg"/>
+			<block name="treeFireLrg" prob="1" biome="burnt_forest"/>
+			<block name="treeFireLrg" prob="1" biome="wasteland"/>
+			<block name="treeIceLrg" prob="1" biome="snow"/>
+			<block name="treeLightningLrg" prob="1" biome="desert"/>
+		</placeholder>
+		<!-- ESSENCE TREES - MEDIUM -->
+		<placeholder name="sorceryTreeMedRandomLootHelper">
+			<block name="treeFireMed"/>
+			<block name="treeIceMed"/>
+			<block name="treeLightningMed"/>
+			<block name="treeFireMed" prob="1" biome="burnt_forest"/>
+			<block name="treeFireMed" prob="1" biome="wasteland"/>
+			<block name="treeIceMed" prob="1" biome="snow"/>
+			<block name="treeLightningMed" prob="1" biome="desert"/>
+		</placeholder>
+		
+		<!-- IMMORTAL ESSENCE BUSHES -->
+		<placeholder name="sorcerySeedRandomLootHelper">
+			<block name="treeLoot_EssenceFire"/>
+			<block name="treeLoot_EssenceIce"/>
+			<block name="treeLoot_EssenceLightning"/>
+			<block name="treeLoot_EssenceFire" prob="1" biome="wasteland"/>
+			<block name="treeLoot_EssenceIce" prob="1" biome="snow"/>
+			<block name="treeLoot_EssenceLightning" prob="1" biome="desert"/>
+		</placeholder>
+		
+		<!-- CRYSTAL CLUSTERS -->
+		<placeholder name="sorceryClusterRandomLootHelper">
+			<block name="clusterFire"/>
+			<block name="clusterIce"/>
+			<block name="clusterLightning"/>
+			<block name="clusterFire" prob="1" biome="wasteland"/>
+			<block name="clusterIce" prob="1" biome="snow"/>
+			<block name="clusterLightning" prob="1" biome="desert"/>
+		</placeholder>
+		
+		<!-- SHRINES -->
+		<placeholder name="sorceryShrineRandomLootHelper">
+			<block name="shrinePotion" prob="1"/>
+			<block name="shrineScroll" prob="1"/>
+			<block name="shrineTouched" prob="1"/>
+			<block name="shrineDrainHealth" prob="1"/>
+			<block name="shrineDrainStamina" prob="1"/>
+			<block name="shrineDrainSpirit" prob="1"/>
+			<block name="shrineFirePotion" prob="1"/>
+			<block name="shrineFireScroll" prob="1"/>
+			<block name="shrineFireTouched" prob="1"/>
+			<block name="shrineFireDrainHealth" prob="1"/>
+			<block name="shrineFireDrainStamina" prob="1"/>
+			<block name="shrineFireDrainSpirit" prob="1"/>
+			<block name="shrineIcePotion" prob="1"/>
+			<block name="shrineIceScroll" prob="1"/>
+			<block name="shrineIceTouched" prob="1"/>
+			<block name="shrineIceDrainHealth" prob="1"/>
+			<block name="shrineIceDrainStamina" prob="1"/>
+			<block name="shrineIceDrainSpirit" prob="1"/>
+			<block name="shrineLightningPotion" prob="1"/>
+			<block name="shrineLightningScroll" prob="1"/>
+			<block name="shrineLightningTouched" prob="1"/>
+			<block name="shrineLightningDrainHealth" prob="1"/>
+			<block name="shrineLightningDrainStamina" prob="1"/>
+			<block name="shrineLightningDrainSpirit" prob="1"/>
+		</placeholder>
+	
+		<!-- CHESTS -->
+		<placeholder name="sorceryChestArcaneRandomLootHelper">
+			<block name="cntLootChest_Arcane"/>
+			<block name="cntChest_Arcane"/>
+		</placeholder>
+		<placeholder name="sorceryChestFireRandomLootHelper">
+			<block name="cntLootChest_Fire"/>
+			<block name="cntChest_Fire"/>
+		</placeholder>
+		<placeholder name="sorceryChestIceRandomLootHelper">
+			<block name="cntLootChest_Ice"/>
+			<block name="cntChest_Ice"/>
+		</placeholder>
+		<placeholder name="sorceryChestLightningRandomLootHelper">
+			<block name="cntLootChest_Lightning"/>
+			<block name="cntChest_Lightning"/>
+		</placeholder>
+		<placeholder name="sorceryChestUnholyRandomLootHelper">
+			<block name="cntLootChest_Unholy"/>
+			<block name="cntChest_Unholy"/>
+		</placeholder>
+		<placeholder name="sorceryChestHolyRandomLootHelper">
+			<block name="cntLootChest_Holy"/>
+			<block name="cntChest_Holy"/>
+		</placeholder>
+		
+		<!-- PAINTINGS -->
+		<placeholder name="paintingSorcAllSupporterPaintingsRandomHelper">
+			<block name="paintingSorcIvanos" prob="1"/>
+			<block name="paintingSorcNotarobot" prob="1"/>
+			<block name="paintingSorcOnorus" prob="1"/>
+			<block name="paintingSorcBridget" prob="1"/>
+			<block name="paintingSorcAcadamius" prob="1"/>
+			<block name="paintingSorcGamingleader" prob="1"/>
+			<block name="paintingSorcSupporters1" prob="1"/>
+			<block name="paintingSorcSupporters2" prob="1"/>
+			<block name="paintingSorcSupporters3" prob="1"/>
+			<block name="paintingSorcPetDaemon" prob="1"/>
+			<block name="paintingSorcPetAzazel" prob="1"/>
+			<block name="paintingSorcPetAbbie" prob="1"/>
+			<block name="paintingSorcPetBabou" prob="1"/>
+			<block name="paintingSorcPetPhoebe" prob="1"/>
+			<block name="paintingSorcPetSquidge" prob="1"/>
+		</placeholder>
+		<placeholder name="paintingSorcSupporterPortraitRandomHelper">
+			<block name="paintingSorcIvanos" prob="1"/>
+			<block name="paintingSorcNotarobot" prob="1"/>
+			<block name="paintingSorcOnorus" prob="1"/>
+			<block name="paintingSorcBridget" prob="1"/>
+			<block name="paintingSorcAcadamius" prob="1"/>
+			<block name="paintingSorcGamingleader" prob="1"/>
+			<block name="paintingSorcPetDaemon" prob="1"/>
+			<block name="paintingSorcPetAzazel" prob="1"/>
+			<block name="paintingSorcPetAbbie" prob="1"/>
+			<block name="paintingSorcPetBabou" prob="1"/>
+			<block name="paintingSorcPetPhoebe" prob="1"/>
+			<block name="paintingSorcPetSquidge" prob="1"/>
+		</placeholder>
+		<placeholder name="paintingSorcPictureSupportersRandomHelper">
+			<block name="paintingSorcSupporters1" prob="1"/>
+			<block name="paintingSorcSupporters2" prob="1"/>
+			<block name="paintingSorcSupporters3" prob="1"/>
+		</placeholder>
+		
+		
+	<!-- QUEST -->
+		<!-- INTRO FETCH -->
+		<placeholder name="cntQuestSorceryIntroLootHelper">
+			<block name="cntLoot_SorceryCrateIntro" prob="1" questtag="fetch"/>
+			<block name="air"/>
+		</placeholder>
+		
+	</append>
+	
+	
+
+<!-- PAINTINGS -->
+	<append xpath="/blockplaceholders/placeholder[@name='paintingPictureRandomHelper']">
+		<block name="paintingSorcSupporters1" prob="1"/>
+		<block name="paintingSorcSupporters2" prob="1"/>
+		<block name="paintingSorcSupporters3" prob="1"/>
+		<block name="paintingSorcPetDaemon" prob="1"/>
+		<block name="paintingSorcPetAzazel" prob="1"/>
+		<block name="paintingSorcPetAbbie" prob="1"/>
+		<block name="paintingSorcPetBabou" prob="1"/>
+		<block name="paintingSorcPetPhoebe" prob="1"/>
+		<block name="paintingSorcPetSquidge" prob="1"/>
+		<block name="paintingSorcIvanos" prob="1"/>
+		<block name="paintingSorcNotarobot" prob="1"/>
+		<block name="paintingSorcOnorus" prob="1"/>
+		<block name="paintingSorcBridget" prob="1"/>
+		<block name="paintingSorcAcadamius" prob="1"/>
+		<block name="paintingSorcGamingleader" prob="1"/>
+	</append>
+	<!-- PAINTINGS: SAFES -->
+	<append xpath="/blockplaceholders/placeholder[@name='cntPaintingPictureSafeRandomLootHelper']">
+		<block name="hiddenSafePaintingSorcSupporters1" prob="1"/>
+		<block name="hiddenSafePaintingSorcSupporters2" prob="1"/>
+		<block name="hiddenSafePaintingSorcSupporters3" prob="1"/>
+		<block name="hiddenSafePaintingSorcPetDaemon" prob="1"/>
+		<block name="hiddenSafePaintingSorcPetAzazel" prob="1"/>
+		<block name="hiddenSafePaintingSorcPetAbbie" prob="1"/>
+		<block name="hiddenSafePaintingSorcPetBabou" prob="1"/>
+		<block name="hiddenSafePaintingSorcPetPhoebe" prob="1"/>
+		<block name="hiddenSafePaintingSorcPetSquidge" prob="1"/>
+		<block name="hiddenSafePaintingSorcIvanos" prob="1"/>
+		<block name="hiddenSafePaintingSorcOnorus" prob="1"/>
+		<block name="hiddenSafePaintingSorcBridget" prob="1"/>
+		<block name="hiddenSafePaintingSorcAcadamius" prob="1"/>
+		<block name="hiddenSafePaintingSorcGamingleader" prob="1"/>
+	</append>
+
+
+</Sorcery>

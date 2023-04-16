@@ -69,15 +69,104 @@
 	<!-- ATTRIBUTE: ARCANE SORCERY ______________________________________-->
 		<attribute name="attSorcery" name_key="attSorceryName" desc_key="attSorceryDesc" long_desc_key="attSorceryLongDesc" icon="uic_sorcery_grimoire" min_level="1" max_level="100" base_skill_point_cost="0" cost_multiplier_per_level="0">
 			<level_requirements level="1"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="2"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="2" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="3"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="3" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="4"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="4" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="5"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="5" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="6"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="6" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="7"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="7" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="8"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="8" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="9"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="9" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="10"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="10" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="11"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="11" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="12"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="12" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="13"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="13" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="14"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="14" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="15"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="15" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="16"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="16" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="17"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="17" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="18"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="18" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="19"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="19" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="20"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="20" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="21"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="21" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="22"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="22" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="23"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="23" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="24"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="24" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="25"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="25" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="26"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="26" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="27"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="27" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="28"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="28" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="29"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="29" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="30"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="30" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="31"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="31" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="32"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="32" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="33"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="33" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="34"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="34" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="35"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="35" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="36"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="36" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="37"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="37" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="38"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="38" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="39"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="39" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="40"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="40" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="41"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="41" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="42"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="42" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="43"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="43" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="44"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="44" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="45"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="45" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="46"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="46" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="47"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="47" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="48"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="48" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="49"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="49" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="50"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="50" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="51"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="51" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="52"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="52" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="53"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="53" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="54"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="54" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="55"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="55" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="56"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="56" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="57"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="57" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="58"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="58" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="59"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="59" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="60"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="60" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="61"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="61" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="62"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="62" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="63"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="63" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="64"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="64" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="65"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="65" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="66"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="66" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="67"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="67" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="68"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="68" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="69"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="69" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="70"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="70" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="71"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="71" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="72"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="72" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="73"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="73" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="74"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="74" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="75"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="75" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="76"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="76" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="77"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="77" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="78"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="78" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="79"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="79" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="80"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="80" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="81"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="81" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="82"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="82" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="83"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="83" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="84"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="84" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="85"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="85" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="86"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="86" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="87"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="87" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="88"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="88" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="89"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="89" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="90"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="90" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="91"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="91" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="92"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="92" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="93"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="93" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="94"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="94" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="95"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="95" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="96"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="96" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="97"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="97" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="98"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="98" desc_key="reqSorceryLBC"/></level_requirements>
+			<level_requirements level="99"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="99" desc_key="reqSorceryLBC"/></level_requirements>
 			<level_requirements level="100"><requirement name="CVarCompare" cvar="$attSorcery_Lvl" operation="GTE" value="100" desc_key="reqSorceryLBC"/></level_requirements>
 			<effect_group>
 				<effect_description level="1" desc_key="attSorceryRank0Desc" long_desc_key="attSorceryRank0LongDesc"/>

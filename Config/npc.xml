@@ -58,21 +58,18 @@
 	amount of time allotted to development is made possible through the generous support given by our Supporters.
 	Disclaimer subject to ongoing changes.
 	_____________________________________________________________________________________________________________________-->
-		
-	<!-- mainmenubutton -->
-	<!-- UI: MAINMENUBUTTON -->
-	<append xpath="/controls">
-		<mainmenubutton_sorcery depth="3" pos="0,0" width="200" height="32"
-				enabled_font_color="[labelColor]" disabled_font_color="[disabledLabelColor]" visible="true" enabled="true" pivot="left" tooltip_key="" sound="[default_click]" caption="" caption_key="" >
-			<rect name="${name}" depth="${depth}" pos="${pos}" width="${width}" height="${height}" enabled_font_color="240,240,240,255" disabled_font_color="140,140,140,255" controller="SimpleButton" visible="${visible}" button_enabled="${enabled}" font_size_default="${height-16}" font_size_hover="${height-12}">		
-				<button name="clickable" sprite="ui_game_popup" flip="horizontally" pos="0,${Round(-height/2,0)}" disabledcolor="50,50,50,50" defaultcolor="240,240,240,100" hovercolor="255,255,255,255" type="sliced" hoverscale="1.2" pivot="${pivot}" tooltip_key="${tooltip_key}" sound_play_on_hover="[default_hover]" sound="${sound}">
-					<!-- Sorcery: Add -->
-					<sprite name="SORCERY" size="40,40" pos="-45,25" atlas="UIAtlas" sprite="uic_symbol_pentagram"/>
-				</button>
-				<label depth="2" name="btnLabel" width="${width-20}" pos="10,${Round(-height/2,0)}" justify="left" text="${caption}" text_key="${caption_key}" effect="outline" pivot="${pivot}" font_size="${height-16}" upper_case="true" />
 
-			</rect>
-		</mainmenubutton_sorcery>
-	</append>
-
+	<insertBefore xpath="/npc/factions">
+		<!-- TRADER: ARCANE TRADER -->
+		<npc_info
+			id="sorceryTraderArcane"
+			name="NPC"
+			name_key="Arcane Trader"
+			faction="whiteriver"
+			portrait="npc_arcanetrader"
+			greeting_type="nearby"
+			stance="Like" voice_set="trader_sorceryarcane_"
+			trader_id="70" dialog_id="sorceryTraderArcane" quest_list="trader_sorcery_quests"/>
+	</insertBefore>
+	
 </Sorcery>
